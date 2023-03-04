@@ -29,7 +29,7 @@ return require('packer').startup(function(use)
     }
 
     use {
-        'nvim-telescope/telescope.nvim', tag = '2.1.1',
+        'nvim-telescope/telescope.nvim', tag = '0.1.1',
         requires = { 'nvim-lua/plenary.nvim' }
     }
 
@@ -49,11 +49,6 @@ return require('packer').startup(function(use)
     }
 
     use {
-        'goolord/alpha-nvim',
-        requires = { 'nvim-tree/nvim-web-devicons' }
-    }
-
-    use {
         'nvim-lualine/lualine.nvim',
         requires = { 'kyazdani42/nvim-web-devicons', opt = true }
     }
@@ -64,6 +59,11 @@ return require('packer').startup(function(use)
             'rmagatti/auto-session',
             'nvim-telescope/telescope.nvim'
         },
+    }
+
+    use {
+        'jose-elias-alvarez/null-ls.nvim',
+        requires = { 'nvim-lua/plenary.nvim' }
     }
 
     use {

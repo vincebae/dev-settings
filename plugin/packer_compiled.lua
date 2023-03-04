@@ -84,11 +84,6 @@ _G.packer_plugins = {
     path = "/home/vincebae/.local/share/nvim/site/pack/packer/start/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
-  ["alpha-nvim"] = {
-    loaded = true,
-    path = "/home/vincebae/.local/share/nvim/site/pack/packer/start/alpha-nvim",
-    url = "https://github.com/goolord/alpha-nvim"
-  },
   ["auto-session"] = {
     loaded = true,
     path = "/home/vincebae/.local/share/nvim/site/pack/packer/start/auto-session",
@@ -160,6 +155,11 @@ _G.packer_plugins = {
     path = "/home/vincebae/.local/share/nvim/site/pack/packer/start/nerdtree",
     url = "https://github.com/scrooloose/nerdtree"
   },
+  ["null-ls.nvim"] = {
+    loaded = true,
+    path = "/home/vincebae/.local/share/nvim/site/pack/packer/start/null-ls.nvim",
+    url = "https://github.com/jose-elias-alvarez/null-ls.nvim"
+  },
   ["nvim-cmp"] = {
     loaded = true,
     path = "/home/vincebae/.local/share/nvim/site/pack/packer/start/nvim-cmp",
@@ -176,9 +176,10 @@ _G.packer_plugins = {
     url = "https://github.com/nvim-treesitter/nvim-treesitter"
   },
   ["nvim-web-devicons"] = {
-    loaded = true,
-    path = "/home/vincebae/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
-    url = "https://github.com/nvim-tree/nvim-web-devicons"
+    loaded = false,
+    needs_bufread = false,
+    path = "/home/vincebae/.local/share/nvim/site/pack/packer/opt/nvim-web-devicons",
+    url = "https://github.com/kyazdani42/nvim-web-devicons"
   },
   ["packer.nvim"] = {
     loaded = true,
