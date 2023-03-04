@@ -52,6 +52,7 @@ local v_opts = {
 local mappings = {
     e = { "Explorer" }, -- defined in nerdtree.lua
     f = { "Format" }, -- defined in lsp.lua
+    B = { "Background" }, -- defined in remap.lua
         ["/"] = { "Comment" }, -- defined in comment.lua
     u = { "Undotree" }, -- defined in undotree.lua
     t = { -- defined in telescope.lua

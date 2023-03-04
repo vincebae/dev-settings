@@ -4,6 +4,7 @@ local g = vim.g
 
 g.mapleader = " "
 opt.compatible = false
+opt.mouse = [[a]]
 
 -- Visual
 opt.guicursor = ""

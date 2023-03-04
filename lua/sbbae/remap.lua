@@ -18,6 +18,7 @@ vim.keymap.set("n", "<leader>Y", [["+Y]])
 vim.keymap.set("t", "<C-w>", "<C-\\><C-N><C-w>")
 
 -- Misc
+vim.keymap.set("n", "<leader>B", "<cmd>suspend<cr>")
 vim.keymap.set("n", "<leader>S", [[:%s/\<<C-r><C-w>\>//gI<Left><Left><Left>]])
 vim.keymap.set("n", "<leader>X", "<cmd>!chmod +x %<cr>", { silent = true })
 vim.keymap.set("n", "<leader>qq", "<cmd>Ex<cr>")
