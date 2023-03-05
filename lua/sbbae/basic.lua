@@ -50,7 +50,7 @@ opt.history = 1000
 opt.statusline = " %F %M %Y %R %= asc: %b r: %l c: %c pct: %p%%"
 opt.laststatus = 2
 
--- Better command line completion 
+-- Better command line completion
 opt.wildmenu = true
 opt.wildignore = "*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx"
 

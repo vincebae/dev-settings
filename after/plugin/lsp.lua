@@ -15,15 +15,6 @@ lsp.set_preferences({
     sign_icons = {}
 })
 
-local null_ls = require("null-ls")
-null_ls.setup({
-    sources = {
-        null_ls.builtins.formatting.stylua,
-        null_ls.builtins.formatting.google_java_format,
-        null_ls.builtins.completion.spell,
-    },
-})
-
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
 
 lsp.on_attach(function(client, bufnr)
@@ -53,62 +44,3 @@ end)
 
 lsp.setup()
 
--- j = {
---   name = "jc.nvim",
---   i = {
---     "<cmd>lua require('jc.jdtls').organize_imports(true)<cr>",
---     "Organize Imports Smart"
---   },
---   I = {
---     "<cmd>lua require('jc.jdtls').organize_imports(false)<cr>",
---     "Organize Imports"
---   },
---   s = {
---     "<cmd>lua require('jc.jdtls').generate_toString()<cr>",
---     "Gen toString"
---   },
---   h = {
---     "<cmd>lua require('jc.jdtls').generate_hashCodeAndEquals()<cr>",
---     "Gen hashCode and Equals"
---   },
---   A = {
---     "<cmd>lua require('jc.jdtls').generate_accessors()<cr>",
---     "Gen all accessors"
---   },
---   s = {
---     "<cmd>lua require('jc.jdtls').generate_accessor('s')<cr>",
---     "Gen setter",
---   },
---   g = {
---     "<cmd>lua require('jc.jdtls').generate_accessor('g')<cr>",
---     "Gen getter",
---   },
---   a = {
---     "<cmd>lua require('jc.jdtls').generate_accessor('gs')<cr>",
---     "Gen getter/setter",
---   },
---   c = {
---     "<cmd>lua require('jc.jdtls').generate_constructor(nil, nil, {default = false})<cr>",
---     "Gen constructor"
---   },
---   cc = {
---     "<cmd>lua require('jc.jdtls').generate_constructor(nil, nil, {default = true})<cr>",
---     "Gen default constructor"
---   },
---   m = {
---     "<cmd>lua require('jc.jdtls').generate_abstractMethods()<cr>",
---     "Gen abs methods"
---   },
---   e = {
---     "<cmd>lua require('jdtls').extract_variable()<cr>",
---     "Extract variable"
---   },
--- },
---
---  -- "i", "<C-j>i", "<cmd>lua require('jc.jdtls').organize_imports()<cr>", opts)
--- "i", "<C-j>s", "<cmd>lua require('jc.jdtls').generate_accessor('s')<cr>", opts)
--- "i", "<C-j>g", "<cmd>lua require('jc.jdtls').generate_accessor('g')<cr>", opts)
--- "i", "<C-j>a", "<cmd>lua require('jc.jdtls').generate_accessor('sg')<cr>", opts)
--- "i", "<C-j>am", "<cmd>lua require('jc.jdtls').generate_abstractMethods()<cr>", opts)
--- re = { "<Esc><Cmd>lua require('jdtls').extract_variable(true)<cr>" },
--- rm = { "<Esc><Cmd>lua require('jdtls').extract_method(true)<cr>" },
