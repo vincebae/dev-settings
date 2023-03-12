@@ -12,14 +12,14 @@ vim.keymap.set("n", "<leader>pS", vim.cmd.PackerStatus)
 
 return require("packer").startup(function(use)
 	-- Packer can manage itself
-	use({ "wbthomason/packer.nvim" })
+	use("wbthomason/packer.nvim")
 
-	use({ "numToStr/Comment.nvim" })
-	use({ "mbbill/undotree" })
-	use({ "folke/which-key.nvim" })
-	use({ "tpope/vim-fugitive" })
-	use({ "scrooloose/nerdtree" })
-	use({ "jistr/vim-nerdtree-tabs" })
+	use("numToStr/Comment.nvim")
+	use("mbbill/undotree")
+	use("folke/which-key.nvim")
+	use("tpope/vim-fugitive")
+	use("scrooloose/nerdtree")
+	use("jistr/vim-nerdtree-tabs")
 
 	use({
 		"LunarVim/lunar.nvim",
@@ -30,7 +30,7 @@ return require("packer").startup(function(use)
 
 	use({
 		"nvim-telescope/telescope.nvim",
-		tag = "0.1.1",
+		tag = "0.1.x",
 		requires = { "nvim-lua/plenary.nvim" },
 	})
 
@@ -57,7 +57,8 @@ return require("packer").startup(function(use)
 	use({
 		"rmagatti/session-lens",
 		requires = {
-			"rmagatti/auto-session", "nvim-telescope/telescope.nvim",
+			"rmagatti/auto-session",
+			"nvim-telescope/telescope.nvim",
 		},
 	})
 
@@ -81,6 +82,14 @@ return require("packer").startup(function(use)
 			-- Snippets
 			{ "L3MON4D3/LuaSnip" }, -- Required
 			{ "rafamadriz/friendly-snippets" }, -- Optional
+		},
+	})
+
+	use("mfussenegger/nvim-jdtls")
+	use({
+		"scalameta/nvim-metals",
+		requires = {
+			"nvim-lua/plenary.nvim",
 		},
 	})
 
