@@ -8,6 +8,7 @@ local lsp = require("lsp-zero").preset({
 lsp.ensure_installed({
 	"tsserver",
 	"lua_ls",
+    "hls",
 })
 
 lsp.set_preferences({

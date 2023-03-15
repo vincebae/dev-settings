@@ -8,5 +8,6 @@ null_ls.setup({
         null_ls.builtins.formatting.google_java_format,
         null_ls.builtins.formatting.shfmt,    -- shell script formatting
         null_ls.builtins.formatting.prettier, -- markdown formatting
+        null_ls.builtins.formatting.stylish_haskell,
     },
 })
