@@ -8,7 +8,6 @@
 ### Basic Tools
 * `sudo apt update && apt install build-essential curl wget xclip vim tmux git i3`
 * `wget https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.deb && sudo apt install ./nvim-linux64.deb`
-* `git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim`
 * `git clone --depth 1 https://github.com/vincebae/bootstrap ~/.config/nvim`
 
 ### Development Tools
