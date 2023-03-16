@@ -1,1 +1,1 @@
-require("sbbae")
+require("config.init")

@@ -104,13 +104,14 @@ local mappings = {
 		i = { "Info" },
 	},
 	p = {
-		-- defined in packer.lua
-		name = "Packer",
+		-- defined in lazy.lua
+		name = "Plugins",
 		i = { "Install" },
 		c = { "Clean" },
 		u = { "Update" },
 		s = { "Sync" },
 		S = { "Status" },
+        p = { "Plugins" },
 	},
 }
 

@@ -1,8 +1,7 @@
-local opt = vim.opt
-local cmd = vim.cmd
-local g = vim.g
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
-g.mapleader = " "
+local opt = vim.opt
 opt.compatible = false
 opt.mouse = [[a]]
 
