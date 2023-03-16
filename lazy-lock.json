@@ -23,7 +23,7 @@
   "nvim-jdtls": { "branch": "master", "commit": "9fcc9495b5d03f8d50e4af936fd0f905f045a6c2" },
   "nvim-lspconfig": { "branch": "master", "commit": "63f4c0082f007d2356df4bc335f55e6d414da89c" },
   "nvim-metals": { "branch": "main", "commit": "0da75dcb1fdea2e7f3ae6c7b1f1036243fbd66a9" },
-  "nvim-treesitter": { "branch": "master", "commit": "fa0644667ea7ee7a72efdb69c471de4953a11019" },
+  "nvim-treesitter": { "branch": "master", "commit": "273d5e9ac5cc84c72de856559b18e28050cca86f" },
   "nvim-web-devicons": { "branch": "master", "commit": "f1b1cee3a561590a6c1637a9326c406f6e4af914" },
   "plenary.nvim": { "branch": "master", "commit": "253d34830709d690f013daf2853a9d21ad7accab" },
   "ripgrep": { "branch": "master", "commit": "595e7845b87c1b9e6cfd4f1c23b3910dca3e15f0" },
