@@ -24,6 +24,7 @@ return {
                 builtin.grep_string({ search = vim.fn.input("Grep > ") })
             end,
         },
+        { "<leader>tc", builtin.colorscheme },
     },
     config = function()
         -- telescope fzf extension setup

@@ -66,6 +66,7 @@ return {
                 g = { "Git Files" },
                 l = { "Live Grep" },
                 s = { "Find String" },
+                c = { "Colorscheme" },
             },
             s = {
                 -- defined in session.lua
