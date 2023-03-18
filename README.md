@@ -8,7 +8,7 @@
 
 ### Basic Tools
 * `sudo apt update`
-* `sudo apt install build-essential curl wget xclip vim tmux git i3 ripgrep`
+* `sudo apt install build-essential curl wget xclip vim tmux git ripgrep`
 
 ### Python3
 * `sudo apt install python3 python3-pip`
