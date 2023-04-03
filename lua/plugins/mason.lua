@@ -6,9 +6,14 @@ return {
     opts = {
         ensure_installed = {
             "bash-language-server",
+            "eslint_d",
+            "eslint-lsp",
             "google-java-format",
             "haskell-language-server",
+            "jdtls",
             "lua-language-server",
+            "rust-analyzer",
+            "rustfmt",
             "stylua",
             "typescript-language-server",
             "vim-language-server",

@@ -8,7 +8,7 @@
 
 ### Basic Tools
 * `sudo apt update`
-* `sudo apt install build-essential curl wget xclip vim tmux git ripgrep`
+* `sudo apt install build-essential curl wget xclip vim tmux git ripgrep tilix`
 
 ### Python3
 * `sudo apt install python3 python3-pip`
@@ -31,9 +31,23 @@
 * `cabal install stylish-haskell`
 * `stylish-haskell --defaults > ~/.config/.stylish-haskell.yaml`
 
+### Rust
+* `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`
+* `cargo +stable install papyrus --no-default-features --features="format,runnable"`
+* `cargo install rust-script`
+* `cargo install evcxr_repl`
+* `cargo install --locked bacon`
+
 ### NVIM
 * `git clone https://luajit.org/git/luajit.git ~/Downloads/luajit && sudo make install -C ~/Downloads/luajit`
 * `wget https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.deb -P ~/Downloads && sudo apt install ~/Downloads/nvim-linux64.deb`
 * `sudo ln -sf /usr/bin/nvim /usr/bin/vi`
 * `git clone --depth 1 https://github.com/vincebae/bootstrap ~/.config/nvim`
+
+### .bashrc
+* Add these lines to .bashrc
+`
+export GIT_EDITOR=vi
+export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+`
 

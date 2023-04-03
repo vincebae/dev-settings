@@ -14,6 +14,7 @@ return {
             "json",
             "lua",
             "python",
+            "rust",
             "scala",
             "typescript",
             "vim",
