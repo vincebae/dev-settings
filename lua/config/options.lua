@@ -14,7 +14,7 @@ opt.cursorline = true
 opt.termguicolors = true
 opt.scrolloff = 4
 opt.signcolumn = "yes"
-opt.colorcolumn = "80"
+opt.colorcolumn = "100"
 
 -- Lines
 opt.tabstop = 4
@@ -46,8 +46,8 @@ opt.showmatch = true
 opt.history = 1000
 
 -- Status line
-opt.statusline = " %F %M %Y %R %= asc: %b r: %l c: %c pct: %p%%"
-opt.laststatus = 2
+-- opt.statusline = " %F %M %Y %R %= asc: %b r: %l c: %c pct: %p%%"
+-- opt.laststatus = 2
 
 -- Better command line completion
 opt.wildmenu = true

@@ -67,6 +67,7 @@ return {
                 l = { "Live Grep" },
                 s = { "Find String" },
                 c = { "Colorscheme" },
+                e = { "File browser" },
             },
             s = {
                 -- defined in session.lua

@@ -25,6 +25,7 @@ return {
             end,
         },
         { "<leader>tc", builtin.colorscheme },
+        { "<leader>te", "<cmd>Telescope file_browser<cr>" },
     },
     config = function()
         -- telescope fzf extension setup
