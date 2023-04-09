@@ -7,7 +7,7 @@
 
 ### Basic Tools
 * `sudo apt update`
-* `sudo apt install build-essential curl wget xclip vim tmux git ripgrep guake fzf`
+* `sudo apt install build-essential curl wget xclip vim tmux git ripgrep guake fzf colorized-logs tldr` 
 
 ### Python3
 * `sudo apt install python3 python3-pip`
@@ -42,6 +42,11 @@
 * `git clone https://github.com/Gogh-Co/Gogh.git gogh`
 * `export TERMINAL=gnome-terminal`
 * run script under installs diretory
+
+### Cheat sheets
+* `curl https://cht.sh/:cht.sh > cht.sh`
+* `chmod u+x cht.sh`
+
 
 ### Rust
 * `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`

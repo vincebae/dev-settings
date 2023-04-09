@@ -18,6 +18,21 @@ keymap.set("n", "<leader>P", [["+p]])
 keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 keymap.set("n", "<leader>Y", [["+Y]])
 
+-- Buffer
+keymap.set("n", "<leader>bb", "<cmd>Telescope buffers<cr>")
+keymap.set("n", "<leader>bp", "<cmd>bp<cr>")
+keymap.set("n", "<leader>bn", "<cmd>bn<cr>")
+keymap.set("n", "<leader>bl", "<cmd>bl<cr>")
+
+-- Cheat sheet
+local my_funs = require('config/functions')
+keymap.set("n", "<leader>cc", my_funs.open_cheatsheet("tabe", ""))
+keymap.set("n", "<leader>ch", my_funs.open_cheatsheet("belowright new", ""))
+keymap.set("n", "<leader>cv", my_funs.open_cheatsheet("belowright vnew", ""))
+keymap.set("n", "<leader>cjc", my_funs.open_cheatsheet("tabe", "java"))
+keymap.set("n", "<leader>cjh", my_funs.open_cheatsheet("belowright new", "java"))
+keymap.set("n", "<leader>cjv", my_funs.open_cheatsheet("belowright vnew", "java"))
+
 -- Key maps for terminal split window
 keymap.set("t", "<C-w>", "<C-\\><C-N><C-w>")
 

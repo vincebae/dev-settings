@@ -7,7 +7,7 @@ return {
 		local keymap = vim.keymap
 
 		keymap.set("n", "<leader>ha", mark.add_file)
-		keymap.set("n", "<leader>hq", ui.toggle_quick_menu)
+		keymap.set("n", "<leader>hh", ui.toggle_quick_menu)
 
 		keymap.set("n", "<leader>h1", function()
 			ui.nav_file(1)
