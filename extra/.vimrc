@@ -18,6 +18,11 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'rafi/awesome-vim-colorschemes'
 Plug 'LunarVim/lunar.nvim'
 
+" Essentials
+Plug 'scrooloose/nerdtree'
+Plug 'jistr/vim-nerdtree-tabs'
+Plug 'mhinz/vim-startify'
+
 call plug#end()
 
 "*****************************************************************************
@@ -130,3 +135,6 @@ cnoreabbrev W w
 cnoreabbrev Q q
 cnoreabbrev Qall qall
 
+" google/vim-codefmt
+"call glaive#Install()
+"Glaive codefmt google_java_executable="java -jar /usr/local/bin/google-java-format-1.16.0-all-deps.jar"
