@@ -57,6 +57,7 @@ return {
             f = { "Format" },      -- defined in lsp.lua
             B = { "Background" },  -- defined in keymap.lua
             ["/"] = { "Comment" }, -- defined in comment.lua
+            ["?"] = { "Buffer Search" }, -- defined in keymap.lua
             u = { "Undotree" },    -- defined in undotree.lua
             b = {
                 -- defined in keymap.lua
@@ -65,11 +66,18 @@ return {
                 n = { "Next" },
                 p = { "Prev" },
                 l = { "Last" },
-                ["1"] = { "1st" },
-                ["2"] = { "2nd" },
-                ["3"] = { "3rd" },
-                ["4"] = { "4th" },
+                s = { "Search" },
             },
+            w = {
+                -- defined in keymap.lua
+                name = "Tab",
+                w = { "List" },
+                [" "] = { "New" },
+                n = { "Next" },
+                p = { "Prev" },
+                c = { "Close" },
+                o = { "Only" },
+                },
             c = {
                 -- defined in keymap.lua
                 name = "Cheat sheet",
@@ -88,11 +96,13 @@ return {
                 name = "Telescope",
                 b = { "Buffers" },
                 f = { "Find Files" },
-                g = { "Git Files" },
+                g = { "Git Status" },
                 l = { "Live Grep" },
                 s = { "Find String" },
                 c = { "Colorscheme" },
+                h = { "Search History" },
                 e = { "File browser" },
+                k = { "Keymaps" },
             },
             s = {
                 -- defined in session.lua
@@ -119,6 +129,7 @@ return {
                 name = "Git",
                 g = { "Git" },
                 s = { "Status" },
+                d = { "Diff" },
             },
             l = {
                 -- defined in lsp.lua

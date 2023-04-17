@@ -1,6 +1,7 @@
 local keymap = vim.keymap
 local cmd = vim.cmd
 
+
 -- Search and scroll being kept in center.
 keymap.set("n", "n", "nzzzv")
 keymap.set("n", "N", "Nzzzv")
@@ -19,10 +20,20 @@ keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 keymap.set("n", "<leader>Y", [["+Y]])
 
 -- Buffer
+keymap.set("n", "<leader>?", "<cmd>Telescope current_buffer_fuzzy_find<cr>")
+keymap.set("n", "<leader>bs", "<cmd>Telescope current_buffer_fuzzy_find<cr>")
 keymap.set("n", "<leader>bb", "<cmd>Telescope buffers<cr>")
 keymap.set("n", "<leader>bp", "<cmd>bp<cr>")
 keymap.set("n", "<leader>bn", "<cmd>bn<cr>")
 keymap.set("n", "<leader>bl", "<cmd>bl<cr>")
+
+-- Tab
+keymap.set("n", "<leader>ww", "<cmd>Telescope telescope-tabs list_tabs<cr>")
+keymap.set("n", "<leader>w<leader>", "<cmd>tabnew<cr>")
+keymap.set("n", "<leader>wn", "<cmd>tabnext<cr>")
+keymap.set("n", "<leader>wp", "<cmd>tabprev<cr>")
+keymap.set("n", "<leader>wc", "<cmd>tabclose<cr>")
+keymap.set("n", "<leader>wo", "<cmd>tabonly<cr>")
 
 -- Cheat sheet
 local my_funs = require('config/functions')

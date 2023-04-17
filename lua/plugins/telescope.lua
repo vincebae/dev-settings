@@ -12,11 +12,18 @@ return {
             "nvim-telescope/telescope-fzf-native.nvim",
             build = "make",
         },
+        {
+            "paopaol/telescope-git-diffs.nvim",
+            dependencies = {
+                "nvim-lua/plenary.nvim",
+                "sindrets/diffview.nvim",
+            },
+        },
     },
     keys = {
         { "<leader>tb", builtin.buffers },
         { "<leader>tf", builtin.find_files },
-        { "<leader>tg", builtin.git_files },
+        { "<leader>tg", builtin.git_status },
         { "<leader>tl", builtin.live_grep },
         {
             "<leader>ts",
@@ -25,6 +32,8 @@ return {
             end,
         },
         { "<leader>tc", builtin.colorscheme },
+        { "<leader>th", builtin.search_history },
+        { "<leader>tk", builtin.keymaps },
         { "<leader>te", "<cmd>Telescope file_browser<cr>" },
     },
     config = function()
@@ -38,13 +47,21 @@ return {
                 file_previewer = previewers.vim_buffer_cat.new,
                 grep_previewer = previewers.vim_buffer_vimgrep.new,
                 qflist_previewer = previewers.vim_buffer_qflist.new,
+                mappings = {
+                    i = {
+                        ["<C-W>"] = "select_tab",
+                    },
+                    n = {
+                        ["<C-W>"] = "select_tab",
+                    },
+                },
             },
             extensions = {
                 fzf = {
-                    fuzzy = true,    -- false will only do exact matching
+                    fuzzy = true,                   -- false will only do exact matching
                     override_generic_sorter = true, -- override the generic sorter
-                    override_file_sorter = true, -- override the file sorter
-                    case_mode = "smart_case", -- or "ignore_case" or "respect_case"
+                    override_file_sorter = true,    -- override the file sorter
+                    case_mode = "smart_case",       -- or "ignore_case" or "respect_case"
                     -- the default case_mode is "smart_case"
                 },
             },
@@ -52,5 +69,6 @@ return {
         -- To get fzf loaded and working with telescope, you need to call
         -- load_extension, somewhere after setup function:
         telescope.load_extension("fzf")
+        telescope.load_extension("git_diffs")
     end,
 }

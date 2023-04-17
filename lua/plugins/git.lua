@@ -3,6 +3,7 @@ return {
 	config = function()
 		vim.keymap.set("n", "<leader>gg", vim.cmd.Git)
 		vim.keymap.set("n", "<leader>gs", "<cmd>Git status<cr>")
+        vim.keymap.set("n", "<leader>gd", "<cmd>Telescope git_diffs diff_commits<cr>")
 	end,
 }
 

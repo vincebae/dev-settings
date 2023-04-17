@@ -2,7 +2,7 @@ return {
     "folke/noice.nvim",
     dependencies = {
         "MunifTanjim/nui.nvim",
-        "rcarriga/nvim-notify",
+        -- "rcarriga/nvim-notify",
     },
     opts = {
         lsp = {
@@ -15,6 +15,9 @@ return {
             bottom_search = false,
             command_palette = true,
             long_message_to_split = true,
+        },
+        notify = {
+            enabled = false,
         },
     },
 }
