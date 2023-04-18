@@ -70,13 +70,14 @@ cd_and_vi() {
 
 # params: dir, types, pattern
 fuzzy_find() {
-    find_query=""
+    find_query="."
     fzf_query=""
     if [ ! -z $3 ]; then
-        find_query="-ipath *$3*"
+        find_query="$3"
         fzf_query="--query $3"
     fi
-    echo `find $1 -type $2 $find_query | fzf $fzf_query`
+    # echo `find $1 -type $2 $find_query | fzf $fzf_query`
+    echo `fd $find_query $1 -i -p -H -t $2 | fzf $fzf_query`
 }
 
 ffind() {
@@ -95,12 +96,12 @@ fima() {
     cd_and_vi $(fuzzy_find ~ f $1)
 }
 
-fd() {
-    cdd $(fuzzy_find . d,f $1)
+fcd() {
+    cdd $(fuzzy_find . f $1)
 }
 
 fda() {
-    cdd $(fuzzy_find ~ d,f $1)
+    cdd $(fuzzy_find ~ f $1)
 }
 
 fdd() {
