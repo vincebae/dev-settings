@@ -129,7 +129,11 @@ return {
                 name = "Git",
                 g = { "Git" },
                 s = { "Status" },
+                b = { "Branches" },
+                c = { "Commits" },
+                o = { "BCommits" },
                 d = { "Diff" },
+                h = { "Stash" },
             },
             l = {
                 -- defined in lsp.lua
