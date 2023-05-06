@@ -57,7 +57,6 @@ return {
             f = { "Format" },      -- defined in lsp.lua
             B = { "Background" },  -- defined in keymap.lua
             ["/"] = { "Comment" }, -- defined in comment.lua
-            ["?"] = { "Buffer Search" }, -- defined in keymap.lua
             u = { "Undotree" },    -- defined in undotree.lua
             b = {
                 -- defined in keymap.lua
@@ -66,7 +65,6 @@ return {
                 n = { "Next" },
                 p = { "Prev" },
                 l = { "Last" },
-                s = { "Search" },
             },
             w = {
                 -- defined in keymap.lua

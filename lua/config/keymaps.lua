@@ -19,13 +19,21 @@ keymap.set("n", "<leader>P", [["+p]])
 keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 keymap.set("n", "<leader>Y", [["+Y]])
 
+-- Windows
+keymap.set("n", "<C-l>", "<C-W>l")
+keymap.set("n", "<C-h>", "<C-W>h")
+keymap.set("n", "<C-j>", "<C-W>j")
+keymap.set("n", "<C-k>", "<C-W>k")
+keymap.set("n", "<C-\\>", "<C-W>_<C-W>|")
+keymap.set("n", "<C-v>", "<cmd>vsp<cr>")
+keymap.set("n", "<C-x>", "<cmd>sp<cr>")
+
 -- Buffer
-keymap.set("n", "<leader>?", "<cmd>Telescope current_buffer_fuzzy_find<cr>")
-keymap.set("n", "<leader>bs", "<cmd>Telescope current_buffer_fuzzy_find<cr>")
+keymap.set("n", "?", "<cmd>Telescope current_buffer_fuzzy_find<cr>")
 keymap.set("n", "<leader>bb", "<cmd>Telescope buffers<cr>")
 keymap.set("n", "<leader>bp", "<cmd>bp<cr>")
 keymap.set("n", "<leader>bn", "<cmd>bn<cr>")
-keymap.set("n", "<leader>bl", "<cmd>bl<cr>")
+keymap.set("n", "<leader>bl", "<C-^>")
 
 -- Tab
 keymap.set("n", "<leader>ww", "<cmd>Telescope telescope-tabs list_tabs<cr>")

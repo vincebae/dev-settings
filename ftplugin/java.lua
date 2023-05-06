@@ -16,8 +16,15 @@ vim.keymap.set("n", "<leader>lp", vim.diagnostic.goto_prev)
 local jdtls = require('jdtls')
 local setup = require('jdtls.setup')
 
+local mason_path = vim.fn.expand("$HOME/.local/share/nvim/mason")
+local jdtls_path = mason_path .. "/bin/jdtls"
+local lombok_path = mason_path .. "/packages/ldtls/lombok.jar"
+
 local config = {
-    cmd = {'/home/vincebae/.local/share/nvim/mason/bin/jdtls'},
+    cmd = {
+        jdtls_path,
+        "--jvm-arg=-javaagent:" .. lombok_path,
+    },
     root_dir = setup.find_root({'.git', 'mvnw', 'gradlew'}),
 }
 

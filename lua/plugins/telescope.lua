@@ -19,6 +19,7 @@ return {
                 "sindrets/diffview.nvim",
             },
         },
+        "kdheepak/lazygit.nvim",
     },
     keys = {
         { "<leader>tb", builtin.buffers },
@@ -70,5 +71,6 @@ return {
         -- load_extension, somewhere after setup function:
         telescope.load_extension("fzf")
         telescope.load_extension("git_diffs")
+        telescope.load_extension("lazygit")
     end,
 }
