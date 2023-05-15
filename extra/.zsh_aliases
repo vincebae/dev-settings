@@ -7,10 +7,6 @@ alias mc="mvn compile"
 alias mt="mvn test"
 alias mr="mvn spring-boot:run"
 
-alias tsn="ts-node"
-alias kts="kotlinc-jvm -script"
-alias rs="rust-script"
-
 pwd_sed_cd() {
     dir=$(pwd | sed $1)
     echo $dir
@@ -21,6 +17,10 @@ alias totop="pwd_sed_cd 's/\/src\/.*$//'"
 alias totest="pwd_sed_cd 's/src\/main/src\/test/'"
 alias tomain="pwd_sed_cd 's/src\/test/src\/main/'"
 alias tonvim="cd ~/.config/nvim"
+
+alias tsn="ts-node"
+alias kts="kotlinc-jvm -script"
+alias rs="rust-script"
 
 cheat() {
     curl "cheat.sh/$1/$2"
