@@ -1,6 +1,12 @@
 alias vi=nvim
+alias lg=lazygit
 alias cht=cht.sh
-alias tmux="TERM=screen-256color-bce tmux"
+alias valias="vi ~/.zsh_aliases"
+alias salias="source ~/.zsh_aliases"
+alias mc="mvn compile"
+alias mt="mvn test"
+alias mr="mvn spring-boot:run"
+
 alias tsn="ts-node"
 alias kts="kotlinc-jvm -script"
 alias rs="rust-script"
@@ -14,6 +20,7 @@ pwd_sed_cd() {
 alias totop="pwd_sed_cd 's/\/src\/.*$//'"
 alias totest="pwd_sed_cd 's/src\/main/src\/test/'"
 alias tomain="pwd_sed_cd 's/src\/test/src\/main/'"
+alias tonvim="cd ~/.config/nvim"
 
 cheat() {
     curl "cheat.sh/$1/$2"
