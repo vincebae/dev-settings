@@ -46,18 +46,18 @@ keymap.set("n", "<leader>wc", "<cmd>tabclose<cr>")
 keymap.set("n", "<leader>wo", "<cmd>tabonly<cr>")
 
 -- Cheat sheet
-local open_cheatsheet_wrapper = function(command, lang)
-    return function()
-        my_funs.open_cheatsheet(command, lang)
-    end
-end
-keymap.set("n", "<leader>cc", open_cheatsheet_wrapper("tabe", ""))
-keymap.set("n", "<leader>ch", open_cheatsheet_wrapper("belowright new", ""))
-keymap.set("n", "<leader>cv", open_cheatsheet_wrapper("belowright vnew", ""))
-keymap.set("n", "<leader>cjc", open_cheatsheet_wrapper("tabe", "java"))
-keymap.set("n", "<leader>cjh", open_cheatsheet_wrapper("belowright new", "java"))
-keymap.set("n", "<leader>cjv", open_cheatsheet_wrapper("belowright vnew", "java"))
-
+-- local open_cheatsheet_wrapper = function(command, lang)
+--     return function()
+--         my_funs.open_cheatsheet(command, lang)
+--     end
+-- end
+-- keymap.set("n", "<leader>cc", open_cheatsheet_wrapper("tabe", ""))
+-- keymap.set("n", "<leader>ch", open_cheatsheet_wrapper("belowright new", ""))
+-- keymap.set("n", "<leader>cv", open_cheatsheet_wrapper("belowright vnew", ""))
+-- keymap.set("n", "<leader>cjc", open_cheatsheet_wrapper("tabe", "java"))
+-- keymap.set("n", "<leader>cjh", open_cheatsheet_wrapper("belowright new", "java"))
+-- keymap.set("n", "<leader>cjv", open_cheatsheet_wrapper("belowright vnew", "java"))
+--
 -- Key maps for terminal split window
 keymap.set("t", "<C-w>", "<C-\\><C-N><C-w>")
 
@@ -88,10 +88,10 @@ vim.api.nvim_create_user_command("Todir", my_funs.cd_to_dir, {})
 vim.api.nvim_create_user_command("Etest", my_funs.open_test_file, {})
 vim.api.nvim_create_user_command("Emain", my_funs.open_main_file, {})
 
-keymap.set("n", "<leader>nP", "<cmd>Totop<cr>")
-keymap.set("n", "<leader>nT", "<cmd>Totest<cr>")
-keymap.set("n", "<leader>nM", "<cmd>Tomain<cr>")
-keymap.set("n", "<leader>nt", "<cmd>Etest<cr>")
-keymap.set("n", "<leader>nm", "<cmd>Emain<cr>")
-keymap.set("n", "<leader>nC", "<cmd>Tocurr<cr>")
-keymap.set("n", "<leader>nD", "<cmd>Todir<cr>")
+keymap.set("n", "<leader>cP", "<cmd>Totop<cr>")
+keymap.set("n", "<leader>cT", "<cmd>Totest<cr>")
+keymap.set("n", "<leader>cM", "<cmd>Tomain<cr>")
+keymap.set("n", "<leader>ct", "<cmd>Etest<cr>")
+keymap.set("n", "<leader>cm", "<cmd>Emain<cr>")
+keymap.set("n", "<leader>cc", "<cmd>Tocurr<cr>")
+keymap.set("n", "<leader>cd", "<cmd>Todir<cr>")
