@@ -1,0 +1,97 @@
+alias vi=nvim
+alias lg=lazygit
+alias cht=cht.sh
+alias valias="vi ~/.zsh_aliases"
+alias salias="source ~/.zsh_aliases"
+alias mc="mvn compile"
+alias mt="mvn test"
+alias mr="mvn spring-boot:run"
+
+pwd_sed_cd() {
+    dir=$(pwd | sed $1)
+    echo $dir
+    cd $dir
+}
+
+alias totop="pwd_sed_cd 's/\/src\/.*$//'"
+alias totest="pwd_sed_cd 's/src\/main/src\/test/'"
+alias tomain="pwd_sed_cd 's/src\/test/src\/main/'"
+alias tonvim="cd ~/.config/nvim"
+
+alias tsn="ts-node"
+alias kts="kotlinc-jvm -script"
+alias rs="rust-script"
+
+cheat() {
+    curl "cheat.sh/$1/$2"
+}
+
+cap() {
+    ansifilter | xsel -ib && xsel -ob
+}
+
+clip() {
+    ansifilter | xsel -ib
+}
+
+cdd() {
+    if [ -z $1 ]; then
+        : # do nothing
+    elif [ -d $1 ]; then
+        cd $1
+    elif [ -f $1 ]; then
+        cd $(dirname $1)
+    fi
+}
+
+cd_and_vi() {
+    if [ -z $1 ]; then
+        : # do nothing
+    elif [ -f $1 ]; then
+        cdd $1
+        nvim $(basename $1)
+    fi
+}
+
+# params: dir, types, pattern
+fuzzy_find() {
+    find_query="."
+    fzf_query=""
+    if [ ! -z $3 ]; then
+        find_query="$3"
+        fzf_query="--query=$3"
+    fi
+    echo `fd $find_query $1 -i -p -H -t $2 | fzf $fzf_query`
+}
+
+ffind() {
+    dir=$1
+    if [ -z $dir ]; then
+        dir="."
+    fi
+    fuzzy_find $1 f $2
+}
+
+fim() {
+    cd_and_vi $(fuzzy_find . f $1)
+}
+
+fima() {
+    cd_and_vi $(fuzzy_find ~ f $1)
+}
+
+fcd() {
+    cdd $(fuzzy_find . f $1)
+}
+
+fda() {
+    cdd $(fuzzy_find ~ f $1)
+}
+
+fdd() {
+    cdd $(fuzzy_find . d $1)
+}
+
+fdda() {
+    cdd $(fuzzy_find ~ d $1)
+}

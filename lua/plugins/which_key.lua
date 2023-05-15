@@ -8,23 +8,23 @@ return {
 
         local setup = {
             window = {
-                border = "rounded",       -- none, single, double, shadow
-                position = "bottom",      -- bottom, top
-                margin = { 1, 0, 1, 0 },  -- extra window margin [top, right, bottom, left]
+                border = "rounded", -- none, single, double, shadow
+                position = "bottom", -- bottom, top
+                margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
                 padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
                 winblend = 0,
             },
             layout = {
-                height = { min = 4, max = 25 },                                           -- min and max height of the columns
-                width = { min = 20, max = 50 },                                           -- min and max width of the columns
-                spacing = 3,                                                              -- spacing between columns
-                align = "center",                                                         -- align columns left, center or right
+                height = { min = 4, max = 25 },                                  -- min and max height of the columns
+                width = { min = 20, max = 50 },                                  -- min and max width of the columns
+                spacing = 3,                                                     -- spacing between columns
+                align = "center",                                                -- align columns left, center or right
             },
-            ignore_missing = true,                                                        -- enable this to hide mappings for which you didn't specify a label
+            ignore_missing = true,                                               -- enable this to hide mappings for which you didn't specify a label
             hidden = { "<silent>", "<cmd>", "<Cmd>", "<cr>", "call", "lua", "^:", "^ " }, -- hide mapping boilerplate
-            show_help = false,                                                            -- show help message on the command line when the popup is visible
+            show_help = false,                                                   -- show help message on the command line when the popup is visible
             -- triggers = "auto", -- automatically setup triggers
-            triggers = { "<leader>" },                                                    -- or specify a list manually
+            triggers = { "<leader>" },                                           -- or specify a list manually
             triggers_blacklist = {
                 -- list of mode / prefixes that should never be hooked by WhichKey
                 -- this is mostly relevant for key maps that start with a native binding
@@ -35,29 +35,37 @@ return {
         }
 
         local opts = {
-            mode = "n",     -- NORMAL mode
+            mode = "n", -- NORMAL mode
             prefix = "<leader>",
-            buffer = nil,   -- Global mappings. Specify a buffer number for buffer local mappings
-            silent = true,  -- use `silent` when creating keymaps
+            buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+            silent = true, -- use `silent` when creating keymaps
             noremap = true, -- use `noremap` when creating keymaps
-            nowait = true,  -- use `nowait` when creating keymaps
+            nowait = true, -- use `nowait` when creating keymaps
         }
 
         local v_opts = {
-            mode = "v",     -- VISUAL mode
+            mode = "v", -- VISUAL mode
             prefix = "<leader>",
-            buffer = nil,   -- Global mappings. Specify a buffer number for buffer local mappings
-            silent = true,  -- use `silent` when creating keymaps
+            buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+            silent = true, -- use `silent` when creating keymaps
             noremap = true, -- use `noremap` when creating keymaps
-            nowait = true,  -- use `nowait` when creating keymaps
+            nowait = true, -- use `nowait` when creating keymaps
         }
 
         local mappings = {
-            e = { "Explorer" },    -- defined in nerdtree.lua
-            f = { "Format" },      -- defined in lsp.lua
-            B = { "Background" },  -- defined in keymap.lua
+            e = { "Explorer" }, -- defined in nerdtree.lua
+            f = { "Format" },   -- defined in lsp.lua
+            B = { "Background" }, -- defined in keymap.lua
+            T = { "Terminam" }, -- defined in keymap.lua
             ["/"] = { "Comment" }, -- defined in comment.lua
-            u = { "Undotree" },    -- defined in undotree.lua
+            ["?"] = { "Buffer Search" }, -- defined in keymap.lua
+            [" "] = {
+                function()
+                    require("notify").dismiss({ silent = true, pending = true })
+                end,
+                "Clear Notify",
+            },
+            u = { "Undotree" }, -- defined in undotree.lua
             b = {
                 -- defined in keymap.lua
                 name = "Buffer",
@@ -65,6 +73,7 @@ return {
                 n = { "Next" },
                 p = { "Prev" },
                 l = { "Last" },
+                s = { "Search" },
             },
             w = {
                 -- defined in keymap.lua
@@ -75,20 +84,20 @@ return {
                 p = { "Prev" },
                 c = { "Close" },
                 o = { "Only" },
-                },
-            c = {
-                -- defined in keymap.lua
-                name = "Cheat sheet",
-                c = { "Current" },
-                h = { "Below" },
-                v = { "Right" },
-                j = {
-                    name = "Java",
-                    c = { "Current" },
-                    h = { "Below" },
-                    v = { "Right" },
-                },
             },
+            -- c = {
+            --     -- defined in keymap.lua
+            --     name = "Cheat sheet",
+            --     c = { "Current" },
+            --     h = { "Below" },
+            --     v = { "Right" },
+            --     j = {
+            --         name = "Java",
+            --         c = { "Current" },
+            --         h = { "Below" },
+            --         v = { "Right" },
+            --     },
+            -- },
             t = {
                 -- defined in telescope.lua
                 name = "Telescope",
@@ -101,6 +110,8 @@ return {
                 h = { "Search History" },
                 e = { "File browser" },
                 k = { "Keymaps" },
+                n = { "Notify" },
+                p = { "Project" },
             },
             s = {
                 -- defined in session.lua
@@ -125,13 +136,14 @@ return {
             g = {
                 -- defined in git.lua
                 name = "Git",
-                g = { "Git" },
+                g = { "LazyGit" },
                 s = { "Status" },
                 b = { "Branches" },
                 c = { "Commits" },
                 o = { "BCommits" },
                 d = { "Diff" },
                 h = { "Stash" },
+                r = { "Repos" },
             },
             l = {
                 -- defined in lsp.lua
@@ -155,6 +167,17 @@ return {
                 s = { "Sync" },
                 S = { "Status" },
                 p = { "Plugins" },
+            },
+            c = {
+                -- defined in keymaps.lua
+                name = "Navigation",
+                P = { "Open top dir" },
+                T = { "Open test dir" },
+                M = { "Open main dir" },
+                c = { "Open curr dir" },
+                t = { "Open test file" },
+                m = { "Open main file" },
+                d = { "Open dir" },
             },
         }
 

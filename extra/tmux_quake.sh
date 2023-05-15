@@ -1,6 +1,6 @@
 #!/bin/bash
 
-session_name="guake"
+session_name="quake"
 tmux has-session -t $session_name
 if [ "$?" -eq "0" ]; then
     tmux a -t $session_name
