@@ -179,6 +179,29 @@ return {
                 m = { "Open main file" },
                 d = { "Open dir" },
             },
+            o = {
+                name = "Orgmode",
+                ["*"] = { "Toggle headline" },
+                a = { "Agenda" },
+                c = { "Capture" },
+                K = { "Move subtree up" },
+                J = { "Move subtree down" },
+                r = { "Refile subtree" },
+                e = { "Open export options" },
+                o = { "Open link or date" },
+                m = { "Open Memo" },
+                t = { "Open TODO" },
+                i = {
+                    name = "Insert",
+                    h = "Insert headline",
+                    T = "Insert TODO (line)",
+                    t = "Insert TODO (subtree)",
+                    d = "Insert deadline",
+                    s = "Insert schedule",
+                    ["."] = "Insert date",
+                    ["!"] = "Insert inactive date",
+                },
+            },
         }
 
         local v_mappings = {
