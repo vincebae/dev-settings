@@ -189,8 +189,8 @@ return {
                 r = { "Refile subtree" },
                 e = { "Open export options" },
                 o = { "Open link or date" },
-                m = { "Open Memo" },
-                t = { "Open TODO" },
+                M = { "Open Memo" },
+                T = { "Open TODO" },
                 i = {
                     name = "Insert",
                     h = "Insert headline",
