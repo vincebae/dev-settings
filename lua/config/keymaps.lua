@@ -93,8 +93,9 @@ keymap.set("n", "<leader>cT", "<cmd>Totest<cr>")
 keymap.set("n", "<leader>cM", "<cmd>Tomain<cr>")
 keymap.set("n", "<leader>ct", "<cmd>Etest<cr>")
 keymap.set("n", "<leader>cm", "<cmd>Emain<cr>")
-keymap.set("n", "<leader>cc", "<cmd>Tocurr<cr>")
 keymap.set("n", "<leader>cd", "<cmd>Todir<cr>")
+keymap.set("n", "<leader>cc", "<cmd>Tocurr<cr>")
+keymap.set("n", "-", "<cmd>Oil<cr>")
 
 -- Orgmode files
 keymap.set("n", "<leader>oM", "<cmd>e ~/Documents/org/memo.org<cr>")
