@@ -17,8 +17,8 @@ local change_dir = function(directory)
 	vim.cmd("cd " .. directory)
 end
 
-local open_tree = function()
-	vim.cmd("e .")
+local open_dir = function(directory)
+    vim.cmd("Oil " .. directory)
 end
 
 local get_file_path = function()
@@ -42,12 +42,11 @@ local get_new_path = function(path, orig_pattern, sub_pattern)
 	return string.gsub(path, orig_pattern, sub_pattern)
 end
 
-local open_tree_by_pattern = function(orig_pattern, sub_pattern)
+local open_dir_by_pattern = function(orig_pattern, sub_pattern)
 	local path = get_current_dir()
 	local new_path = get_new_path(path, orig_pattern, sub_pattern)
 	if new_path ~= nil then
-		change_dir(new_path)
-		open_tree()
+		open_dir(new_path)
 	end
 end
 
@@ -76,31 +75,29 @@ end
 M.cd_to_test_dir = function()
 	local java_dir_pattern = [[/src/main/]]
 	local test_dir_pattern = [[/src/test/]]
-	open_tree_by_pattern(java_dir_pattern, test_dir_pattern)
+	open_dir_by_pattern(java_dir_pattern, test_dir_pattern)
 end
 
 M.cd_to_main_dir = function()
 	local test_dir_pattern = [[/src/test/]]
 	local java_dir_pattern = [[/src/main/]]
-	open_tree_by_pattern(test_dir_pattern, java_dir_pattern)
+	open_dir_by_pattern(test_dir_pattern, java_dir_pattern)
 end
 
 M.cd_to_top_dir = function()
 	local dir_pattern = [[/src/[mt][ae][is][nt]/.*$]]
 	local new_dir_pattern = ""
-	open_tree_by_pattern(dir_pattern, new_dir_pattern)
+	open_dir_by_pattern(dir_pattern, new_dir_pattern)
 end
 
 M.cd_to_curr_dir = function()
-	change_dir(get_current_dir())
-	open_tree()
+	open_dir(get_current_dir())
 end
 
 M.cd_to_dir = function()
 	local dir = vim.fn.input("Dir > ")
 	if dir ~= nil and dir ~= "" then
-		change_dir(dir)
-		open_tree()
+		open_dir(dir)
 	end
 end
 
