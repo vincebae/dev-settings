@@ -55,3 +55,14 @@ opt.wildignore = "*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx"
 
 -- Misc
 opt.updatetime = 50
+
+-- Racket filetype support
+local api = vim.api
+api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+    pattern = { "*.scm", "*.ss", "*.sld" },
+    command = "setf scheme",
+})
+api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+    pattern = { "*.rkt", "*.rktd", "*.rktl" },
+    command = "setf racket",
+})

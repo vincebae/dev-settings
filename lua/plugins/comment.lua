@@ -7,6 +7,8 @@ return {
             "<leader>/",
             "<esc><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<cr>"
         )
+        local ft = require("Comment.ft")
+        ft.set("racket", ";%s")
         require("Comment").setup()
     end,
 }

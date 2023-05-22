@@ -78,6 +78,7 @@ return {
 
             lsp.ensure_installed({
                 "bashls",
+                "clojure_lsp",
                 "hls",
                 "lua_ls",
                 "rust_analyzer",
