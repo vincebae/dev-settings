@@ -6,6 +6,7 @@ return {
         ensure_installed = {
             "bash",
             "c",
+            "clojure",
             "haskell",
             "help",
             "html",
@@ -15,6 +16,7 @@ return {
             "lua",
             "org",
             "python",
+            "racket",
             "rust",
             "scala",
             "typescript",
