@@ -3,10 +3,13 @@ alias memo="nvim ~/Documents/org/memo.org"
 alias todo="nvim ~/Documents/org/todo.org"
 alias lg=lazygit
 alias cht=cht.sh
+alias vconf="vi ~/.zshrc"
+alias sconf="source ~/.zshrc"
 alias valias="vi ~/.zsh_aliases"
 alias salias="source ~/.zsh_aliases"
 alias tconf="vi ~/.tmux.conf"
 alias mc="./mvnw compile"
+alias mci="mvn clean install"
 alias mt="./mvnw test"
 alias mr="./mvnw spring-boot:run"
 
@@ -20,6 +23,7 @@ alias totop="pwd_sed_cd 's/\/src\/.*$//'"
 alias totest="pwd_sed_cd 's/src\/main/src\/test/'"
 alias tomain="pwd_sed_cd 's/src\/test/src\/main/'"
 alias tonvim="cd ~/.config/nvim"
+alias tolazy="cd ~/.local/share/nvim/lazy"
 
 alias tsn="ts-node"
 alias kts="kotlinc-jvm -script"

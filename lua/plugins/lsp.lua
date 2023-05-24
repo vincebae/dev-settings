@@ -59,6 +59,7 @@ return {
                 keymap.set("n", "<leader>ln", diagnostic.goto_next, opts)
                 keymap.set("n", "<leader>lp", diagnostic.goto_prev, opts)
                 keymap.set("n", "<leader>li", "<cmd>LspInfo<cr>")
+                keymap.set("n", "<leader>lu", "<cmd>NullLsInfo<cr>")
             end
 
             -- Setup LSP Zero
