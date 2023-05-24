@@ -157,6 +157,7 @@ return {
                 n = { "Next" },
                 d = { "Prev" },
                 i = { "Info" },
+                u = { "Null LS Info" },
             },
             p = {
                 -- defined in lazy.lua
