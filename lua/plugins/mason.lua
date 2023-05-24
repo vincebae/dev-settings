@@ -7,6 +7,8 @@ return {
         ensure_installed = {
             "bash-language-server",
             "black",
+            "clj-kondo",
+            "clojure-lsp",
             "eslint_d",
             "eslint-lsp",
             "flake8",
