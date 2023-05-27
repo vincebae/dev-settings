@@ -53,8 +53,8 @@ return {
     -- local layout_mod = require('telescope.actions.layout').transform_mod
     telescope.setup({
       defaults = {
-        -- layout_strategy = "vertical",
         -- initial_mode = "normal",
+        layout_strategy = "vertical",
         previewer = true,
         file_previewer = previewers.vim_buffer_cat.new,
         grep_previewer = previewers.vim_buffer_vimgrep.new,
