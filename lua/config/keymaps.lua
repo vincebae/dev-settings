@@ -1,6 +1,4 @@
 local keymap = vim.keymap
-local cmd = vim.cmd
-local my_funs = require("config/functions")
 
 -- Search and scroll being kept in center.
 keymap.set("n", "n", "nzzzv")
@@ -14,6 +12,7 @@ keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 keymap.set("n", "<leader>J", "mzJ`z")
 
 -- Yank & Paste
+keymap.set("x", "<leader>d", [["_d]])
 keymap.set("x", "<leader>p", [["_dP]])
 keymap.set("n", "<leader>P", [["+p]])
 keymap.set({ "n", "v" }, "<leader>y", [["+y]])
@@ -30,7 +29,6 @@ keymap.set("n", "<C-x>", "<cmd>sp<cr>")
 keymap.set("n", "<leader>T", "<cmd>vertical bo split +terminal<cr>")
 
 -- Buffer
-keymap.set("n", "<leader>?", "<cmd>Telescope current_buffer_fuzzy_find<cr>")
 keymap.set("n", "<leader>bs", "<cmd>Telescope current_buffer_fuzzy_find<cr>")
 keymap.set("n", "<leader>bb", "<cmd>Telescope buffers<cr>")
 keymap.set("n", "<leader>bp", "<cmd>bp<cr>")
@@ -45,19 +43,6 @@ keymap.set("n", "<leader>wp", "<cmd>tabprev<cr>")
 keymap.set("n", "<leader>wc", "<cmd>tabclose<cr>")
 keymap.set("n", "<leader>wo", "<cmd>tabonly<cr>")
 
--- Cheat sheet
--- local open_cheatsheet_wrapper = function(command, lang)
---     return function()
---         my_funs.open_cheatsheet(command, lang)
---     end
--- end
--- keymap.set("n", "<leader>cc", open_cheatsheet_wrapper("tabe", ""))
--- keymap.set("n", "<leader>ch", open_cheatsheet_wrapper("belowright new", ""))
--- keymap.set("n", "<leader>cv", open_cheatsheet_wrapper("belowright vnew", ""))
--- keymap.set("n", "<leader>cjc", open_cheatsheet_wrapper("tabe", "java"))
--- keymap.set("n", "<leader>cjh", open_cheatsheet_wrapper("belowright new", "java"))
--- keymap.set("n", "<leader>cjv", open_cheatsheet_wrapper("belowright vnew", "java"))
---
 -- Key maps for terminal split window
 keymap.set("t", "<C-w>", "<C-\\><C-N><C-w>")
 
@@ -65,9 +50,9 @@ keymap.set("t", "<C-w>", "<C-\\><C-N><C-w>")
 keymap.set("n", "<leader>B", "<cmd>suspend<cr>")
 keymap.set("n", "<leader>S", [[:%s/\<<C-r><C-w>\>//gI<Left><Left><Left>]])
 keymap.set("n", "<leader>X", "<cmd>!chmod +x %<cr>", { silent = true })
-keymap.set("n", "<leader>qq", "<cmd>Ex<cr>")
 
 -- Abbreviations
+local cmd = vim.cmd
 cmd("cnoreabbrev W! w!")
 cmd("cnoreabbrev Q! q!")
 cmd("cnoreabbrev Qall! qall!")
@@ -80,6 +65,7 @@ cmd("cnoreabbrev Q q")
 cmd("cnoreabbrev Qall qall")
 
 -- Navigation
+local my_funs = require("config/functions")
 vim.api.nvim_create_user_command("Totop", my_funs.cd_to_top_dir, {})
 vim.api.nvim_create_user_command("Totest", my_funs.cd_to_test_dir, {})
 vim.api.nvim_create_user_command("Tomain", my_funs.cd_to_main_dir, {})
