@@ -1,6 +1,5 @@
 return {
     "mfussenegger/nvim-jdtls",   -- java language server
-    "weilbith/nvim-code-action-menu",
     {
         "scalameta/nvim-metals", -- scala language server
         dependencies = {
@@ -52,7 +51,7 @@ return {
 
                 keymap.set("n", "<leader>f", vlsp.buf.format, opts)
                 keymap.set("n", "<leader>lh", vlsp.buf.hover, opts)
-                keymap.set("n", "<leader>la", "<cmd>CodeActionMenu<cr>", opts)
+                keymap.set("n", "<leader>la", "<cmd>Lspsaga code_action<cr>", opts)
                 keymap.set("n", "<leader>lr", vlsp.buf.rename, opts)
                 keymap.set("n", "<leader>lD", vlsp.buf.definition, opts)
                 keymap.set("n", "<leader>lR", vlsp.buf.references, opts)

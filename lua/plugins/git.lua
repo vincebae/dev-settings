@@ -1,8 +1,8 @@
 return {
 	"tpope/vim-fugitive",
 	config = function()
-		vim.keymap.set("n", "<leader>gg", "<cmd>LazyGit<cr>")
-		vim.keymap.set("n", "<leader>gs", "<cmd>Git status<cr>")
+	vim.keymap.set("n", "<leader>gg", "<cmd>LazyGit<cr>")
+	vim.keymap.set("n", "<leader>gs", "<cmd>Telescope git_status<cr>")
         vim.keymap.set("n", "<leader>gb", "<cmd>Telescope git_branches<cr>")
         vim.keymap.set("n", "<leader>gc", "<cmd>Telescope git_commits<cr>")
         vim.keymap.set("n", "<leader>go", "<cmd>Telescope git_bcommits<cr>")
