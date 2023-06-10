@@ -112,6 +112,7 @@ return {
                 k = { "Keymaps" },
                 n = { "Notify" },
                 p = { "Project" },
+                y = { "Yaml" },
             },
             s = {
                 -- defined in session.lua
