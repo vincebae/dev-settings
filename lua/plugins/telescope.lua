@@ -45,6 +45,7 @@ return {
     { "<leader>te", "<cmd>Tocurr<cr><cmd>Telescope file_browser<cr>" },
     { "<leader>tn", "<cmd>Telescope notify<cr>" },
     { "<leader>tp", "<cmd>lua require('telescope').extensions.project.project()<cr>" },
+    { "<leader>ty", "<cmd>YAMLTelescope<cr>" },
   },
   config = function()
     -- telescope fzf extension setup
