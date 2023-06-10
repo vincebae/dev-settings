@@ -14,6 +14,8 @@ return {
             "javascript",
             "json",
             "lua",
+            "markdown",
+            "markdown_inline",
             "org",
             "python",
             "racket",
