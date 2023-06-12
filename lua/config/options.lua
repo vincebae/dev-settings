@@ -1,5 +1,5 @@
 vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+vim.g.maplocalleader = "\\"
 
 local opt = vim.opt
 opt.compatible = false
@@ -45,9 +45,13 @@ opt.incsearch = true
 opt.showmatch = true
 opt.history = 1000
 
+-- Splits
+opt.splitbelow = true
+opt.splitright = true
+
 -- Status line
--- opt.statusline = " %F %M %Y %R %= asc: %b r: %l c: %c pct: %p%%"
--- opt.laststatus = 2
+opt.statusline = " %F %M %Y %R %= asc: %b r: %l c: %c pct: %p%%"
+opt.laststatus = 2
 
 -- Better command line completion
 opt.wildmenu = true

@@ -1,3 +1,5 @@
 *.swp
 packer_compiled.lua
 .metals/
+.clj-kondo/
+.lsp/

@@ -24,7 +24,7 @@ return {
             hidden = { "<silent>", "<cmd>", "<Cmd>", "<cr>", "call", "lua", "^:", "^ " }, -- hide mapping boilerplate
             show_help = false,                                                   -- show help message on the command line when the popup is visible
             -- triggers = "auto", -- automatically setup triggers
-            triggers = { "<leader>" },                                           -- or specify a list manually
+            triggers = { "<leader>", "<localleader>" },
             triggers_blacklist = {
                 -- list of mode / prefixes that should never be hooked by WhichKey
                 -- this is mostly relevant for key maps that start with a native binding
@@ -53,7 +53,6 @@ return {
         }
 
         local mappings = {
-            e = { "Explorer" }, -- defined in nerdtree.lua
             f = { "Format" },   -- defined in lsp.lua
             B = { "Background" }, -- defined in keymap.lua
             T = { "Terminam" }, -- defined in keymap.lua

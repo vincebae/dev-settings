@@ -1,10 +1,14 @@
 return {
-    "mfussenegger/nvim-jdtls",   -- java language server
+    {
+        "mfussenegger/nvim-jdtls", -- java language server
+        ft = { "java" },
+    },
     {
         "scalameta/nvim-metals", -- scala language server
         dependencies = {
             "nvim-lua/plenary.nvim",
         },
+        ft = { "scala" },
     },
     {
         "mrcjkb/haskell-tools.nvim", -- haskell language server
@@ -12,7 +16,8 @@ return {
             "nvim-lua/plenary.nvim",
             "nvim-telescope/telescope.nvim", -- optional
         },
-        branch = "1.x.x",                    -- recommended
+        branch = "1.x.x",           -- recommended
+        ft = { "scala" },
     },
     {
         "VonHeikemen/lsp-zero.nvim",
@@ -28,12 +33,12 @@ return {
             },
             "williamboman/mason-lspconfig.nvim", -- Optional
             -- Autocompletion
-            "hrsh7th/nvim-cmp",                  -- Required
-            "hrsh7th/cmp-nvim-lsp",              -- Required
-            "hrsh7th/cmp-buffer",                -- Optional
-            "hrsh7th/cmp-path",                  -- Optional
-            "hrsh7th/cmp-nvim-lua",              -- Optional
-            "saadparwaiz1/cmp_luasnip",          -- Optional
+            "hrsh7th/nvim-cmp",         -- Required
+            "hrsh7th/cmp-nvim-lsp",     -- Required
+            "hrsh7th/cmp-buffer",       -- Optional
+            "hrsh7th/cmp-path",         -- Optional
+            "hrsh7th/cmp-nvim-lua",     -- Optional
+            "saadparwaiz1/cmp_luasnip", -- Optional
             -- Snippets
             {
                 "L3MON4D3/LuaSnip", -- Required
@@ -42,6 +47,7 @@ return {
             },
             "rafamadriz/friendly-snippets", -- Optional
         },
+
         config = function()
             local on_attach_fn = function(_, bufnr)
                 local opts = { buffer = bufnr, remap = false }
@@ -88,10 +94,10 @@ return {
 
             lsp.configure("rust_analyzer", {
                 settings = {
-                    ['rust-analyzer'] = {
+                    ["rust-analyzer"] = {
                         assist = {
                             importEnforceGranularity = true,
-                            importPrefix = 'crate',
+                            importPrefix = "crate",
                         },
                         cargo = {
                             allFeatures = true,
@@ -105,10 +111,14 @@ return {
                         checkOnSave = {
                             allFeatures = true,
                             overrideCommand = {
-                                'cargo', 'clippy', '--workspace', '--message-format=json',
-                                '--all-targets', '--all-features'
-                            }
-                        }
+                                "cargo",
+                                "clippy",
+                                "--workspace",
+                                "--message-format=json",
+                                "--all-targets",
+                                "--all-features",
+                            },
+                        },
                     },
                 },
             })
