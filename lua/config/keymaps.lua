@@ -66,21 +66,16 @@ cmd("cnoreabbrev Qall qall")
 
 -- Navigation
 local my_funs = require("config/functions")
-vim.api.nvim_create_user_command("Totop", my_funs.cd_to_top_dir, {})
-vim.api.nvim_create_user_command("Totest", my_funs.cd_to_test_dir, {})
-vim.api.nvim_create_user_command("Tomain", my_funs.cd_to_main_dir, {})
-vim.api.nvim_create_user_command("Tocurr", my_funs.cd_to_curr_dir, {})
-vim.api.nvim_create_user_command("Todir", my_funs.cd_to_dir, {})
-vim.api.nvim_create_user_command("Etest", my_funs.open_test_file, {})
-vim.api.nvim_create_user_command("Emain", my_funs.open_main_file, {})
+-- vim.api.nvim_create_user_command("Totop", my_funs.cd_to_top_dir, {})
+-- vim.api.nvim_create_user_command("Totest", my_funs.cd_to_test_dir, {})
+-- vim.api.nvim_create_user_command("Tomain", my_funs.cd_to_main_dir, {})
+-- vim.api.nvim_create_user_command("Tocurr", my_funs.cd_to_curr_dir, {})
+-- vim.api.nvim_create_user_command("Todir", my_funs.cd_to_dir, {})
+-- vim.api.nvim_create_user_command("Etest", my_funs.open_test_file, {})
+-- vim.api.nvim_create_user_command("Emain", my_funs.open_main_file, {})
+--
 
-keymap.set("n", "<leader>cP", "<cmd>Totop<cr>")
-keymap.set("n", "<leader>cT", "<cmd>Totest<cr>")
-keymap.set("n", "<leader>cM", "<cmd>Tomain<cr>")
-keymap.set("n", "<leader>ct", "<cmd>Etest<cr>")
-keymap.set("n", "<leader>cm", "<cmd>Emain<cr>")
-keymap.set("n", "<leader>cd", "<cmd>Todir<cr>")
-keymap.set("n", "<leader>cc", "<cmd>Tocurr<cr>")
+keymap.set("n", "<leader>nd", function() my_funs.cd_to_dir() end)
 keymap.set("n", "-", "<cmd>Oil<cr>")
 
 -- Orgmode files
