@@ -7,7 +7,7 @@ vim.opt.shiftwidth = 2
 local jdtls = require("jdtls")
 local setup = require("jdtls.setup")
 
-local mason_path = vim.fn.expand("$HOlocal /.local/share/nvim/mason")
+local mason_path = vim.fn.expand("$HOME/.local/share/nvim/mason")
 local jdtls_path = mason_path .. "/bin/jdtls"
 local lombok_path = mason_path .. "/packages/jdtls/lombok.jar"
 local config = {
