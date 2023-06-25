@@ -1,4 +1,4 @@
-# My Linux Bootstrap
+# My Linux Dev Settings
 
 * Mostly for nvim configuration (~/.config/nvim).
 * extra configs located in extra/ directory.
