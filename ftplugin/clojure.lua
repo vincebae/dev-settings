@@ -146,6 +146,32 @@ local ll_mappings = {
 			r = { "Outermost" },
 			w = { "Word" },
 		},
+        i = { "Interrupt" },
+	},
+
+    v = {
+        name = "View",
+        e = { "Last exception" },
+        s = { "Source" },
+        d = { "<cmd>ConjureDocWord<cr>", "Doc" },
+        ["1"] = { "Most recent eval" },
+        ["2"] = { "2nd Most recent eval" },
+        ["3"] = { "3rd Most recent eval" },
+    },
+
+	t = {
+		name = "Testing",
+		a = { "All loaded" },
+		n = { "All curr ns" },
+		N = { "All alt ns" },
+		c = { "Cursor" },
+	},
+
+	r = {
+		name = "Refresh",
+		r = { "All changed" },
+		a = { "All" },
+		c = { "Clear cache" },
 	},
 }
 

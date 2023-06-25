@@ -27,6 +27,8 @@ keymap.set("n", "<C-\\>", "<C-W>_<C-W>|")
 keymap.set("n", "<C-v>", "<cmd>vsp<cr>")
 keymap.set("n", "<C-x>", "<cmd>sp<cr>")
 keymap.set("n", "<leader>T", "<cmd>vertical bo split +terminal<cr>")
+keymap.set("n", "<leader>bT", "<cmd>vertical bo split +terminal<cr>")
+keymap.set("n", "<leader>bt", "<cmd>split +terminal<cr>")
 
 -- Buffer
 keymap.set("n", "<leader>bs", "<cmd>Telescope current_buffer_fuzzy_find<cr>")
@@ -66,15 +68,6 @@ cmd("cnoreabbrev Qall qall")
 
 -- Navigation
 local my_funs = require("config/functions")
--- vim.api.nvim_create_user_command("Totop", my_funs.cd_to_top_dir, {})
--- vim.api.nvim_create_user_command("Totest", my_funs.cd_to_test_dir, {})
--- vim.api.nvim_create_user_command("Tomain", my_funs.cd_to_main_dir, {})
--- vim.api.nvim_create_user_command("Tocurr", my_funs.cd_to_curr_dir, {})
--- vim.api.nvim_create_user_command("Todir", my_funs.cd_to_dir, {})
--- vim.api.nvim_create_user_command("Etest", my_funs.open_test_file, {})
--- vim.api.nvim_create_user_command("Emain", my_funs.open_main_file, {})
---
-
 keymap.set("n", "<leader>nd", function() my_funs.cd_to_dir() end)
 keymap.set("n", "-", "<cmd>Oil<cr>")
 
