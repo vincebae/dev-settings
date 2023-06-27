@@ -47,10 +47,10 @@ return {
 			},
 			"rafamadriz/friendly-snippets", -- Optional
 			-- Language specific
-			{
-				"PaterJason/cmp-conjure",
-				ft = { "clojure" },
-			},
+			-- {
+			-- 	"PaterJason/cmp-conjure",
+			-- 	ft = { "clojure" },
+			-- },
 		},
 
 		config = function()

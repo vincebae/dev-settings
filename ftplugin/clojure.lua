@@ -57,6 +57,22 @@ keymap.set("n", "<leader>ns", function()
 	open_src_file()
 end)
 
+local eval_str = function()
+	local expr = vim.fn.input("Expr > ")
+	vim.cmd("ConjureEval " .. expr)
+end
+local doc_str = function()
+	local expr = vim.fn.input("Symbol > ")
+	vim.cmd("ConjureEval (clojure.repl/doc " .. expr .. ")")
+end
+
+keymap.set("n", "<localleader>es", function()
+	eval_str()
+end)
+keymap.set("n", "<localleader>ed", function()
+	doc_str()
+end)
+
 -- Clojure specific which-key mapping
 local which_key = require("which-key")
 local opts = {
@@ -146,18 +162,20 @@ local ll_mappings = {
 			r = { "Outermost" },
 			w = { "Word" },
 		},
-        i = { "Interrupt" },
+		i = { "Interrupt" },
+		s = { "Input" },
+		d = { "Doc" },
 	},
 
-    v = {
-        name = "View",
-        e = { "Last exception" },
-        s = { "Source" },
-        d = { "<cmd>ConjureDocWord<cr>", "Doc" },
-        ["1"] = { "Most recent eval" },
-        ["2"] = { "2nd Most recent eval" },
-        ["3"] = { "3rd Most recent eval" },
-    },
+	v = {
+		name = "View",
+		e = { "Last exception" },
+		s = { "Source" },
+		d = { "<cmd>ConjureDocWord<cr>", "Doc" },
+		["1"] = { "Most recent eval" },
+		["2"] = { "2nd Most recent eval" },
+		["3"] = { "3rd Most recent eval" },
+	},
 
 	t = {
 		name = "Testing",
