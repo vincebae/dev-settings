@@ -165,6 +165,8 @@ return {
 					["<S-Tab>"] = cmp.mapping.select_prev_item(cmp_select_opts),
 					["<C-f>"] = cmp_action.luasnip_jump_forward(),
 					["<C-b>"] = cmp_action.luasnip_jump_backward(),
+                    ["<Down>"] = cmp.config.disable,
+                    ["<Up>"] = cmp.config.diable,
 				},
 				window = {
 					completion = cmp.config.window.bordered(),
