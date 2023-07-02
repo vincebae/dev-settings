@@ -6,7 +6,7 @@ opt.compatible = false
 opt.mouse = [[a]]
 
 -- Visual
-opt.guicursor = ""
+opt.guicursor = "n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50"
 opt.ruler = true
 opt.number = true
 opt.relativenumber = true
