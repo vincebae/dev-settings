@@ -61,14 +61,15 @@ return {
 				local vlsp = vim.lsp
 
 				keymap.set("n", "<leader>f", vlsp.buf.format, opts)
-				keymap.set("n", "<leader>lh", vlsp.buf.hover, opts)
-				keymap.set("n", "<leader>la", "<cmd>Lspsaga code_action<cr>", opts)
-				keymap.set("n", "<leader>lr", vlsp.buf.rename, opts)
-				keymap.set("n", "<leader>lD", vlsp.buf.definition, opts)
-				keymap.set("n", "<leader>lR", vlsp.buf.references, opts)
-				keymap.set("n", "<leader>ll", diagnostic.open_float, opts)
-				keymap.set("n", "<leader>ln", diagnostic.goto_next, opts)
-				keymap.set("n", "<leader>lp", diagnostic.goto_prev, opts)
+				keymap.set("n", "<leader>lr", "<cmd>Lspsaga rename<cr>", opts)
+                keymap.set("n", "<leader>lh", "<cmd>Lspsaga hover_doc<cr>", opts)
+                keymap.set("n", "<leader>la", "<cmd>Lspsaga code_action<cr>", opts)
+                keymap.set("n", "<leader>lP", "<cmd>Lspsaga peek_definition<cr>", opts)
+                keymap.set("n", "<leader>lD", "<cmd>Lspsaga goto_definition<cr>", opts) 
+                keymap.set("n", "<leader>lR", "<cmd>Lspsaga finder<cr>", opts) 
+                keymap.set("n", "<leader>ll", "<cmd>Lspsaga show_buf_diagnostics<cr>", opts)
+                keymap.set("n", "<leader>ln", "<cmd>Lspsaga diagnostic_jump_next<cr>", opts)
+                keymap.set("n", "<leader>lp", "<cmd>Lspsaga diagnostic_jump_prev<cr>", opts)
 				keymap.set("n", "<leader>li", "<cmd>LspInfo<cr>")
 				keymap.set("n", "<leader>lu", "<cmd>NullLsInfo<cr>")
 			end
@@ -144,6 +145,7 @@ return {
 			vim.diagnostic.config({
 				virtual_text = true,
 			})
+            vim.lsp.set_log_level("off")
 
 			-- Setup autocompletion.
 			require("luasnip.loaders.from_vscode").lazy_load()

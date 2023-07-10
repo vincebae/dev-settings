@@ -26,7 +26,7 @@ keymap.set("n", "<C-k>", "<C-W>k")
 keymap.set("n", "<C-\\>", "<C-W>_<C-W>|")
 keymap.set("n", "<C-v>", "<cmd>vsp<cr>")
 keymap.set("n", "<C-x>", "<cmd>sp<cr>")
-keymap.set("n", "<leader>T", "<cmd>vertical bo split +terminal<cr>")
+keymap.set("n", "<leader>T", "<cmd>Lspsaga term_toggle<cr>")
 keymap.set("n", "<leader>bT", "<cmd>vertical bo split +terminal<cr>")
 keymap.set("n", "<leader>bt", "<cmd>split +terminal<cr>")
 

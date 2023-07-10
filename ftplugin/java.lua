@@ -15,6 +15,11 @@ local config = {
 		jdtls_path,
 		"--jvm-arg=-javaagent:" .. lombok_path,
 	},
+	handlers = {
+        ['language/status'] = function(_, result)
+            -- Print or whatever.
+        end,
+    },
 	root_dir = setup.find_root({ ".git", "mvnw", "gradlew" }),
 	capabilities = require("cmp_nvim_lsp").default_capabilities(),
 }

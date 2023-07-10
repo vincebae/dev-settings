@@ -7,8 +7,16 @@ return {
 			--Please make sure you install markdown and markdown_inline parser
 			{ "nvim-treesitter/nvim-treesitter" },
 		},
-		config = function()
-			require("lspsaga").setup({})
-		end,
+		opts = {
+            lightbulb = {
+                enable = false,
+            },
+            implement = {
+                enable = false,
+            },
+            beacon = {
+                enable = false,
+            },
+        },
 	},
 }
