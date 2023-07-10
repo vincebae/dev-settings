@@ -26,5 +26,9 @@ require("lazy").setup({
     spec = {
         { import = "plugins" },
     },
-    checker = { enabled = true },
+    checker = {
+		enabled = true,
+		-- check for updates every one day.
+		frequency = 86400,
+	},
 })
