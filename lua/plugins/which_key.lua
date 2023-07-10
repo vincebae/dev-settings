@@ -152,6 +152,7 @@ return {
 				name = "LSP",
 				a = { "Action" },
 				r = { "Rename" },
+                P = { "Peek" },
 				D = { "Definition" },
 				R = { "References" },
 				h = { "Hover" },
