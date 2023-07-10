@@ -145,6 +145,7 @@ return {
 			vim.diagnostic.config({
 				virtual_text = true,
 			})
+            vim.lsp.set_log_level("off")
 
 			-- Setup autocompletion.
 			require("luasnip.loaders.from_vscode").lazy_load()
