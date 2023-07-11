@@ -27,6 +27,7 @@ keymap.set("n", "<C-\\>", "<C-W>_<C-W>|")
 keymap.set("n", "<C-v>", "<cmd>vsp<cr>")
 keymap.set("n", "<C-x>", "<cmd>sp<cr>")
 keymap.set("n", "<leader>T", "<cmd>Lspsaga term_toggle<cr>")
+keymap.set("t", "<C-t>", "<cmd>Lspsaga term_toggle<cr>")
 keymap.set("n", "<leader>bT", "<cmd>vertical bo split +terminal<cr>")
 keymap.set("n", "<leader>bt", "<cmd>split +terminal<cr>")
 
@@ -68,7 +69,9 @@ cmd("cnoreabbrev Qall qall")
 
 -- Navigation
 local my_funs = require("config/functions")
-keymap.set("n", "<leader>nd", function() my_funs.cd_to_dir() end)
+keymap.set("n", "<leader>nd", function()
+	my_funs.cd_to_dir()
+end)
 keymap.set("n", "-", "<cmd>Oil<cr>")
 
 -- Orgmode files

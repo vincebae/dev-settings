@@ -8,6 +8,12 @@ return {
 			{ "nvim-treesitter/nvim-treesitter" },
 		},
 		opts = {
+            finder = {
+                toggle_or_open = "<CR>",
+                vsplit = "v",
+                split = "s",
+                tabnew = "n",
+            },
             lightbulb = {
                 enable = false,
             },
