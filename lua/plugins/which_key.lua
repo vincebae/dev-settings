@@ -86,25 +86,11 @@ return {
 				c = { "Close" },
 				o = { "Only" },
 			},
-			-- c = {
-			--     -- defined in keymap.lua
-			--     name = "Cheat sheet",
-			--     c = { "Current" },
-			--     h = { "Below" },
-			--     v = { "Right" },
-			--     j = {
-			--         name = "Java",
-			--         c = { "Current" },
-			--         h = { "Below" },
-			--         v = { "Right" },
-			--     },
-			-- },
 			t = {
 				-- defined in telescope.lua
 				name = "Telescope",
 				b = { "Buffers" },
 				c = { "Colorscheme" },
-				e = { "File browser" },
 				f = { "Find Files" },
 				g = { "Live Grep" },
 				h = { "Search History" },

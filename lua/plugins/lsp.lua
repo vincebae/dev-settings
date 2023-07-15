@@ -1,180 +1,183 @@
 return {
-	{
-		"mfussenegger/nvim-jdtls", -- java language server
-		ft = { "java" },
-	},
-	{
-		"scalameta/nvim-metals", -- scala language server
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-		},
-		ft = { "scala" },
-	},
-	{
-		"mrcjkb/haskell-tools.nvim", -- haskell language server
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"nvim-telescope/telescope.nvim", -- optional
-		},
-		branch = "1.x.x", -- recommended
-		ft = { "scala" },
-	},
-	{
-		"VonHeikemen/lsp-zero.nvim",
-		branch = "v2.x",
-		dependencies = {
-			-- LSP Support
-			"neovim/nvim-lspconfig", -- Required
-			{
-				"williamboman/mason.nvim", -- Optional
-				build = function()
-					vim.cmd("MasonUpdate")
-				end,
-			},
-			"williamboman/mason-lspconfig.nvim", -- Optional
-			-- Autocompletion
-			"hrsh7th/nvim-cmp", -- Required
-			"hrsh7th/cmp-nvim-lsp", -- Required
-			"hrsh7th/cmp-buffer", -- Optional
-			"hrsh7th/cmp-path", -- Optional
-			"hrsh7th/cmp-nvim-lua", -- Optional
-			"saadparwaiz1/cmp_luasnip", -- Optional
-			-- Snippets
-			{
-				"L3MON4D3/LuaSnip", -- Required
-				-- install jsregexp (optional!).
-				build = "make install_jsregexp",
-			},
-			"rafamadriz/friendly-snippets", -- Optional
-			-- Language specific
-			-- {
-			-- 	"PaterJason/cmp-conjure",
-			-- 	ft = { "clojure" },
-			-- },
-		},
+    {
+        "mfussenegger/nvim-jdtls", -- java language server
+        ft = { "java" },
+    },
+    {
+        "scalameta/nvim-metals", -- scala language server
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+        },
+        ft = { "scala" },
+    },
+    {
+        "mrcjkb/haskell-tools.nvim", -- haskell language server
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-telescope/telescope.nvim", -- optional
+        },
+        branch = "1.x.x",           -- recommended
+        ft = { "scala" },
+    },
+    {
+        "VonHeikemen/lsp-zero.nvim",
+        branch = "v2.x",
+        dependencies = {
+            -- LSP Support
+            "neovim/nvim-lspconfig", -- Required
+            {
+                "williamboman/mason.nvim", -- Optional
+                build = function()
+                    vim.cmd("MasonUpdate")
+                end,
+            },
+            "williamboman/mason-lspconfig.nvim", -- Optional
+            -- Autocompletion
+            "hrsh7th/nvim-cmp",         -- Required
+            "hrsh7th/cmp-nvim-lsp",     -- Required
+            "hrsh7th/cmp-buffer",       -- Optional
+            "hrsh7th/cmp-path",         -- Optional
+            "hrsh7th/cmp-nvim-lua",     -- Optional
+            "saadparwaiz1/cmp_luasnip", -- Optional
+            -- Snippets
+            {
+                "L3MON4D3/LuaSnip", -- Required
+                -- install jsregexp (optional!).
+                build = "make install_jsregexp",
+            },
+            "rafamadriz/friendly-snippets", -- Optional
+            -- Language specific
+            -- {
+            -- 	"PaterJason/cmp-conjure",
+            -- 	ft = { "clojure" },
+            -- },
+        },
 
-		config = function()
-			local on_attach_fn = function(_, bufnr)
-				local opts = { buffer = bufnr, remap = false }
-				local keymap = vim.keymap
-				local diagnostic = vim.diagnostic
-				local vlsp = vim.lsp
+        config = function()
+            local on_attach_fn = function(_, bufnr)
+                local opts = { buffer = bufnr, remap = false }
+                local keymap = vim.keymap
+                local diagnostic = vim.diagnostic
+                local vlsp = vim.lsp
 
-				keymap.set("n", "<leader>f", vlsp.buf.format, opts)
-				keymap.set("n", "<leader>lr", "<cmd>Lspsaga rename<cr>", opts)
+                keymap.set("n", "<leader>f", vlsp.buf.format, opts)
+                keymap.set("n", "<leader>lr", "<cmd>Lspsaga rename<cr>", opts)
                 keymap.set("n", "<leader>lh", "<cmd>Lspsaga hover_doc<cr>", opts)
                 keymap.set("n", "<leader>la", "<cmd>Lspsaga code_action<cr>", opts)
                 keymap.set("n", "<leader>lP", "<cmd>Lspsaga peek_definition<cr>", opts)
-                keymap.set("n", "<leader>lD", "<cmd>Lspsaga goto_definition<cr>", opts) 
-                keymap.set("n", "<leader>lR", "<cmd>Lspsaga finder<cr>", opts) 
+                keymap.set("n", "<leader>lD", "<cmd>Lspsaga goto_definition<cr>", opts)
+                keymap.set("n", "<leader>lR", "<cmd>Lspsaga finder<cr>", opts)
                 keymap.set("n", "<leader>ll", "<cmd>Lspsaga show_buf_diagnostics<cr>", opts)
                 keymap.set("n", "<leader>ln", "<cmd>Lspsaga diagnostic_jump_next<cr>", opts)
                 keymap.set("n", "<leader>lp", "<cmd>Lspsaga diagnostic_jump_prev<cr>", opts)
-				keymap.set("n", "<leader>li", "<cmd>LspInfo<cr>")
-				keymap.set("n", "<leader>lu", "<cmd>NullLsInfo<cr>")
-			end
+                keymap.set("n", "<leader>li", "<cmd>LspInfo<cr>")
+                keymap.set("n", "<leader>lu", "<cmd>NullLsInfo<cr>")
+            end
 
-			-- Setup LSP Zero
-			local lsp = require("lsp-zero")
-			local lspconfig = require("lspconfig")
+            -- Setup LSP Zero
+            local lsp = require("lsp-zero")
+            local lspconfig = require("lspconfig")
 
-			lspconfig.lua_ls.setup(lsp.nvim_lua_ls())
+            lspconfig.lua_ls.setup(lsp.nvim_lua_ls())
 
-			-- Disable some LSPs in lsp-zero
-			-- jdtls will be initialized by nvim.jdtls in java.lua
-			lsp.skip_server_setup({ "jdtls" })
-			lsp.preset({
-				manage_nvim_cmp = {
-					set_sources = "recommended",
-				},
-			})
+            -- Disable some LSPs in lsp-zero
+            -- jdtls will be initialized by nvim.jdtls in java.lua
+            lsp.skip_server_setup({ "jdtls" })
+            lsp.preset({
+                manage_nvim_cmp = {
+                    set_sources = "recommended",
+                },
+            })
 
-			lsp.ensure_installed({
-				"bashls",
-				"clojure_lsp",
-				"hls",
-				"lua_ls",
-				"rust_analyzer",
-				"tsserver",
-			})
+            lsp.ensure_installed({
+                "bashls",
+                "clojure_lsp",
+                "hls",
+                "lua_ls",
+                "rust_analyzer",
+                "tsserver",
+            })
 
-			lsp.configure("rust_analyzer", {
-				settings = {
-					["rust-analyzer"] = {
-						assist = {
-							importEnforceGranularity = true,
-							importPrefix = "crate",
-						},
-						cargo = {
-							allFeatures = true,
-						},
-						diagnostics = {
-							enabled = true,
-							experimental = {
-								enable = true,
-							},
-						},
-						checkOnSave = {
-							allFeatures = true,
-							overrideCommand = {
-								"cargo",
-								"clippy",
-								"--workspace",
-								"--message-format=json",
-								"--all-targets",
-								"--all-features",
-							},
-						},
-					},
-				},
-			})
+            lsp.configure("rust_analyzer", {
+                settings = {
+                    ["rust-analyzer"] = {
+                        assist = {
+                            importEnforceGranularity = true,
+                            importPrefix = "crate",
+                        },
+                        cargo = {
+                            allFeatures = true,
+                        },
+                        diagnostics = {
+                            enabled = true,
+                            experimental = {
+                                enable = true,
+                            },
+                        },
+                        checkOnSave = {
+                            allFeatures = true,
+                            overrideCommand = {
+                                "cargo",
+                                "clippy",
+                                "--workspace",
+                                "--message-format=json",
+                                "--all-targets",
+                                "--all-features",
+                            },
+                        },
+                    },
+                },
+            })
 
-			lsp.set_preferences({
-				suggest_lsp_servers = false,
-				sign_icons = {
-					error = "E",
-					warn = "W",
-					hint = "H",
-					info = "I",
-				},
-			})
+            lsp.set_preferences({
+                suggest_lsp_servers = false,
+                sign_icons = {
+                    error = "E",
+                    warn = "W",
+                    hint = "H",
+                    info = "I",
+                },
+            })
 
-			lsp.on_attach(on_attach_fn)
-			lsp.setup()
+            lsp.on_attach(on_attach_fn)
+            lsp.setup()
 
-			vim.diagnostic.config({
-				virtual_text = true,
-			})
+            vim.diagnostic.config({
+                virtual_text = true,
+            })
             vim.lsp.set_log_level("off")
 
-			-- Setup autocompletion.
-			require("luasnip.loaders.from_vscode").lazy_load()
+            -- Setup autocompletion.
+            require("luasnip.loaders.from_vscode").lazy_load()
 
-			local cmp = require("cmp")
-			local cmp_action = require("lsp-zero").cmp_action()
-			local cmp_select_opts = { behavior = cmp.SelectBehavior.Select }
-			cmp.setup({
-				sources = {
-					{ name = "nvim_lsp" },
-					{ name = "nvim_lua" },
-					{ name = "luasnip" },
-					{ name = "orgmode" },
-					{ name = "conjure" },
-				},
-				mapping = {
-					["<CR>"] = cmp.mapping.confirm({ select = false }),
-					["<Tab>"] = cmp.mapping.select_next_item(cmp_select_opts),
-					["<S-Tab>"] = cmp.mapping.select_prev_item(cmp_select_opts),
-					["<C-f>"] = cmp_action.luasnip_jump_forward(),
-					["<C-b>"] = cmp_action.luasnip_jump_backward(),
-                    ["<Down>"] = cmp.config.disable,
-                    ["<Up>"] = cmp.config.diable,
-				},
-				window = {
-					completion = cmp.config.window.bordered(),
-					documentation = cmp.config.window.bordered(),
-				},
-			})
-		end,
-	},
+            local cmp = require("cmp")
+            local cmp_action = require("lsp-zero").cmp_action()
+            local cmp_select_opts = { behavior = cmp.SelectBehavior.Select }
+            cmp.setup({
+                completion = {
+                    autocomplete = false,
+                },
+                sources = {
+                    { name = "nvim_lsp" },
+                    { name = "nvim_lua" },
+                    { name = "luasnip" },
+                    { name = "orgmode" },
+                    { name = "conjure" },
+                },
+                mapping = {
+                    ["<CR>"] = cmp.mapping.confirm({ select = false }),
+                    ["<Tab>"] = cmp.mapping.select_next_item(cmp_select_opts),
+                    ["<S-Tab>"] = cmp.mapping.select_prev_item(cmp_select_opts),
+                    ["<C-f>"] = cmp_action.luasnip_jump_forward(),
+                    ["<C-b>"] = cmp_action.luasnip_jump_backward(),
+                    -- ["<Down>"] = cmp.config.disable,
+                    -- ["<Up>"] = cmp.config.diable,
+                },
+                window = {
+                    completion = cmp.config.window.bordered(),
+                    documentation = cmp.config.window.bordered(),
+                },
+            })
+        end,
+    },
 }
