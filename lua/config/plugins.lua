@@ -15,12 +15,12 @@ vim.opt.rtp:prepend(lazypath)
 local lazy = require("lazy")
 local keymap = vim.keymap
 
-keymap.set("n", "<leader>pi", lazy.install)
-keymap.set("n", "<leader>pc", lazy.clean)
-keymap.set("n", "<leader>pu", lazy.update)
-keymap.set("n", "<leader>ps", lazy.sync)
-keymap.set("n", "<leader>pS", lazy.health)
-keymap.set("n", "<leader>pp", lazy.home)
+keymap.set("n", "<leader>Pi", lazy.install)
+keymap.set("n", "<leader>Pc", lazy.clean)
+keymap.set("n", "<leader>Pu", lazy.update)
+keymap.set("n", "<leader>Ps", lazy.sync)
+keymap.set("n", "<leader>PS", lazy.health)
+keymap.set("n", "<leader>Pp", lazy.home)
 
 require("lazy").setup({
     spec = {

@@ -14,7 +14,9 @@ keymap.set("n", "<leader>J", "mzJ`z")
 -- Yank & Paste
 keymap.set("x", "<leader>d", [["_d]])
 keymap.set("x", "<leader>p", [["_dP]])
-keymap.set("n", "<leader>P", [["+p]])
+keymap.set("n", "<leader>pc", [["+p]])
+keymap.set("n", "<leader>py", [["0p]])
+keymap.set("n", "<leader>pd", [["1p]])
 keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 keymap.set("n", "<leader>Y", [["+Y]])
 

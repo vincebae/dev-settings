@@ -64,7 +64,7 @@ return {
 				end,
 				"Clear Notify",
 			},
-			u = { "Undotree" }, -- defined in undotree.lua
+			y = { "Yank to Clipboard" }, -- defined in keymap.lua
 			b = {
 				-- defined in keymap.lua
 				name = "Buffer",
@@ -148,7 +148,14 @@ return {
 				i = { "Info" },
 				u = { "Null LS Info" },
 			},
-			p = {
+            p = {
+                -- defined in keymap.lua
+                name = "Paste",
+                c = { "Clipboard" },
+                y = { "Yanked" },
+                d = { "Last deleted" },
+            },
+			P = {
 				-- defined in lazy.lua
 				name = "Plugins",
 				i = { "Install" },
@@ -190,6 +197,7 @@ return {
 
 		local v_mappings = {
 			["/"] = { "Comment" }, -- defined in comment.lua
+			y = { "Yank to Clipboard" }, -- defined in keymap.lua
 		}
 
 		which_key.setup(setup)
