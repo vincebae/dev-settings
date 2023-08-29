@@ -75,6 +75,16 @@ return {
 				s = { "Search" },
 				T = { "Terminal (v)" },
 				t = { "Terminal (h)" },
+				d = {
+					name = "Buffer Delete",
+					m = { "Menu" },
+					o = { "Other" },
+					h = { "Hidden" },
+					a = { "All" },
+					t = { "This" },
+					n = { "Nameless" },
+					s = { "Select" },
+				},
 			},
 			w = {
 				-- defined in keymap.lua
@@ -94,7 +104,7 @@ return {
 				f = { "Find Files" },
 				g = { "Live Grep" },
 				h = { "Search History" },
-                j = { "Jump" },
+				j = { "Jump" },
 				k = { "Keymaps" },
 				n = { "Notify" },
 				p = { "Project" },
@@ -138,7 +148,7 @@ return {
 				name = "LSP",
 				a = { "Action" },
 				r = { "Rename" },
-                P = { "Peek" },
+				P = { "Peek" },
 				D = { "Definition" },
 				R = { "References" },
 				h = { "Hover" },
@@ -148,13 +158,13 @@ return {
 				i = { "Info" },
 				u = { "Null LS Info" },
 			},
-            p = {
-                -- defined in keymap.lua
-                name = "Paste",
-                c = { "Clipboard" },
-                y = { "Yanked" },
-                d = { "Last deleted" },
-            },
+			p = {
+				-- defined in keymap.lua
+				name = "Paste",
+				c = { "Clipboard" },
+				y = { "Yanked" },
+				d = { "Last deleted" },
+			},
 			P = {
 				-- defined in lazy.lua
 				name = "Plugins",
