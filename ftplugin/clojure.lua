@@ -200,3 +200,24 @@ local ll_v_mappings = {
 which_key.register(mappings, opts)
 which_key.register(ll_mappings, ll_opts)
 which_key.register(ll_v_mappings, ll_v_opts)
+
+local ls = require("luasnip")
+local s = ls.snippet
+local t = ls.text_node
+
+ls.add_snippets(nil, {
+	clojure = {
+		s("script", {
+			t({
+				"#!/usr/bin/env bb",
+				"",
+			}),
+		}),
+		s("shell", {
+			t({
+				"(require '[babashka.process :refer [sh]])",
+				"",
+			}),
+		}),
+	},
+})

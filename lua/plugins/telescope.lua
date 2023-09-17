@@ -24,7 +24,7 @@ return {
 		{
 			"notjedi/nvim-rooter.lua",
 			opts = {
-				rooter_patterns = { ".git", ".hg", ".svn", "pom.xml", "bb.edn" },
+				rooter_patterns = { ".git", ".hg", ".svn", "pom.xml", "bb.edn", "project.clj" },
 			},
 		},
 	},

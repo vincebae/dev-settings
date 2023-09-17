@@ -14,10 +14,9 @@ return {
 		"mrcjkb/haskell-tools.nvim", -- haskell language server
 		dependencies = {
 			"nvim-lua/plenary.nvim",
-			"nvim-telescope/telescope.nvim", -- optional
 		},
-		branch = "1.x.x", -- recommended
-		ft = { "scala" },
+		branch = "2.x.x", -- recommended
+		ft = { "haskell" },
 	},
 	{
 		"VonHeikemen/lsp-zero.nvim",
@@ -40,17 +39,12 @@ return {
 			"hrsh7th/cmp-nvim-lua", -- Optional
 			"saadparwaiz1/cmp_luasnip", -- Optional
 			-- Snippets
-			{
-				"L3MON4D3/LuaSnip", -- Required
-				-- install jsregexp (optional!).
-				build = "make install_jsregexp",
-			},
-			"rafamadriz/friendly-snippets", -- Optional
+			"L3MON4D3/LuaSnip", -- Required
 			-- Language specific
-			-- {
-			-- 	"PaterJason/cmp-conjure",
-			-- 	ft = { "clojure" },
-			-- },
+			{
+				"PaterJason/cmp-conjure",
+				ft = { "clojure" },
+			},
 		},
 
 		config = function()

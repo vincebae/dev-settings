@@ -16,10 +16,10 @@ local config = {
 		"--jvm-arg=-javaagent:" .. lombok_path,
 	},
 	handlers = {
-        ['language/status'] = function(_, result)
-            -- Print or whatever.
-        end,
-    },
+		-- ['language/status'] = function(_, result)
+		--     -- Print or whatever.
+		-- end,
+	},
 	root_dir = setup.find_root({ ".git", "mvnw", "gradlew" }),
 	capabilities = require("cmp_nvim_lsp").default_capabilities(),
 }
@@ -29,13 +29,13 @@ jdtls.start_or_attach(config)
 -- Navigation
 local my_funs = require("config/functions")
 local open_test_file = function()
-	local src_file_pattern = [[/src/main/(.*/%a+).java$]]
+	local src_file_pattern = [[/src/main/(.*/[%a%d]+).java$]]
 	local test_file_pattern = [[/src/test/%1Test.java]]
 	my_funs.open_file_by_pattern(src_file_pattern, test_file_pattern)
 end
 
 local open_src_file = function()
-	local test_file_pattern = [[/src/test/(.*/%a+)Test.java$]]
+	local test_file_pattern = [[/src/test/(.*/[%a%d]+)Test.java$]]
 	local src_file_pattern = [[/src/main/%1.java]]
 	my_funs.open_file_by_pattern(test_file_pattern, src_file_pattern)
 end
@@ -99,3 +99,49 @@ local mappings = {
 }
 
 which_key.register(mappings, opts)
+
+local ls = require("luasnip")
+local s = ls.snippet
+local t = ls.text_node
+local f = ls.function_node
+local i = ls.insert_node
+
+local get_package_name = function()
+	local path = vim.fn.expand("%:p:h")
+	local extracted = string.match(path, [[.*/src/%a+/java/(.*)]])
+	if extracted ~= nil then
+		return string.gsub(extracted, "/", ".")
+	else
+		return ""
+	end
+end
+
+local get_class_name = function()
+	local filename = vim.fn.expand("%:t")
+	return string.gsub(filename, ".java$", "")
+end
+
+ls.add_snippets(nil, {
+	java = {
+		s("package", {
+			t("package "),
+			f(get_package_name, {}),
+			t({ ";", "" }),
+		}),
+		s("logger", {
+			t("private static final Logger LOGGER = LoggerFactory.getLogger("),
+			f(get_class_name, {}),
+			t({ ".class);", "" }),
+		}),
+		s("junit5", {
+			t({
+				"import static org.hamcrest.MatcherAssert.assertThat;",
+				"import static org.hamcrest.Matchers.is;",
+				"import static org.junit.jupiter.api.Assertions.assertThrows;",
+				"import static org.mockito.Mockito.doReturn;",
+                "import static org.mockito.ArgumentMatchers.any;",
+				"",
+			}),
+		}),
+	},
+})
