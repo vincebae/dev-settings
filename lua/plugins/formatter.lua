@@ -28,6 +28,14 @@ return {
             }
         end
 
+        local function ormolu()
+            return {
+                exe = "ormolu",
+                args = { "--stdin-input-file=/home/vincebae/.cabal" },
+                stdin = true,
+            }
+        end
+
 		local function xmlformat()
 			return {
 				exe = "xmlformat",
@@ -39,7 +47,7 @@ return {
 		local opts = {
 			filetype = {
 				clojure = cljstyle,
-                haskell = hindent,
+                haskell = ormolu,
 				java = googleJavaFormat,
 				lua = require("formatter.filetypes.lua").stylua,
                 xml = xmlformat,

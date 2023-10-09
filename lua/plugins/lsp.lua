@@ -15,8 +15,8 @@ return {
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 		},
-		branch = "2.x.x", -- recommended
-		ft = { "haskell" },
+		version = "^2", -- Recommended
+		ft = { "haskell", "lhaskell", "cabal", "cabalproject" },
 	},
 	{
 		"VonHeikemen/lsp-zero.nvim",
@@ -48,10 +48,12 @@ return {
 		},
 
 		config = function()
+			local keymap = vim.keymap
+			keymap.set("n", "<leader>li", "<cmd>LspInfo<cr>")
+			keymap.set("n", "<leader>lu", "<cmd>NullLsInfo<cr>")
+
 			local on_attach_fn = function(_, bufnr)
 				local opts = { buffer = bufnr, remap = false }
-				local keymap = vim.keymap
-
 				keymap.set("n", "<leader>f", "<cmd>Format<cr>", opts)
 				keymap.set("n", "<leader>lr", "<cmd>Lspsaga rename<cr>", opts)
 				keymap.set("n", "<leader>lh", "<cmd>Lspsaga hover_doc<cr>", opts)
@@ -62,8 +64,6 @@ return {
 				keymap.set("n", "<leader>ll", "<cmd>Lspsaga show_buf_diagnostics<cr>", opts)
 				keymap.set("n", "<leader>ln", "<cmd>Lspsaga diagnostic_jump_next<cr>", opts)
 				keymap.set("n", "<leader>lp", "<cmd>Lspsaga diagnostic_jump_prev<cr>", opts)
-				keymap.set("n", "<leader>li", "<cmd>LspInfo<cr>")
-				keymap.set("n", "<leader>lu", "<cmd>NullLsInfo<cr>")
 			end
 
 			-- Setup LSP Zero
@@ -74,7 +74,7 @@ return {
 
 			-- Disable some LSPs in lsp-zero
 			-- jdtls will be initialized by nvim.jdtls in java.lua
-			lsp.skip_server_setup({ "jdtls" })
+			lsp.skip_server_setup({ "jdtls", "hls" })
 			lsp.preset({
 				manage_nvim_cmp = {
 					set_sources = "recommended",
@@ -84,7 +84,6 @@ return {
 			lsp.ensure_installed({
 				"bashls",
 				"clojure_lsp",
-				"hls",
 				"lua_ls",
 				"rust_analyzer",
 				"tsserver",
