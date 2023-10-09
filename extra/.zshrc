@@ -128,6 +128,7 @@ export NVM_DIR="$HOME/.nvm"
 
 # Java
 export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+export GRAALVM_HOME=/home/vincebae/.sdkman/candidates/java/current
 export CLASSPATH=$CLASSPATH:$HOME/.gradle/caches/modules-2/files-2.1
 
 # Haskell

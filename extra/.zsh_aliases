@@ -2,16 +2,28 @@ alias vi=nvim
 alias memo="nvim ~/Documents/org/memo.org"
 alias todo="nvim ~/Documents/org/todo.org"
 alias lg=lazygit
+alias gg=lazygit
 alias cht=cht.sh
+
+# Edit and source config files
 alias vconf="vi ~/.zshrc"
 alias sconf="source ~/.zshrc"
 alias valias="vi ~/.zsh_aliases"
 alias salias="source ~/.zsh_aliases"
 alias tconf="vi ~/.tmux.conf"
+
+# Maven aliases
+alias mci="./mvnw clean install"
 alias mc="./mvnw compile"
-alias mci="mvn clean install"
 alias mt="./mvnw test"
-alias mr="./mvnw spring-boot:run"
+alias mr="./mvnw compile exec:java"
+# alias mr="./mvnw spring-boot:run"
+
+# Clojure aliases
+alias bbr="rlwrap bb repl"
+alias bbs="rlwrap bb socket-repl 1666"
+alias bbn="rlwrap bb nrepl-server 1667"
+alias cljn="clj -M:cider-clj"
 
 pwd_sed_cd() {
     dir=$(pwd | sed $1)
