@@ -1,29 +1,43 @@
-local metals = require("metals")
-local metals_config = metals.bare_config()
+-- local metals = require("metals")
+-- local metals_config = metals.bare_config()
+--
+-- -- Example of settings
+-- metals_config.settings = {
+-- 	showImplicitArguments = true,
+-- 	excludedPackages = { "akka.actor.typed.javadsl", "com.github.swagger.akka.javadsl" },
+-- }
+-- metals_config.capabilities = require("cmp_nvim_lsp").default_capabilities()
+--
+-- -- *READ THIS*
+-- -- I *highly* recommend setting statusBarProvider to true, however if you do,
+-- -- you *have* to have a setting to display this in your statusline or else
+-- -- you'll not see any messages from metals. There is more info in the help
+-- -- docs about this
+-- -- metals_config.init_options.statusBarProvider = "on"
+--
+-- -- Example if you are using cmp how to make sure the correct capabilities for snippets are set
+--
+-- metals.initialize_or_attach(metals_config)
 
--- Example of settings
-metals_config.settings = {
-	showImplicitArguments = true,
-	excludedPackages = { "akka.actor.typed.javadsl", "com.github.swagger.akka.javadsl" },
-}
+-- Java LSP
+-- local jdtls = require("jdtls")
+-- local setup = require("jdtls.setup")
+--
+-- local mason_path = vim.fn.expand("$HOME/.local/share/nvim/mason")
+-- local jdtls_path = mason_path .. "/bin/jdtls"
+-- local config = {
+-- 	cmd = {
+-- 		jdtls_path,
+-- 	},
+-- 	handlers = {
+-- 		-- ['language/status'] = function(_, result)
+-- 		--     -- Print or whatever.
+-- 		-- end,
+-- 	},
+-- 	root_dir = setup.find_root({ ".git", "mvnw", "gradlew", "build.sbt" }),
+-- 	capabilities = require("cmp_nvim_lsp").default_capabilities(),
+-- }
+--
+-- jdtls.start_or_attach(config)
 
--- *READ THIS*
--- I *highly* recommend setting statusBarProvider to true, however if you do,
--- you *have* to have a setting to display this in your statusline or else
--- you'll not see any messages from metals. There is more info in the help
--- docs about this
--- metals_config.init_options.statusBarProvider = "on"
 
--- Example if you are using cmp how to make sure the correct capabilities for snippets are set
-metals_config.capabilities = require("cmp_nvim_lsp").default_capabilities()
-
--- vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
--- vim.keymap.set("n", "<leader>la", vim.lsp.buf.code_action)
--- vim.keymap.set("n", "<leader>lr", vim.lsp.buf.rename)
--- vim.keymap.set("n", "<leader>lD", vim.lsp.buf.definition)
--- vim.keymap.set("n", "<leader>lR", vim.lsp.buf.references)
--- vim.keymap.set("n", "<leader>ldo", vim.diagnostic.open_float)
--- vim.keymap.set("n", "<leader>ldn", vim.diagnostic.goto_next)
--- vim.keymap.set("n", "<leader>ldp", vim.diagnostic.goto_prev)
-
-metals.initialize_or_attach(metals_config)

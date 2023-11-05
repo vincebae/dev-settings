@@ -1,13 +1,30 @@
-# My Linux Dev Settings
+# My Mac / Linux Dev Settings
 
 * Mostly for nvim configuration (~/.config/nvim).
 * extra configs located in extra/ directory.
 
 ## Essentials
 
-### Basic Tools
-* `sudo apt update`
-* `sudo apt install build-essential curl wget xclip vim tmux git ripgrep guake fzf colorized-logs tldr` 
+### Prerequisite (Linux)
+```
+sudo apt update
+sudo apt upgrade
+sudo apt install build-essential procps curl file git
+```
+
+### Install Homebrew
+```
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# In Linux
+test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
+test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.zshrc
+```
+
+### Basic tools
+* `brew install wget xclip vim tmux git ripgrep fzf tldr` 
+* (optional in linux): `sudo apt install guake colorized-logs` 
 
 ### Python3
 * `sudo apt install python3 python3-pip`

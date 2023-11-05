@@ -55,7 +55,15 @@ return {
 		local mappings = {
 			f = { "Format" }, -- defined in lsp.lua
 			B = { "Background" }, -- defined in keymap.lua
-			T = { "Terminal" }, -- defined in keymap.lua
+			T = {
+				-- defined in keymap.lua
+				"Terminal",
+				T = { "Toggle" },
+				f = { "Float" },
+				v = { "Vertical" },
+				h = { "Horizontal" },
+				s = { "Send current line" },
+			},
 			["/"] = { "Comment" }, -- defined in comment.lua
 			["?"] = { "Buffer Search" }, -- defined in keymap.lua
 			[" "] = {
@@ -208,6 +216,10 @@ return {
 		local v_mappings = {
 			["/"] = { "Comment" }, -- defined in comment.lua
 			y = { "Yank to Clipboard" }, -- defined in keymap.lua
+			T = {
+				"Teminal",
+				s = { "Send visual selections" },
+			},
 		}
 
 		which_key.setup(setup)

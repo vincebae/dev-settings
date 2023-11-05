@@ -1,15 +1,20 @@
 return {
+	-- Language specific LSP plugins
+	-- {
+	-- 	"mfussenegger/nvim-jdtls", -- java language server
+	-- 	ft = { "java", "scala", "sbt" },
+	-- },
 	{
-		"mfussenegger/nvim-jdtls", -- java language server
-		ft = { "java" },
+		"ionide/Ionide-vim",
+		ft = { "fsharp" },
 	},
-	{
-		"scalameta/nvim-metals", -- scala language server
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-		},
-		ft = { "scala" },
-	},
+	-- {
+	-- 	"scalameta/nvim-metals", -- scala language server
+	-- 	dependencies = {
+	-- 		"nvim-lua/plenary.nvim",
+	-- 	},
+	-- 	ft = { "scala", "sbt" },
+	-- },
 	{
 		"mrcjkb/haskell-tools.nvim", -- haskell language server
 		dependencies = {
@@ -18,19 +23,16 @@ return {
 		version = "^2", -- Recommended
 		ft = { "haskell", "lhaskell", "cabal", "cabalproject" },
 	},
+
+	-- General LSP plugins
 	{
 		"VonHeikemen/lsp-zero.nvim",
-		branch = "v2.x",
+		branch = "v3.x",
 		dependencies = {
-			-- LSP Support
 			"neovim/nvim-lspconfig", -- Required
-			{
-				"williamboman/mason.nvim", -- Optional
-				build = function()
-					vim.cmd("MasonUpdate")
-				end,
-			},
+			"williamboman/mason.nvim", -- Optional
 			"williamboman/mason-lspconfig.nvim", -- Optional
+
 			-- Autocompletion
 			"hrsh7th/nvim-cmp", -- Required
 			"hrsh7th/cmp-nvim-lsp", -- Required
@@ -38,8 +40,10 @@ return {
 			"hrsh7th/cmp-path", -- Optional
 			"hrsh7th/cmp-nvim-lua", -- Optional
 			"saadparwaiz1/cmp_luasnip", -- Optional
+
 			-- Snippets
 			"L3MON4D3/LuaSnip", -- Required
+
 			-- Language specific
 			{
 				"PaterJason/cmp-conjure",
@@ -67,60 +71,78 @@ return {
 			end
 
 			-- Setup LSP Zero
-			local lsp = require("lsp-zero")
+			local lsp_zero = require("lsp-zero")
 			local lspconfig = require("lspconfig")
 
-			lspconfig.lua_ls.setup(lsp.nvim_lua_ls())
+			-- lsp_zero.on_attach(on_attach_fn)
 
 			-- Disable some LSPs in lsp-zero
-			-- jdtls will be initialized by nvim.jdtls in java.lua
-			lsp.skip_server_setup({ "jdtls", "hls" })
-			lsp.preset({
-				manage_nvim_cmp = {
-					set_sources = "recommended",
+			lsp_zero.skip_server_setup({
+				-- "jdtls",
+				"fsautocomplete",
+				"hls",
+			})
+			-- lsp.preset({
+			-- 	manage_nvim_cmp = {
+			-- 		set_sources = "recommended",
+			-- 	},
+			-- })
+
+			require("mason").setup({})
+			require("mason-lspconfig").setup({
+				ensure_installed = {
+					"bashls",
+					"clojure_lsp",
+					"lua_ls",
+					"ocamllsp",
+					"rust_analyzer",
+					"tsserver",
+				},
+				handlers = {
+					lsp_zero.default_setup,
+					lua_ls = function()
+						local lua_opts = lsp_zero.nvim_lua_ls()
+						lspconfig.lua_ls.setup(lua_opts)
+					end,
+					rust_analyzer = function()
+						lspconfig.rust_analyzer.setup({
+							settings = {
+								["rust-analyzer"] = {
+									assist = {
+										importEnforceGranularity = true,
+										importPrefix = "crate",
+									},
+									cargo = {
+										allFeatures = true,
+									},
+									diagnostics = {
+										enabled = true,
+										experimental = {
+											enable = true,
+										},
+									},
+									checkOnSave = {
+										allFeatures = true,
+										overrideCommand = {
+											"cargo",
+											"clippy",
+											"--workspace",
+											"--message-format=json",
+											"--all-targets",
+											"--all-features",
+										},
+									},
+								},
+							},
+						})
+					end,
 				},
 			})
 
-			lsp.ensure_installed({
-				"bashls",
-				"clojure_lsp",
-				"lua_ls",
-				"rust_analyzer",
-				"tsserver",
-			})
+			lspconfig.metals.setup({})
+			lspconfig.jdtls.setup({})
 
-			lsp.configure("rust_analyzer", {
-				settings = {
-					["rust-analyzer"] = {
-						assist = {
-							importEnforceGranularity = true,
-							importPrefix = "crate",
-						},
-						cargo = {
-							allFeatures = true,
-						},
-						diagnostics = {
-							enabled = true,
-							experimental = {
-								enable = true,
-							},
-						},
-						checkOnSave = {
-							allFeatures = true,
-							overrideCommand = {
-								"cargo",
-								"clippy",
-								"--workspace",
-								"--message-format=json",
-								"--all-targets",
-								"--all-features",
-							},
-						},
-					},
-				},
-			})
-
-			lsp.set_preferences({
+			lsp_zero.set_preferences({
 				suggest_lsp_servers = false,
 				sign_icons = {
 					error = "E",
@@ -130,8 +152,8 @@ return {
 				},
 			})
 
-			lsp.on_attach(on_attach_fn)
-			lsp.setup()
+			lsp_zero.on_attach(on_attach_fn)
+			lsp_zero.setup()
 
 			vim.diagnostic.config({
 				virtual_text = true,
@@ -142,7 +164,7 @@ return {
 			require("luasnip.loaders.from_vscode").lazy_load()
 
 			local cmp = require("cmp")
-			local cmp_action = require("lsp-zero").cmp_action()
+			local cmp_action = lsp_zero.cmp_action()
 			local cmp_select_opts = { behavior = cmp.SelectBehavior.Select }
 			cmp.setup({
 				completion = {
@@ -161,8 +183,6 @@ return {
 					["<S-Tab>"] = cmp.mapping.select_prev_item(cmp_select_opts),
 					["<C-f>"] = cmp_action.luasnip_jump_forward(),
 					["<C-b>"] = cmp_action.luasnip_jump_backward(),
-					-- ["<Down>"] = cmp.config.disable,
-					-- ["<Up>"] = cmp.config.diable,
 				},
 				window = {
 					completion = cmp.config.window.bordered(),

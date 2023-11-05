@@ -12,6 +12,22 @@ return {
 			}
 		end
 
+		local function zprint()
+			return {
+				exe = "zprint",
+				args = { "'{:style :respect-nl}'" },
+				stdin = true,
+			}
+		end
+
+		local function cljfmt()
+			return {
+				exe = "cljfmt",
+				args = { "fix -" },
+				stdin = true,
+			}
+		end
+
 		local function cljstyle()
 			return {
 				exe = "cljstyle",
@@ -20,21 +36,50 @@ return {
 			}
 		end
 
-        local function hindent()
-            return {
-                exe = "hindent",
-                args = { "--indent-size=2" },
-                stdin = true,
-            }
-        end
+		local function fantomas()
+			return {
+				exe = "fantomas",
+				args = { "-" },
+				stdin = true,
+			}
+		end
 
-        local function ormolu()
-            return {
-                exe = "ormolu",
-                args = { "--stdin-input-file=/home/vincebae/.cabal" },
-                stdin = true,
-            }
-        end
+		local function hindent()
+			return {
+				exe = "hindent",
+				args = { "--indent-size=2" },
+				stdin = true,
+			}
+		end
+
+		local function ocamlformat()
+			local filename = vim.fn.expand("%:t")
+			return {
+				exe = "ocamlformat",
+				args = {
+					"-",
+					"--name=" .. filename,
+					"--enable-outside-detected-project",
+				},
+				stdin = true,
+			}
+		end
+
+		local function ormolu()
+			return {
+				exe = "ormolu",
+				args = { "--stdin-input-file=/home/vincebae/.cabal" },
+				stdin = true,
+			}
+		end
+
+		local function scalafmt()
+			return {
+				exe = "scalafmt",
+				args = { "--stdin" },
+				stdin = true,
+			}
+		end
 
 		local function xmlformat()
 			return {
@@ -46,11 +91,14 @@ return {
 
 		local opts = {
 			filetype = {
-				clojure = cljstyle,
-                haskell = ormolu,
+				clojure = cljfmt,
+				haskell = ormolu,
+				fsharp = fantomas,
 				java = googleJavaFormat,
 				lua = require("formatter.filetypes.lua").stylua,
-                xml = xmlformat,
+				scala = scalafmt,
+				ocaml = ocamlformat,
+				xml = xmlformat,
 			},
 		}
 
