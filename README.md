@@ -12,59 +12,48 @@ sudo apt upgrade
 sudo apt install build-essential procps curl file git
 ```
 
+### Oh-My-Zsh
+
+```
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+git clone https://github.com/joshskidmore/zsh-fzf-history-search ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-fzf-history-search
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+```
+
 ### Install Homebrew
 ```
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-# In Linux
+# On Mac
+(echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> ~/.zprofile
+eval "$(/opt/homebrew/bin/brew/shellenv)"
+
+# On Linux
 test -d ~/.linuxbrew && eval "$(~/.linuxbrew/bin/brew shellenv)"
 test -d /home/linuxbrew/.linuxbrew && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.zshrc
 ```
 
 ### Basic tools
-* `brew install wget xclip vim tmux git ripgrep fzf tldr` 
-* (optional in linux): `sudo apt install guake colorized-logs` 
+* `brew install wget xclip xsel vim nvim tmux git ripgrep fzf tldr` 
+* (optional in linux): `sudo apt install guake colorized-logs`
+
+### Tmux
+* git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+* (In tmux) <prefix> I (caplital) to install plugins
 
 ### Python3
 * `sudo apt install python3 python3-pip`
 
-### JDK 17
-* `sudo apt install openjdk-17-jdk`
-
-### Node / Typescript
+### Npm
 * `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash`
 * `nvm install --lts`
-* `npm install -g typescript ts-node tslib @types/node`
-* `npm install -g prettier eslint`
 
-### NVIM
-* `git clone https://luajit.org/git/luajit.git ~/Downloads/luajit && sudo make install -C ~/Downloads/luajit`
-* `wget https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.deb -P ~/Downloads && sudo apt install ~/Downloads/nvim-linux64.deb`
-* `sudo ln -sf /usr/bin/nvim /usr/bin/vi`
-* `git clone --depth 1 https://github.com/vincebae/bootstrap ~/.config/nvim`
+## Languages
 
-### Tmux
-* to be added
-
-### .bashrc
-* Add these lines to .bashrc
-* `export GIT_EDITOR=vi`
-* `export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64`
-
-## Extras
-
-### Gogh (terminal colorschemes)
-* `sudo apt-get install dconf-cli uuid-runtime`
-* `git clone https://github.com/Gogh-Co/Gogh.git gogh`
-* `export TERMINAL=gnome-terminal`
-* run script under installs diretory
-
-### Cheat sheets
-* `curl https://cht.sh/:cht.sh > cht.sh`
-* `chmod u+x cht.sh`
-
-
+### JDK 17
+* `sudo apt install openjdk-17-jdk`
+ 
 ### Rust
 * `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`
 * `cargo +stable install papyrus --no-default-features --features="format,runnable"`
