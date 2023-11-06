@@ -35,15 +35,12 @@ echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.zshrc
 ```
 
 ### Basic tools
-* `brew install wget xclip xsel vim nvim tmux git ripgrep fzf tldr` 
+* `brew install wget xclip xsel vim nvim tmux git python3 ripgrep fzf tldr` 
 * (optional in linux): `sudo apt install guake colorized-logs`
 
 ### Tmux
 * git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 * (In tmux) <prefix> I (caplital) to install plugins
-
-### Python3
-* `sudo apt install python3 python3-pip`
 
 ### Npm
 * `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash`
