@@ -43,13 +43,21 @@ echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.zshrc
 * (In tmux) <prefix> I (caplital) to install plugins
 
 ### Npm
-* `curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash`
-* `nvm install --lts`
+```
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+nvm install --lts
+```
 
 ## Languages
 
 ### JDK 17
 * `sudo apt install openjdk-17-jdk`
+
+### Clojure
+```
+brew install clojure leiningen clj-kondo borkdude/brew/babashka
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/weavejester/cljfmt/HEAD/install.sh)"
+```
  
 ### Rust
 * `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`
