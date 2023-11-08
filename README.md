@@ -9,11 +9,10 @@
 ```
 sudo apt update
 sudo apt upgrade
-sudo apt install build-essential procps curl file git
+sudo apt install build-essential procps curl file git colorized-logs
 ```
 
 ### Oh-My-Zsh
-
 ```
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 git clone https://github.com/joshskidmore/zsh-fzf-history-search ${ZSH_CUSTOM:=~/.oh-my-zsh/custom}/plugins/zsh-fzf-history-search
@@ -35,11 +34,18 @@ echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.zshrc
 ```
 
 ### Basic tools
-* `brew install wget xclip xsel vim nvim tmux git python3 ripgrep fzf tldr` 
-* (optional in linux): `sudo apt install guake colorized-logs`
+```
+brew install wget xclip xsel vim nvim tmux git python3 ripgrep fzf tldr`
+
+# On Mac
+brew install --cask iterm2
+
+# On Linux
+sudo apt install guake tilda
+```
 
 ### Tmux
-* git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+* `git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm`
 * (In tmux) <prefix> I (caplital) to install plugins
 
 ### Npm
