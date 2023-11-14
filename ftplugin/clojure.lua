@@ -3,7 +3,13 @@ vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
 
 -- Confure auto repl
-vim.cmd([[let g:conjure#client#clojure#nrepl#connection#auto_repl#cmd = "bb nrepl-server $port"]])
+local project_file = io.open("project.clj")
+if project_file ~= nil then
+	io.close(project_file)
+	vim.cmd([[let g:conjure#client#clojure#nrepl#connection#auto_repl#cmd = "lein repl :headless :port $port"]])
+else
+	vim.cmd([[let g:conjure#client#clojure#nrepl#connection#auto_repl#cmd = "bb nrepl-server $port"]])
+end
 
 -- File navigation
 local my_funs = require("config/functions")
@@ -207,7 +213,7 @@ local t = ls.text_node
 
 ls.add_snippets(nil, {
 	clojure = {
-		s("script", {
+		s("scr", {
 			t({
 				"#!/usr/bin/env bb",
 				"",
