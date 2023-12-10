@@ -9,7 +9,7 @@
 ```
 sudo apt update
 sudo apt upgrade
-sudo apt install build-essential procps curl file git colorized-logs
+sudo apt install build-essential procps curl file git zsh colorized-logs
 ```
 
 ### Oh-My-Zsh
