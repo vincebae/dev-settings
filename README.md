@@ -46,7 +46,7 @@ sudo apt install guake tilda
 
 ### Tmux
 * `git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm`
-* (In tmux) <prefix> I (caplital) to install plugins
+* (In tmux) `<prefix>` I (caplital) to install plugins
 
 ### Npm
 ```
@@ -56,8 +56,8 @@ nvm install --lts
 
 ## Languages
 
-### JDK 17
-* `sudo apt install openjdk-17-jdk`
+### JDK 21
+* `brew install openjdk@21`
 
 ### Clojure
 ```
