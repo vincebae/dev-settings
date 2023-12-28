@@ -17,12 +17,18 @@ alias mci="./mvnw clean install"
 alias mc="./mvnw compile"
 alias mt="./mvnw test"
 alias mr="./mvnw compile exec:java"
-# alias mr="./mvnw spring-boot:run"
+alias msr="./mvnw spring-boot:run"
+
+# Gradle aliases
+alias gw="./gradlew"
+alias gb="./gradlew build"
+alias gr="./gradlew run"
+alias gt="./gradlew test"
+alias gtt="./gradlew -t test"
+alias gs="./gradlew spotlessApply"
 
 # Clojure aliases
 alias bbr="rlwrap bb repl"
-alias bbs="rlwrap bb socket-repl 1666"
-alias bbn="rlwrap bb nrepl-server 1667"
 alias cljn="clj -M:cider-clj"
 
 pwd_sed_cd() {

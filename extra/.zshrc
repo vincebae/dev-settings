@@ -119,6 +119,7 @@ export EDITOR=nvim
 export GIT_EDITOR=nvim
 export PATH=$PATH:$HOME/.local/bin:$HOME/.local/share/coursier/bin:$HOME/bin
 
+
 # Node.js
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -131,6 +132,10 @@ export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
 export GRAALVM_HOME=/home/vincebae/.sdkman/candidates/java/current
 export CLASSPATH=$CLASSPATH:$HOME/.gradle/caches/modules-2/files-2.1
 
+# Dotnet
+export DOTNET_ROOT=$HOME/.dotnet
+export PATH=$PATH:$HOME/.dotnet:$HOME/.dotnet/tools
+
 # Haskell
 [ -f "$HOME/.ghcup/env" ] && source "$HOME/.ghcup/env" # ghcup-env
 
@@ -140,3 +145,7 @@ export CLASSPATH=$CLASSPATH:$HOME/.gradle/caches/modules-2/files-2.1
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+# opam configuration
+[[ ! -r /home/vincebae/.opam/opam-init/init.zsh ]] || source /home/vincebae/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"

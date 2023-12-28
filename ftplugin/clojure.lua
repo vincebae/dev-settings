@@ -71,12 +71,19 @@ local doc_str = function()
 	local expr = vim.fn.input("Symbol > ")
 	vim.cmd("ConjureEval (clojure.repl/doc " .. expr .. ")")
 end
+local eval_and_test_ns = function()
+    vim.cmd("ConjureEvalFile")
+    vim.cmd("ConjureCljRunCurrentNsTests")
+end
 
 keymap.set("n", "<localleader>es", function()
 	eval_str()
 end)
 keymap.set("n", "<localleader>ed", function()
 	doc_str()
+end)
+keymap.set("n", "<localleader>tt", function()
+    eval_and_test_ns()
 end)
 
 -- Clojure specific which-key mapping
@@ -187,6 +194,7 @@ local ll_mappings = {
 		name = "Testing",
 		a = { "All loaded" },
 		n = { "All curr ns" },
+		t = { "Eval file and Test curr ns" },
 		N = { "All alt ns" },
 		c = { "Cursor" },
 	},
@@ -222,6 +230,12 @@ ls.add_snippets(nil, {
 		s("shell", {
 			t({
 				"(require '[babashka.process :refer [sh]])",
+				"",
+			}),
+		}),
+		s("test", {
+			t({
+				"(require '[clojure.test :refer [deftest is testing]]])",
 				"",
 			}),
 		}),

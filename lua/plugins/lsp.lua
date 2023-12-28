@@ -1,9 +1,9 @@
 return {
 	-- Language specific LSP plugins
-	-- {
-	-- 	"mfussenegger/nvim-jdtls", -- java language server
-	-- 	ft = { "java", "scala", "sbt" },
-	-- },
+	{
+		"mfussenegger/nvim-jdtls", -- java language server
+		ft = { "java", "scala", "sbt" },
+	},
 	{
 		"ionide/Ionide-vim",
 		ft = { "fsharp" },
@@ -78,7 +78,7 @@ return {
 
 			-- Disable some LSPs in lsp-zero
 			lsp_zero.skip_server_setup({
-				-- "jdtls",
+				"jdtls",
 				"fsautocomplete",
 				"hls",
 			})
@@ -140,7 +140,7 @@ return {
 			})
 
 			lspconfig.metals.setup({})
-			lspconfig.jdtls.setup({})
+			-- lspconfig.jdtls.setup({})
 
 			lsp_zero.set_preferences({
 				suggest_lsp_servers = false,
