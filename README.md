@@ -58,7 +58,7 @@ nvm install --lts
 
 ### JDK 21
 ```
-brew install openjdk@21
+brew install openjdk@21 maven gradle
 ```
 
 ### Clojure
