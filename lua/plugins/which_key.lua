@@ -55,15 +55,7 @@ return {
 		local mappings = {
 			f = { "Format" }, -- defined in lsp.lua
 			B = { "Background" }, -- defined in keymap.lua
-			T = {
-				-- defined in keymap.lua
-				"Terminal",
-				T = { "Toggle" },
-				f = { "Float" },
-				v = { "Vertical" },
-				h = { "Horizontal" },
-				s = { "Send current line" },
-			},
+			T = { "Terminal" }, -- defined in keymap.lua
 			["/"] = { "Comment" }, -- defined in comment.lua
 			["?"] = { "Buffer Search" }, -- defined in keymap.lua
 			[" "] = {

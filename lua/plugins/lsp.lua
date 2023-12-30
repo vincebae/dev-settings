@@ -94,8 +94,6 @@ return {
 					"bashls",
 					"clojure_lsp",
 					"lua_ls",
-					"ocamllsp",
-					"rust_analyzer",
 					"tsserver",
 				},
 				handlers = {
