@@ -54,6 +54,12 @@ source ~/.zshrc
 nvm install --lts
 ```
 
+### Github
+```
+brew install gh
+gh auth login
+```
+
 ## Languages
 
 ### JDK 21
