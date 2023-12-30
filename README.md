@@ -54,9 +54,10 @@ source ~/.zshrc
 nvm install --lts
 ```
 
-### Github
+### Git
 ```
-brew install gh
+brew install gh lazygit
+git config --global --edit
 gh auth login
 ```
 
