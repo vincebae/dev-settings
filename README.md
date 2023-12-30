@@ -9,7 +9,7 @@
 ```
 sudo apt update
 sudo apt upgrade
-sudo apt install build-essential procps curl file git zsh colorized-logs
+sudo apt install build-essential procps curl file git zsh guake tilda colorized-logs
 ```
 
 ### Oh-My-Zsh
@@ -35,29 +35,38 @@ echo "eval \"\$($(brew --prefix)/bin/brew shellenv)\"" >> ~/.zshrc
 
 ### Basic tools
 ```
-brew install wget xclip xsel vim nvim tmux git python3 ripgrep fzf tldr`
+brew install wget xclip xsel vim nvim tmux git python3 ripgrep fzf tldr
 
 # On Mac
 brew install --cask iterm2
-
-# On Linux
-sudo apt install guake tilda
 ```
 
 ### Tmux
-* `git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm`
+```
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+```
 * (In tmux) `<prefix>` I (caplital) to install plugins
 
 ### Npm
 ```
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.3/install.sh | bash
+source ~/.zshrc
 nvm install --lts
+```
+
+### Git
+```
+brew install gh lazygit
+git config --global --edit
+gh auth login
 ```
 
 ## Languages
 
 ### JDK 21
-* `brew install openjdk@21`
+```
+brew install openjdk@21 maven gradle
+```
 
 ### Clojure
 ```
