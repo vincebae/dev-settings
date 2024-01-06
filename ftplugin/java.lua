@@ -85,6 +85,15 @@ local opts = {
 	nowait = true, -- use `nowait` when creating keymaps
 }
 
+local ll_opts = {
+	mode = "n", -- NORMAL mode
+	prefix = "<localleader>",
+	buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+	silent = true, -- use `silent` when creating keymaps
+	noremap = true, -- use `noremap` when creating keymaps
+	nowait = true, -- use `nowait` when creating keymaps
+}
+
 local mappings = {
 	n = {
 		name = "Navigation",
@@ -97,7 +106,17 @@ local mappings = {
 	},
 }
 
+local ll_mappings = {
+	-- Navigations
+	P = { "Open top dir" },
+	T = { "Open test dir" },
+	S = { "Open main dir" },
+	t = { "Open test file" },
+	s = { "Open main file" },
+}
+
 which_key.register(mappings, opts)
+which_key.register(ll_mappings, ll_opts)
 
 local ls = require("luasnip")
 local s = ls.snippet

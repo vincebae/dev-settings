@@ -52,6 +52,15 @@ return {
 			nowait = true, -- use `nowait` when creating keymaps
 		}
 
+		local ll_opts = {
+			mode = "n", -- NORMAL mode
+			prefix = "<localleader>",
+			buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+			silent = true, -- use `silent` when creating keymaps
+			noremap = true, -- use `noremap` when creating keymaps
+			nowait = true, -- use `nowait` when creating keymaps
+		}
+
 		local mappings = {
 			f = { "Format" }, -- defined in lsp.lua
 			B = { "Background" }, -- defined in keymap.lua
@@ -102,7 +111,8 @@ return {
 				b = { "Buffers" },
 				c = { "Colorscheme" },
 				f = { "Find Files" },
-				g = { "Live Grep" },
+				["/"] = { "Live Grep" },
+				g = { "Git status" },
 				h = { "Search History" },
 				j = { "Jump" },
 				k = { "Keymaps" },
@@ -214,8 +224,16 @@ return {
 			},
 		}
 
+		local ll_mappings = {
+			-- Telescope
+			f =  "Find file",
+			["/"] =  "Live grep",
+			g = "Git status",
+		}
+
 		which_key.setup(setup)
 		which_key.register(mappings, opts)
 		which_key.register(v_mappings, v_opts)
+		which_key.register(ll_mappings, ll_opts)
 	end,
 }

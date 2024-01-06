@@ -72,8 +72,8 @@ local doc_str = function()
 	vim.cmd("ConjureEval (clojure.repl/doc " .. expr .. ")")
 end
 local eval_and_test_ns = function()
-    vim.cmd("ConjureEvalFile")
-    vim.cmd("ConjureCljRunCurrentNsTests")
+	vim.cmd("ConjureEvalFile")
+	vim.cmd("ConjureCljRunCurrentNsTests")
 end
 
 keymap.set("n", "<localleader>es", function()
@@ -83,7 +83,7 @@ keymap.set("n", "<localleader>ed", function()
 	doc_str()
 end)
 keymap.set("n", "<localleader>tt", function()
-    eval_and_test_ns()
+	eval_and_test_ns()
 end)
 
 -- Clojure specific which-key mapping
@@ -128,6 +128,13 @@ local mappings = {
 }
 
 local ll_mappings = {
+	-- Navigations
+	P = { "Open top dir" },
+	T = { "Open test dir" },
+	S = { "Open main dir" },
+	t = { "Open test file" },
+	s = { "Open main file" },
+
 	c = {
 		name = "Conjure Connection",
 		c = { "<cmd>ConjureConnect<cr>", "Connect" },
@@ -175,6 +182,15 @@ local ll_mappings = {
 			r = { "Outermost" },
 			w = { "Word" },
 		},
+		t = {
+			name = "Testing",
+			a = { "All loaded" },
+			n = { "All curr ns" },
+			t = { "Eval file and Test curr ns" },
+			N = { "All alt ns" },
+			c = { "Cursor" },
+		},
+
 		i = { "Interrupt" },
 		s = { "Input" },
 		d = { "Doc" },
@@ -188,15 +204,6 @@ local ll_mappings = {
 		["1"] = { "Most recent eval" },
 		["2"] = { "2nd Most recent eval" },
 		["3"] = { "3rd Most recent eval" },
-	},
-
-	t = {
-		name = "Testing",
-		a = { "All loaded" },
-		n = { "All curr ns" },
-		t = { "Eval file and Test curr ns" },
-		N = { "All alt ns" },
-		c = { "Cursor" },
 	},
 
 	r = {
