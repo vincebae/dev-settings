@@ -63,6 +63,7 @@ return {
 
 		local mappings = {
 			f = { "Format" }, -- defined in lsp.lua
+            r = { "Rename" }, -- defined in lsp.lua
 			B = { "Background" }, -- defined in keymap.lua
 			T = { "Terminal" }, -- defined in keymap.lua
 			["/"] = { "Comment" }, -- defined in comment.lua
