@@ -226,9 +226,10 @@ return {
 
 		local ll_mappings = {
 			-- Telescope
-			f =  "Find file",
-			["/"] =  "Live grep",
+            b = "Find buffer",
+			f = "Find file",
 			g = "Git status",
+			["/"] =  "Live grep",
 		}
 
 		which_key.setup(setup)

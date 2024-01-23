@@ -6,20 +6,23 @@ vim.opt.shiftwidth = 2
 local jdtls = require("jdtls")
 local setup = require("jdtls.setup")
 
-local mason_path = vim.fn.expand("$HOME/.local/share/nvim/mason")
-local jdtls_path = mason_path .. "/bin/jdtls"
--- local lombok_path = mason_path .. "/packages/jdtls/lombok.jar"
+local jdtls_path = "/home/linuxbrew/.linuxbrew/bin/jdtls"
+local project_root = setup.find_root({ ".git", "mvnw", "gradlew" })
+local project_name = vim.fn.fnamemodify(project_root, ":p:h:t")
+local cache_dir = vim.fn.expand("$HOME/.cache/jdtls")
+local data_dir = cache_dir .. "/workspace/" .. project_name
+local config_dir = cache_dir .. "/config/"
+
 local config = {
 	cmd = {
 		jdtls_path,
+		"-configuration",
+		config_dir,
+		"-data",
+		data_dir,
 		-- "--jvm-arg=-javaagent:" .. lombok_path,
 	},
-	handlers = {
-		-- ['language/status'] = function(_, result)
-		--     -- Print or whatever.
-		-- end,
-	},
-	root_dir = setup.find_root({ ".git", "mvnw", "gradlew" }),
+	root_dir = project_root,
 	capabilities = require("cmp_nvim_lsp").default_capabilities(),
 }
 
@@ -27,28 +30,29 @@ jdtls.start_or_attach(config)
 
 -- Navigation
 local my_funs = require("config/functions")
-local open_test_file = function()
+
+local toggle_test_file = function()
+	local path = vim.fn.expand("%:p")
 	local src_file_pattern = [[/src/main/(.*/[%a%d]+).java$]]
-	local test_file_pattern = [[/src/test/%1Test.java]]
-	my_funs.open_file_by_pattern(src_file_pattern, test_file_pattern)
-end
-
-local open_src_file = function()
 	local test_file_pattern = [[/src/test/(.*/[%a%d]+)Test.java$]]
-	local src_file_pattern = [[/src/main/%1.java]]
-	my_funs.open_file_by_pattern(test_file_pattern, src_file_pattern)
+	if string.find(path, src_file_pattern) ~= nil then
+		local test_file_replace_pattern = [[/src/test/%1Test.java]]
+		my_funs.open_file_by_pattern(src_file_pattern, test_file_replace_pattern)
+	elseif string.find(path, test_file_pattern) ~= nil then
+		local src_file_replace_pattern = [[/src/main/%1.java]]
+		my_funs.open_file_by_pattern(test_file_pattern, src_file_replace_pattern)
+	end
 end
 
-local cd_to_test_dir = function()
+local toggle_test_dir = function()
+	local path = vim.fn.expand("%:p")
 	local src_dir_pattern = [[/src/main/]]
 	local test_dir_pattern = [[/src/test/]]
-	my_funs.open_dir_by_pattern(src_dir_pattern, test_dir_pattern)
-end
-
-local cd_to_src_dir = function()
-	local test_dir_pattern = [[/src/test/]]
-	local src_dir_pattern = [[/src/main/]]
-	my_funs.open_dir_by_pattern(test_dir_pattern, src_dir_pattern)
+	if string.find(path, src_dir_pattern) ~= nil then
+		my_funs.open_dir_by_pattern(src_dir_pattern, test_dir_pattern)
+	elseif string.find(path, test_dir_pattern) ~= nil then
+		my_funs.open_dir_by_pattern(test_dir_pattern, src_dir_pattern)
+	end
 end
 
 local cd_to_top_dir = function()
@@ -62,16 +66,10 @@ keymap.set("n", "<leader>nP", function()
 	cd_to_top_dir()
 end)
 keymap.set("n", "<leader>nT", function()
-	cd_to_test_dir()
-end)
-keymap.set("n", "<leader>nS", function()
-	cd_to_src_dir()
+	toggle_test_dir()
 end)
 keymap.set("n", "<leader>nt", function()
-	open_test_file()
-end)
-keymap.set("n", "<leader>ns", function()
-	open_src_file()
+	toggle_test_file()
 end)
 
 -- Java specific which-key mapping
@@ -98,10 +96,8 @@ local mappings = {
 	n = {
 		name = "Navigation",
 		P = { "Open top dir" },
-		T = { "Open test dir" },
-		S = { "Open main dir" },
-		t = { "Open test file" },
-		s = { "Open main file" },
+		T = { "Toggle test dir" },
+		t = { "Toggle test file" },
 		d = { "Open dir" },
 	},
 }
@@ -109,10 +105,8 @@ local mappings = {
 local ll_mappings = {
 	-- Navigations
 	P = { "Open top dir" },
-	T = { "Open test dir" },
-	S = { "Open main dir" },
-	t = { "Open test file" },
-	s = { "Open main file" },
+	T = { "Toggle test dir" },
+	t = { "Toggle test file" },
 }
 
 which_key.register(mappings, opts)
@@ -157,7 +151,7 @@ ls.add_snippets(nil, {
 				"import static org.hamcrest.Matchers.is;",
 				"import static org.junit.jupiter.api.Assertions.assertThrows;",
 				"import static org.mockito.Mockito.doReturn;",
-                "import static org.mockito.ArgumentMatchers.any;",
+				"import static org.mockito.ArgumentMatchers.any;",
 				"",
 			}),
 		}),
