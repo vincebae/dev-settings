@@ -76,7 +76,7 @@ brew install clojure leiningen clj-kondo borkdude/brew/babashka
 
 ### Scala
 * `brew install coursier/formulas/coursier && cs setup`
-* `brew install Virtuslab/scala-cli/scala-cli`
+* `brew install ammonite-repl`
  
 ### Rust
 * `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`
