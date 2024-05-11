@@ -4,6 +4,7 @@ vim.g.maplocalleader = "\\"
 local opt = vim.opt
 opt.compatible = false
 opt.mouse = [[a]]
+-- opt.clipboard = 'unnamedplus'
 
 -- Visual
 opt.guicursor = "n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50"

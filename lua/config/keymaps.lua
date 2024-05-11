@@ -20,6 +20,13 @@ keymap.set("n", "<leader>pd", [["1p]])
 keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 keymap.set("n", "<leader>Y", [["+Y]])
 
+-- local function copy_to_clipboard()
+--     vim.api.nvim_feedkeys([["+y]], "v", true)
+--     vim.api.nvim_command("call writefile(getreg('+', 1, 1), '/tmp/nvim.clip')")
+--     vim.api.nvim_command("!xsel -ib < /tmp/nvim.clip")
+-- end
+-- keymap.set("v", "<leader>y", copy_to_clipboard)
+
 -- Windows
 keymap.set("n", "<C-l>", "<C-W>l")
 keymap.set("n", "<C-h>", "<C-W>h")
