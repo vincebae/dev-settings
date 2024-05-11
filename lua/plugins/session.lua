@@ -16,6 +16,11 @@ return {
 		},
 	},
 	config = function()
+        local auto_session = require("auto-session")
+        auto_session.setup({
+            auto_restore_enabled = false,
+        })
+
 		local session_lens = require("session-lens")
 		session_lens.setup({
 			path_display = { "shorten" },

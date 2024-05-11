@@ -9,10 +9,12 @@ return {
 	"GertjanReynaert/cobalt2-vim-theme",
 	"haishanh/night-owl.vim",
 	"JoosepAlviste/palenightfall.nvim",
+    "jnurmine/Zenburn",
 	"joshdick/onedark.vim",
 	"LunarVim/lunar.nvim",
 	"luisiacc/gruvbox-baby",
 	"nanotech/jellybeans.vim",
+    "nordtheme/vim",
 	"talha-akram/noctis.nvim",
 	"vim-scripts/midnight.vim",
 }

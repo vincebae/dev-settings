@@ -3,8 +3,8 @@ local keymap = vim.keymap
 -- Search and scroll being kept in center.
 keymap.set("n", "n", "nzzzv")
 keymap.set("n", "N", "Nzzzv")
-keymap.set("n", "<C-f>", "<C-f>zz")
-keymap.set("n", "<C-b>", "<C-b>zz")
+keymap.set("n", "<C-u>", "<C-u>zz")
+keymap.set("n", "<C-d>", "<C-d>zz")
 
 -- Move block
 keymap.set("v", "J", ":m '>+1<CR>gv=gv")
@@ -28,20 +28,16 @@ keymap.set("n", "<C-k>", "<C-W>k")
 keymap.set("n", "<C-]>", "<C-W>_<C-W>|")
 keymap.set("n", "<C-[>", "<C-W>=")
 keymap.set("n", "<C-v>", "<cmd>vsp<cr>")
-keymap.set("n", "<C-x>", "<cmd>sp<cr>")
+keymap.set("n", "<C-s>", "<cmd>sp<cr>")
 keymap.set("t", "<C-t>", "<cmd>ToggleTerm<cr>")
 keymap.set("n", "<C-t>", "<cmd>ToggleTerm direction=float<cr>")
 keymap.set("n", "<leader>T", "<cmd>ToggleTerm direction=float<cr>")
--- keymap.set("n", "<leader>TT", "<cmd>ToggleTerm<cr>")
--- keymap.set("n", "<leader>Tf", "<cmd>ToggleTerm direction=float<cr>")
--- keymap.set("n", "<leader>Tv", "<cmd>ToggleTerm direction=vertical size=100<cr>")
--- keymap.set("n", "<leader>Th", "<cmd>ToggleTerm direction=horizontal size=25<cr>")
--- keymap.set("n", "<leader>Ts", "<cmd>ToggleTermSendCurrentLine<cr>")
--- keymap.set("v", "<leader>Ts", "<cmd>ToggleTermSendVisualLines<cr>")
+keymap.set("n", "<localleader>t", "<cmd>ToggleTerm direction=vertical size=100<cr>")
+keymap.set("n", "<localleader>T", "<cmd>ToggleTerm direction=horizontal size=25<cr>")
 
 -- Buffer
-keymap.set("n", "<leader>bT", "<cmd>vertical bo split +terminal<cr>")
-keymap.set("n", "<leader>bt", "<cmd>split +terminal<cr>")
+keymap.set("n", "<leader>bt", "<cmd>ToggleTerm direction=vertical size=100<cr>")
+keymap.set("n", "<leader>bT", "<cmd>ToggleTerm direction=horizontal size=25<cr>")
 keymap.set("n", "<leader>bs", "<cmd>Telescope current_buffer_fuzzy_find<cr>")
 keymap.set("n", "<leader>bb", "<cmd>Telescope buffers<cr>")
 keymap.set("n", "<leader>bp", "<cmd>bp<cr>")
@@ -71,25 +67,15 @@ keymap.set("n", "<leader>B", "<cmd>suspend<cr>")
 keymap.set("n", "<leader>S", [[:%s/\<<C-r><C-w>\>//gI<Left><Left><Left>]])
 keymap.set("n", "<leader>X", "<cmd>!chmod +x %<cr>", { silent = true })
 
--- Abbreviations
-local cmd = vim.cmd
-cmd("cnoreabbrev W! w!")
-cmd("cnoreabbrev Q! q!")
-cmd("cnoreabbrev Qall! qall!")
-cmd("cnoreabbrev Wq wq")
-cmd("cnoreabbrev Wa wa")
-cmd("cnoreabbrev wQ wq")
-cmd("cnoreabbrev WQ wq")
-cmd("cnoreabbrev W w")
-cmd("cnoreabbrev Q q")
-cmd("cnoreabbrev Qall qall")
-
 -- Navigation
 local my_funs = require("config/functions")
 keymap.set("n", "<leader>nd", function()
 	my_funs.cd_to_dir()
 end)
 keymap.set("n", "-", "<cmd>Oil<cr>")
+keymap.set("n", "=", function()
+    MiniFiles.open()
+end)
 
 -- Orgmode files
 keymap.set("n", "<leader>oM", "<cmd>e ~/Documents/org/memo.org<cr>")

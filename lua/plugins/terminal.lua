@@ -2,6 +2,8 @@ return {
 	{
 		"akinsho/toggleterm.nvim",
 		version = "*",
-		config = true,
+		opts = {
+            close_on_exit = true,
+        }
 	},
 }

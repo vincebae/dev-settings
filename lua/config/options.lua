@@ -59,6 +59,7 @@ opt.wildignore = "*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx"
 
 -- Misc
 opt.updatetime = 50
+opt.timeoutlen = 1000
 
 -- Racket filetype support
 local api = vim.api

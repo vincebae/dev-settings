@@ -83,8 +83,8 @@ return {
 				p = { "Prev" },
 				l = { "Last" },
 				s = { "Search" },
-				T = { "Terminal (v)" },
-				t = { "Terminal (h)" },
+				t = { "Terminal (v)" },
+				T = { "Terminal (h)" },
 				d = {
 					name = "Buffer Delete",
 					m = { "Menu" },
@@ -229,8 +229,10 @@ return {
 			-- Telescope
             b = "Find buffer",
 			f = "Find file",
-			g = "Git status",
-			["/"] =  "Live grep",
+            g = "Git status",
+            t = "Terminal (v)",
+            T = "Terminal (h)",
+            ["/"] =  "Live grep",
 		}
 
 		which_key.setup(setup)
