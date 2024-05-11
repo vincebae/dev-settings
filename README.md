@@ -73,6 +73,10 @@ brew install openjdk@21 maven gradle
 brew install clojure leiningen clj-kondo borkdude/brew/babashka
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/weavejester/cljfmt/HEAD/install.sh)"
 ```
+
+### Scala
+* `brew install coursier/formulas/coursier && cs setup`
+* `brew install ammonite-repl`
  
 ### Rust
 * `curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh`
@@ -87,6 +91,5 @@ brew install clojure leiningen clj-kondo borkdude/brew/babashka
 * `cabal install stylish-haskell`
 * `stylish-haskell --defaults > ~/.config/.stylish-haskell.yaml`
 
-### Scala
-* `curl -fL https://github.com/coursier/coursier/releases/latest/download/cs-x86_64-pc-linux.gz | gzip -d > cs && chmod +x cs && ./cs setup`
+
 
