@@ -76,8 +76,10 @@ plugins=(
     tmux
     vi-mode
     web-search
+    you-should-use
     zsh-fzf-history-search
     zsh-autosuggestions
+    zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -149,3 +151,5 @@ export SDKMAN_DIR="$HOME/.sdkman"
 # opam configuration
 [[ ! -r /home/vincebae/.opam/opam-init/init.zsh ]] || source /home/vincebae/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+eval "$(zoxide init zsh --cmd cd)"

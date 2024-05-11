@@ -1,9 +1,9 @@
 alias vi=nvim
+alias v="nvim -c Oil"
 alias memo="nvim ~/Documents/org/memo.org"
 alias todo="nvim ~/Documents/org/todo.org"
 alias lg=lazygit
 alias gg=lazygit
-alias cht=cht.sh
 
 # Edit and source config files
 alias vconf="vi ~/.zshrc"
@@ -27,55 +27,49 @@ alias gt="./gradlew test"
 alias gtt="./gradlew -t test"
 alias gs="./gradlew spotlessApply"
 
+# Quarkus aliases
+alias gd="quarkus dev"
+alias qt="quarkus test"
+
 # Clojure aliases
 alias bbr="rlwrap bb repl"
 alias cljn="clj -M:cider-clj"
 
+# change directory to location in /tmp/nvim.cd
+vcd() {
+    if [ -f "/tmp/nvim.cd" ]; then
+        cd $(cat /tmp/nvim.cd)
+        rm /tmp/nvim.cd
+    fi
+}
+
+# Helper function for toXXX aliases
 pwd_sed_cd() {
     dir=$(pwd | sed $1)
     echo $dir
     cd $dir
 }
 
+# Navigation
 alias totop="pwd_sed_cd 's/\/src\/.*$//'"
 alias totest="pwd_sed_cd 's/src\/main/src\/test/'"
 alias tomain="pwd_sed_cd 's/src\/test/src\/main/'"
 alias tonvim="cd ~/.config/nvim"
 alias tolazy="cd ~/.local/share/nvim/lazy"
 
+# Scripting
 alias tsn="ts-node"
 alias kts="kotlinc-jvm -script"
 alias rs="rust-script"
 
-cheat() {
-    curl "cheat.sh/$1/$2"
-}
-
-cap() {
-    ansifilter | xsel -ib && xsel -ob
-}
-
-clip() {
+# Copy output to clipboard
+pcopy() {
     ansifilter | xsel -ib
 }
 
-cdd() {
-    if [ -z $1 ]; then
-        : # do nothing
-    elif [ -d $1 ]; then
-        cd $1
-    elif [ -f $1 ]; then
-        cd $(dirname $1)
-    fi
-}
-
-cd_and_vi() {
-    if [ -z $1 ]; then
-        : # do nothing
-    elif [ -f $1 ]; then
-        cdd $1
-        nvim $(basename $1)
-    fi
+# pcopy and print to stdout
+clip() {
+    ansifilter | xsel -ib && xsel -ob
 }
 
 # params: dir, types, pattern
@@ -89,34 +83,17 @@ fuzzy_find() {
     echo `fd $find_query $1 -i -p -H -t $2 | fzf $fzf_query`
 }
 
-ffind() {
-    dir=$1
-    if [ -z $dir ]; then
-        dir="."
-    fi
-    fuzzy_find $1 f $2
+# Fuzzy find files
+ff() {
+    fuzzy_find . f $1
 }
 
-fim() {
-    cd_and_vi $(fuzzy_find . f $1)
+# Fuzzy find directories
+fdir() {
+    fuzzy_find . d $1
 }
 
-fima() {
-    cd_and_vi $(fuzzy_find ~ f $1)
-}
-
-fcd() {
-    cdd $(fuzzy_find . f $1)
-}
-
-fda() {
-    cdd $(fuzzy_find ~ f $1)
-}
-
-fdd() {
-    cdd $(fuzzy_find . d $1)
-}
-
-fdda() {
-    cdd $(fuzzy_find ~ d $1)
+# Alternative to cut
+mycut() {
+    bb -i "(->> *input* (map #(str/split % #\"\s+\")) (map #(get % (dec $1))) (run! println))"
 }
