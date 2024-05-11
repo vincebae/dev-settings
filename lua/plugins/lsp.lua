@@ -8,13 +8,13 @@ return {
 		"ionide/Ionide-vim",
 		ft = { "fsharp" },
 	},
-	-- {
-	-- 	"scalameta/nvim-metals", -- scala language server
-	-- 	dependencies = {
-	-- 		"nvim-lua/plenary.nvim",
-	-- 	},
-	-- 	ft = { "scala", "sbt" },
-	-- },
+	{
+		"scalameta/nvim-metals", -- scala language server
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+		},
+		ft = { "scala", "sbt" },
+	},
 	{
 		"mrcjkb/haskell-tools.nvim", -- haskell language server
 		dependencies = {
