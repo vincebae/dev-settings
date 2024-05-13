@@ -96,6 +96,7 @@ return {
 				fsharp = fantomas,
 				java = googleJavaFormat,
 				lua = require("formatter.filetypes.lua").stylua,
+				sbt = scalafmt,
 				scala = scalafmt,
 				ocaml = ocamlformat,
 				xml = xmlformat,

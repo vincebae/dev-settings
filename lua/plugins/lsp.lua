@@ -1,19 +1,8 @@
 return {
 	-- Language specific LSP plugins
 	{
-		"mfussenegger/nvim-jdtls", -- java language server
-		ft = { "java", "scala", "sbt" },
-	},
-	{
-		"ionide/Ionide-vim",
+		"ionide/Ionide-vim", -- fsharp language server
 		ft = { "fsharp" },
-	},
-	{
-		"scalameta/nvim-metals", -- scala language server
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-		},
-		ft = { "scala", "sbt" },
 	},
 	{
 		"mrcjkb/haskell-tools.nvim", -- haskell language server
@@ -89,6 +78,7 @@ return {
 				"jdtls",
 				"fsautocomplete",
 				"hls",
+				"metals",
 			})
 			-- lsp.preset({
 			-- 	manage_nvim_cmp = {
@@ -145,7 +135,7 @@ return {
 				},
 			})
 
-			lspconfig.metals.setup({})
+			-- lspconfig.metals.setup({})
 			-- lspconfig.jdtls.setup({})
 
 			lsp_zero.set_preferences({

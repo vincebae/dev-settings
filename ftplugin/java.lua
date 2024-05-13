@@ -3,31 +3,41 @@ vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
 
-local jdtls = require("jdtls")
-local setup = require("jdtls.setup")
+-- Snippets
+local ls = require("luasnip")
+local s = ls.snippet
+local t = ls.text_node
+local f = ls.function_node
 
-local jdtls_path = "/home/linuxbrew/.linuxbrew/bin/jdtls"
-local project_root = setup.find_root({ ".git", "mvnw", "gradlew" })
-local project_name = vim.fn.fnamemodify(project_root, ":p:h:t")
-local cache_dir = vim.fn.expand("$HOME/.cache/jdtls")
-local data_dir = cache_dir .. "/workspace/" .. project_name
-local config_dir = cache_dir .. "/config/"
+local get_package_name = function()
+	local path = vim.fn.expand("%:p:h")
+	local extracted = string.match(path, [[.*/src/%a+/java/(.*)]])
+	if extracted ~= nil then
+		return string.gsub(extracted, "/", ".")
+	else
+		return ""
+	end
+end
 
-local config = {
-	cmd = {
-		jdtls_path,
-		"-configuration",
-		config_dir,
-		"-data",
-		data_dir,
-		-- "--jvm-arg=-javaagent:" .. lombok_path,
+local get_class_name = function()
+	local filename = vim.fn.expand("%:t")
+	return string.gsub(filename, ".java$", "")
+end
+
+ls.add_snippets(nil, {
+	java = {
+		s("package", {
+			t("package "),
+			f(get_package_name, {}),
+			t({ ";", "" }),
+		}),
+		s("logger", {
+			t("private static final Logger LOGGER = LoggerFactory.getLogger("),
+			f(get_class_name, {}),
+			t({ ".class);", "" }),
+		}),
 	},
-	root_dir = project_root,
-	capabilities = require("cmp_nvim_lsp").default_capabilities(),
-}
-
-jdtls.start_or_attach(config)
-
+})
 -- Navigation
 local my_funs = require("config/functions")
 
@@ -71,6 +81,15 @@ end)
 keymap.set("n", "<leader>nt", function()
 	toggle_test_file()
 end)
+keymap.set("n", "<localleader>P", function()
+	cd_to_top_dir()
+end)
+keymap.set("n", "<localleader>T", function()
+	toggle_test_dir()
+end)
+keymap.set("n", "<localleader>t", function()
+	toggle_test_file()
+end)
 
 -- Java specific which-key mapping
 local which_key = require("which-key")
@@ -98,7 +117,6 @@ local mappings = {
 		P = { "Open top dir" },
 		T = { "Toggle test dir" },
 		t = { "Toggle test file" },
-		d = { "Open dir" },
 	},
 }
 
@@ -112,48 +130,3 @@ local ll_mappings = {
 which_key.register(mappings, opts)
 which_key.register(ll_mappings, ll_opts)
 
-local ls = require("luasnip")
-local s = ls.snippet
-local t = ls.text_node
-local f = ls.function_node
-local i = ls.insert_node
-
-local get_package_name = function()
-	local path = vim.fn.expand("%:p:h")
-	local extracted = string.match(path, [[.*/src/%a+/java/(.*)]])
-	if extracted ~= nil then
-		return string.gsub(extracted, "/", ".")
-	else
-		return ""
-	end
-end
-
-local get_class_name = function()
-	local filename = vim.fn.expand("%:t")
-	return string.gsub(filename, ".java$", "")
-end
-
-ls.add_snippets(nil, {
-	java = {
-		s("package", {
-			t("package "),
-			f(get_package_name, {}),
-			t({ ";", "" }),
-		}),
-		s("logger", {
-			t("private static final Logger LOGGER = LoggerFactory.getLogger("),
-			f(get_class_name, {}),
-			t({ ".class);", "" }),
-		}),
-		s("junit5", {
-			t({
-				"import static org.hamcrest.MatcherAssert.assertThat;",
-				"import static org.hamcrest.Matchers.is;",
-				"import static org.junit.jupiter.api.Assertions.assertThrows;",
-				"import static org.mockito.Mockito.doReturn;",
-				"import static org.mockito.ArgumentMatchers.any;",
-				"",
-			}),
-		}),
-	},
-})

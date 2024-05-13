@@ -246,8 +246,6 @@ return {
             b = "Find buffer",
 			f = "Find file",
             g = "Git status",
-            t = "Terminal (v)",
-            T = "Terminal (h)",
             ["/"] =  "Live grep",
 		}
 

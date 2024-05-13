@@ -39,8 +39,8 @@ keymap.set("n", "<C-s>", "<cmd>sp<cr>")
 keymap.set("t", "<C-t>", "<cmd>ToggleTerm<cr>")
 keymap.set("n", "<C-t>", "<cmd>ToggleTerm direction=float<cr>")
 keymap.set("n", "<leader>T", "<cmd>ToggleTerm direction=float<cr>")
-keymap.set("n", "<localleader>t", "<cmd>ToggleTerm direction=vertical size=100<cr>")
-keymap.set("n", "<localleader>T", "<cmd>ToggleTerm direction=horizontal size=25<cr>")
+-- keymap.set("n", "<localleader>t", "<cmd>ToggleTerm direction=vertical size=100<cr>")
+-- keymap.set("n", "<localleader>T", "<cmd>ToggleTerm direction=horizontal size=25<cr>")
 
 -- Buffer
 keymap.set("n", "<leader>bt", "<cmd>ToggleTerm direction=vertical size=100<cr>")
