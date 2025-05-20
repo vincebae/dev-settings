@@ -49,6 +49,7 @@ alias tomain="pwd_sed_cd 's/src\/test/src\/main/'"
 alias tonvim="cd ~/.config/nvim"
 alias tolazy="cd ~/.local/share/nvim/lazy"
 alias toconfig="cd ~/.config/myconfig"
+alias tocode="cd ~/code"
 
 alias tsn="ts-node"
 alias kts="kotlinc-jvm -script"
@@ -96,12 +97,6 @@ alias bbr="rlwrap bb repl"
 alias bbs="rlwrap bb socket-repl 1666"
 alias bbn="rlwrap bb nrepl-server 1667"
 alias cljn="clj -M:cider-clj"
-
-# NABL
-alias tobixby="cd ~/code/bixby"
-alias tobos2="cd ~/code/bixby/bos"
-alias tobos="cd ~/code/bixby/bos-3.0"
-alias tobgs="cd ~/code/bixby/bgs"
 
 # AWS / Kubernetes 
 alias k=kubectl

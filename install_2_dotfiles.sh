@@ -25,6 +25,7 @@ myconfig_dir=$config_dir/myconfig
 # create directories
 mkdir -p $HOME/.nvm
 mkdir -p $HOME/bin
+mkdir -p $HOME/code
 mkdir -p $config_dir/tmux
 
 # install shell configs to $HOME
