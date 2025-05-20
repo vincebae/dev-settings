@@ -1,0 +1,17 @@
+{
+  "runtime.version": "LuaJIT",
+  "runtime.path": [
+    "lua/?.lua",
+    "lua/?/init.lua"
+  ],
+  "diagnostics.globals": ["vim",
+        "toogle_test_opts",
+        "Snacks"],
+  "workspace.checkThirdParty": false,
+  "workspace.library": [
+    "$VIMRUNTIME"
+  ],
+    "diagnostics.disable": [
+        "missing-parameter"
+    ]
+}

@@ -1,0 +1,10 @@
+[opener]
+noop = [
+    { run = ":", desc = "Do nothing" }
+]
+
+[open]
+prepend_rules = [
+	# Disable opening a folder
+	{ name = "*/", use = [ "noop" ] },
+]

@@ -1,0 +1,6 @@
+alias vi=nvim
+
+export EDITOR=nvim
+export GIT_EDITOR=nvim
+export PATH=$PATH:$HOME/.local/bin:$HOME/bin:$HOME/.config/myconfig/scripts
+

@@ -1,0 +1,121 @@
+"" Vim is a secondary editor to back up Neovim, so only minimal config.
+
+"" Plugins
+let data_dir = '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs 
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+endif
+
+"" Run PlugInstall if there are missing plugins
+autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \| PlugInstall --sync | source $MYVIMRC
+\| endif
+
+call plug#begin(expand('~/.vim/plugged'))
+
+Plug 'nanotech/jellybeans.vim'
+Plug 'tpope/vim-vinegar'
+Plug 'mhinz/vim-startify'
+Plug 'christoomey/vim-tmux-navigator'
+
+call plug#end()
+
+nnoremap <C-e> :NERDTreeToggle<CR>
+
+"" Basic Setup
+set nocompatible
+syntax on
+filetype on
+filetype plugin on
+filetype plugin indent on
+set nobackup
+set mouse=a
+set mousemodel=popup
+
+"" Encoding
+set encoding=utf-8
+set fileencoding=utf-8
+set fileencodings=utf-8
+set ttimeout
+set ttimeoutlen=1
+set ttyfast
+
+"" Tabs
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set expandtab
+set smartindent
+set nowrap
+set backspace=indent,eol,start
+
+"" Map leader to ,
+let mapleader=' '
+
+"" Enable hidden buffers
+set hidden
+
+"" Searching
+set nohlsearch
+set incsearch
+set showmatch
+set history=1000
+
+"" Files
+set noswapfile
+set fileformats=unix,dos,mac
+
+if exists('$SHELL')
+    set shell=$SHELL
+else
+    set shell=/bin/sh
+endif
+
+"" Session management
+let g:session_directory = "~/.vim/session"
+let g:session_autoload = "no"
+let g:session_autosave = "no"
+let g:session_command_aliases = 1
+let no_buffers_menu=1
+
+"" Visual Settings
+set ruler
+set number
+set relativenumber
+set termguicolors
+set scrolloff=4
+set guicursor=n-v-c:block,i-ci-ve:ver25,r-cr:hor20,o:hor50
+autocmd InsertEnter * set cul
+autocmd InsertLeave * set nocul
+colorscheme jellybeans
+
+"" Better command line completion 
+set wildmenu
+set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
+
+
+"" Status line
+set statusline=
+set statusline+=\ %F\ %M\ %Y\ %R
+set statusline+=%=
+set statusline+=\ ascii:\ %b\ hex:\ 0x%B\ row:\ %l\ col:\ %c\ percent:\ %p%%
+set laststatus=2
+
+"" Search mappings: These will make it so that going to the next one in a
+"" search will center on the line it's found in.
+nnoremap n nzzzv
+nnoremap N Nzzzv
+
+"" Abbreviations
+cnoreabbrev W! w!
+cnoreabbrev Q! q!
+cnoreabbrev Qall! qall!
+cnoreabbrev Wq wq
+cnoreabbrev Wa wa
+cnoreabbrev wQ wq
+cnoreabbrev WQ wq
+cnoreabbrev W w
+cnoreabbrev Q q
+cnoreabbrev Qall qall
+

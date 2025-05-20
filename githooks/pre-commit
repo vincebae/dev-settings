@@ -1,0 +1,14 @@
+#!/bin/bash
+
+function exit_on_error {
+    echo $1
+    exit 1
+}
+
+echo "Applying spotless..."
+./gradlew :spotlessApply || exit_on_error "Failed to apply spotless."
+
+echo "Adding updated files back to git index..."
+git add . || exit_on_error "Failed to add files back to git index."
+
+echo "pre-commit hook done."

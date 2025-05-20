@@ -1,0 +1,6 @@
+stty -ixon
+
+if [[ "$OSTYPE" == "darwin"* ]]; then  # Mac OSX
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+

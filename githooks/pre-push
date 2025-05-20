@@ -1,0 +1,11 @@
+#!/bin/bash
+
+function exit_on_error {
+    echo $1
+    exit 1
+}
+
+echo "Building BOS 3.0..."
+./gradlew :build || exit_on_error "Failed to build BOS 3.0."
+
+echo "pre-push hook done."
