@@ -7,7 +7,7 @@
 
 ## HOWTO
 ```
-$ git clone --depth 1 https://github.com/vincebae/bootstrap $HOME/.config/myconfig
+$ git clone --depth 1 https://github.com/vincebae/dev-settings $HOME/.config/myconfig
 $ cd $HOME/.config/myconfig
 
 $ ./install_1_zsh.sh       # Install oh-my-zsh and plugins. need curl and git
