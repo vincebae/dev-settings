@@ -23,13 +23,9 @@ config_dir=$HOME/.config
 myconfig_dir=$config_dir/myconfig
 
 # create directories
-mkdir -p ~/.nvm
+mkdir -p $HOME/.nvm
+mkdir -p $HOME/bin
 mkdir -p $config_dir/tmux
-
-# install oh-my-zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-ZSH_CUSTOM=~/.oh-my-zsh/custom
-git clone https://github.com/MichaelAquilina/zsh-you-should-use.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/you-should-use
 
 # install shell configs to $HOME
 install $myconfig_dir/dotfiles/bashrc $HOME/.bashrc

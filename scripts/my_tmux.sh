@@ -1,15 +1,15 @@
 #!/bin/bash
 
 session_name="sbbae"
-window_name_1="bos"
-window_path_1="$HOME/code/bixby/bos-3.0"
-window_name_2="conf"
-window_path_2="$HOME/.config/myconfig"
+window_name_1="one"
+window_path_1="$HOME"
+window_name_2="two"
+window_path_2="$HOME"
 window_name_3="three"
-window_path_3="$HOME/code"
+window_path_3="$HOME"
 window_name_4="four"
-window_path_4="$HOME"
-split_window_size="34%"
+window_path_4="$HOME/.config/myconfig"
+split_window_size="50%"
 
 if tmux has-session -t $session_name; then
     echo "Attaching to existing session..."

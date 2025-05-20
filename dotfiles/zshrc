@@ -122,22 +122,16 @@ export GIT_EDITOR=nvim
 export PATH=$PATH:$HOME/.local/bin:$HOME/bin:$HOME/.config/myconfig/scripts
 
 # Homebrew
-export BREW_DIR="/home/linuxbrew/.linuxbrew"
+export BREW_HOME="/home/linuxbrew/.linuxbrew"
 if [[ "$OSTYPE" == "linux-gnu"* ]]; then  # Linux
-    eval "$($BREW_DIR/bin/brew shellenv)"
+    eval "$($BREW_HOME/bin/brew shellenv)"
 fi
 
 # Node.js
 export NVM_DIR="$HOME/.nvm"
-export NVM_BREW_DIR="$BREW_DIR/opt/nvm"
-[ -s "$NVM_BREW_DIR/nvm.sh" ] && \. "$NVM_BREW_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_BREW_DIR/bash_completion" ] && \. "$NVM_BREW_DIR/bash_completion"  # This loads nvm bash_completion
+export NVM_BREW_HOME="$BREW_HOME/opt/nvm"
+[ -s "$NVM_BREW_HOME/nvm.sh" ] && \. "$NVM_BREW_HOME/nvm.sh"  # This loads nvm
+[ -s "$NVM_BREW_HOME/bash_completion" ] && \. "$NVM_BREW_HOME/bash_completion"  # This loads nvm bash_completion
 
 # Java
-export JAVA_HOME=$(/usr/libexec/java_home -v 21)
-
-# SRA specific
-export AWS_PROFILE=default
-export SIXFIVE_HOME="$HOME/code/bixby/bos"
-export BOS_HOME="$HOME/code/bixby/bos-3.0"
-
+# export JAVA_HOME=$(/usr/libexec/java_home -v 21)
