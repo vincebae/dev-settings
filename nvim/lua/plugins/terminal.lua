@@ -19,6 +19,21 @@ return {
             { "<C-t>S", "<cmd>split +terminal<cr>" },
             { "<C-t>", "<cmd>ToggleTerm<cr>", mode = { "t" } },
             { "<C-w>", "<C-\\><C-N><C-w>", mode = { "t" } },
+            {
+                "<C-t>c",
+                function()
+                    require("toggleterm").send_lines_to_terminal(
+                        "single_line", true, { args = vim.v.count })
+                end,
+            },
+            {
+                "<C-t>c",
+                function()
+                    require("toggleterm").send_lines_to_terminal(
+                        "visual_selection", false, { args = vim.v.count })
+                end,
+                mode = { "v" },
+            },
         },
         opts = {
             close_on_exit = true,

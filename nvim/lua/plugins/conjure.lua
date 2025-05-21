@@ -3,15 +3,26 @@ return {
         "Olical/conjure",
         ft = {
             "clojure",
+            "lua",
             "python",
         },
+        dependencies = {
+            {
+                "nvim-treesitter/nvim-treesitter-textobjects",
+                dependencies = {
+                    "nvim-treesitter",
+                },
+                config = function()
+                end,
+            },
+        },
         config = function()
-            -- Evaluate string from the user input
-            local eval_str = function()
+            -- Evaluate text from the user input
+            local eval_text = function()
                 local expr = vim.fn.input("Expr > ")
                 vim.cmd("ConjureEval " .. expr)
             end
-            vim.keymap.set("n", "<localleader>es", eval_str)
+            vim.keymap.set("n", "<localleader>et", eval_text)
 
             -- Connect to the port from the user input
             local connect_to_port = function()
@@ -19,6 +30,8 @@ return {
                 vim.cmd("ConjureConnect " .. port)
             end
             vim.keymap.set("n", "<localleader>cp", connect_to_port)
+
+            vim.g["conjure#extract#tree_sitter#enabled"] = true
 
             local which_key = require("which-key")
             which_key.add({
@@ -29,7 +42,7 @@ return {
                     { "<localleader>cp", desc = "Connect to specific port" },
                 },
                 { "<localleader>E", mode = { "n" }, desc = "Evaluate motion" },
-                { "<localleader>E", mode = { "v" }, desc = "Evaluate" },
+                { "<localleader>E", mode = { "v" }, desc = "Evaluate visual select" },
                 { "<localleader>e", group = "Evaluate" },
                 {
                     { "<localleader>ee", desc = "Innermost" },
@@ -38,7 +51,7 @@ return {
                     { "<localleader>ef", desc = "File" },
                     { "<localleader>eb", desc = "Buffer" },
                     { "<localleader>ei", desc = "Interrupt" },
-                    { "<localleader>es", desc = "Input" },
+                    { "<localleader>et", desc = "Input text" },
                     { "<localleader>ed", desc = "Doc" },
                     { "<localleader>e!", desc = "Eval and replace" },
                 },
@@ -65,6 +78,7 @@ return {
                     { "<localleader>ra", desc = "All" },
                     { "<localleader>rc", desc = "Clear cache" },
                 },
+                { "<localleader>s", group = "REPL Session" },
                 { "<localleader>t", group = "Testing" },
                 {
                     { "<localleader>ta", desc = "All loaded" },

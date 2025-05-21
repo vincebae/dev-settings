@@ -72,5 +72,5 @@ vim.opt.wildignore = "*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.x
 -- Misc
 vim.opt.updatetime = 50
 vim.opt.timeout = true
-vim.opt.timeoutlen = 300
+vim.opt.timeoutlen = 500
 -- vim.opt.ttimeoutlen = 0
