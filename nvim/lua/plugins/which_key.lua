@@ -7,9 +7,10 @@ return {
             triggers = {
                 { "<leader>", mode = { "n", "v" } },
                 { "<localleader>", mode = { "n", "v" } },
+                { "d", mode = { "n" } },
                 { "g", mode = { "n" } },
                 { "z", mode = { "n", "v" } },
-                { "<C-t>", mode = { "n" } },
+                { "<C-t>", mode = { "n", "v" } },
                 { "<C-w>", mode = { "n" } },
             },
         }
@@ -19,33 +20,32 @@ return {
             -- leader + single key mappings
             { "<leader>a", desc = "Toggle Aerial" }, -- defined in aerial.lua
             { "<leader>F", desc = "Format" }, -- defined in formatter.lua
-            { "<leader>X", desc = "Make executable" }, -- defined in keymap.lua
-            { "<leader>y", desc = "Yank to Clipboard" }, -- defined in keymap.lua
+            { "<leader>X", desc = "Make executable" }, -- defined in keymaps.lua
+            { "<leader>y", desc = "Yank to Clipboard" }, -- defined in keymaps.lua
             { "<leader>f", desc = "Smart Open Files" }, -- defined in snacks.lua
             { "<leader>G", desc = "Grep Word" }, -- defined in snacks.lua
-            { "<leader>t", desc = "Toggle Test" }, --defined in keymap.lua
+            { "<leader>t", desc = "Toggle Test" }, --defined in keymaps.lua
             { "<leader>M", desc = "Open Memo" }, --defined in maple.lua
-            { "<leader>-", desc = "Move to CWD" }, -- defined in keymap.lua
+            { "<leader>-", desc = "Move to CWD" }, -- defined in keymaps.lua
             { "<leader>/", desc = "Live Grep" }, -- defined in snacks.lua
             { "<leader>.", desc = "Live Grep at Curr Dir" }, -- defined in snacks.lua
-            { "<leader>`", desc = "Toggle Lua Console" }, -- defined in luaconsole.lua
-            { "<leader>~", desc = "Attach to Lua Console" }, -- defined in luaconsole.lua
             { "<leader> ", desc = "Open Arrow" }, -- defined in arrow.lua
 
             -- Visual mode key mappings
             {
                 mode = { "v" },
                 { "<leader> ", desc = "Comment line(s)" }, -- defined in Comment.lua
-                { "<leader>y", desc = "Yank to Clipboard" }, -- defined in keymap.lua
+                { "<leader>y", desc = "Yank to Clipboard" }, -- defined in keymaps.lua
             },
 
             { "<leader>b", group = "Buffer" },
             {
                 { "<leader>bb", desc = "List" }, -- defined in snacks.lua
-                { "<leader>bh", desc = "Show Histories" }, -- defined in buffer.lua
-                { "<leader>br", desc = "Reset Curr History" }, -- defined in buffer.lua
-                { "<leader>bR", desc = "Reset All Histories" }, -- defined in buffer.lua
-                { "<leader>bd", desc = "Delete Other Buffers" }, --defined in buffer.lua
+                { "<leader>bh", desc = "Show Histories" }, -- defined in keymaps.lua
+                { "<leader>bl", desc = "Goto Last Visited" }, -- defined in keymaps.lua
+                { "<leader>br", desc = "Reset Curr History" }, -- defined in keymaps.lua
+                { "<leader>bR", desc = "Reset All Histories" }, -- defined in keymaps.lua
+                { "<leader>bd", desc = "Delete Other Buffers" }, --defined in keymaps.lua
             },
 
             { "<leader>d", group = "DAP" },
@@ -86,7 +86,7 @@ return {
                 { "<leader>gr", desc = "Reset Hunks" },
             },
 
-            -- defined in keymap.lua
+            -- defined in keymaps.lua
             { "<leader>p", group = "Paste" },
             {
                 { "<leader>pc", desc = "Clipboard" },
@@ -94,7 +94,7 @@ return {
                 { "<leader>pd", desc = "Last deleted" },
             },
 
-            -- defined in lazy.lua
+            -- defined in plugins.lua
             { "<leader>P", group = "Plugins" },
             {
                 { "<leader>Pi", desc = "Install" },
@@ -129,14 +129,31 @@ return {
                 { "<C-t>V", desc = "Terminal Vertical" },
                 { "<C-t>s", desc = "ToggleTerm Horizontal" },
                 { "<C-t>S", desc = "Terminal Horizontal" },
+                { "<C-t>c", desc = "Send Current Line" },
             },
-
+            {
+                mode = { "v" },
+                { "<C-t>c", desc = "Send Current Selection" },
+            },
             -- defined in lsp.lua
             {
                 { "gd", desc = "LSP definition" },
                 { "gr", desc = "LSP references" },
                 { "gi", desc = "LSP implementation" },
             },
+
+            -- defined in slime.lua
+            { "<localleader><localleader>", group = "Slime" },
+            {
+                { "<localleader><localleader>p", desc = "Send Paragraph" },
+                { "<localleader><localleader>r", desc = "Reset Config" },
+                { "<localleader><localleader>c", desc = "Send Current Line" },
+                { "<localleader><localleader><localleader>", desc = "Send Input Text" },
+            },
+            {
+                mode = { "v" },
+                { "<localleader><localleader><localleader>", desc = "Send Region" },
+            }
         })
     end,
 }
