@@ -1,6 +1,7 @@
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
+vim.opt.colorcolumn = "80"
 
 -- Confure auto repl
 vim.cmd([[let g:conjure#client#clojure#nrepl#connection#auto_repl#cmd = "bb nrepl-server $port"]])

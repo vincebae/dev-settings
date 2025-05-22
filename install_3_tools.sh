@@ -29,3 +29,4 @@ git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
 # Set up github account
 git config --global user.email "vincebae@gmail.com"
 git config --global user.name  "Seung-Bin Bae"
+git config --global init.defaultBranch main
