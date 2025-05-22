@@ -65,6 +65,7 @@ local touch = function(path)
 end
 
 local relative_path = function(path, cwd)
+    path = path or get_buffer_path()
     cwd = cwd or vim.fn.getcwd()
     return Path:new(path):make_relative(cwd)
 end
