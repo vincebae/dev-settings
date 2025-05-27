@@ -19,10 +19,10 @@ return {
         config = function()
             -- Evaluate text from the user input
             local eval_text = function()
-                local expr = vim.fn.input("Expr > ")
+                local expr = vim.fn.input("Evaluate Expr:")
                 vim.cmd("ConjureEval " .. expr)
             end
-            vim.keymap.set("n", "<localleader>et", eval_text)
+            vim.keymap.set("n", "<localleader>:", eval_text)
 
             -- Connect to the port from the user input
             local connect_to_port = function()
@@ -43,6 +43,7 @@ return {
                 },
                 { "<localleader>E", mode = { "n" }, desc = "Evaluate motion" },
                 { "<localleader>E", mode = { "v" }, desc = "Evaluate visual select" },
+                { "<localleader>:", desc = "Evaluate Input text" },
                 { "<localleader>e", group = "Evaluate" },
                 {
                     { "<localleader>ee", desc = "Innermost" },
@@ -51,7 +52,6 @@ return {
                     { "<localleader>ef", desc = "File" },
                     { "<localleader>eb", desc = "Buffer" },
                     { "<localleader>ei", desc = "Interrupt" },
-                    { "<localleader>et", desc = "Input text" },
                     { "<localleader>ed", desc = "Doc" },
                     { "<localleader>e!", desc = "Eval and replace" },
                 },
