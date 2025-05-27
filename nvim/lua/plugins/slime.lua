@@ -14,18 +14,11 @@ return {
         { "<localleader><localleader>r", "<cmd>SlimeConfig<cr>" },
         { "<localleader><localleader>c", "<cmd>SlimeSendCurrentLine<cr>" },
         {
-            "<localleader><localleader><localleader>",
+            "<localleader><localleader>:",
             function()
-                local text = vim.fn.input("Text > ")
-                local escaped = ""
-                for c in string.gmatch(text, ".") do
-                    if c == [[\]] or c == [["]] then
-                        escaped = escaped .. [[\]]
-                    end
-                    escaped = escaped .. c
-                end
-                local wrapped = [["]] .. escaped .. [[\n"]]
-                vim.cmd("SlimeSend0 " .. wrapped)
+                local my = require("utils.my_utils")
+                local text = vim.fn.input("Send Text: ")
+                vim.cmd("SlimeSend0 " .. my.make_literal(text, { newline = true }))
             end,
         },
     },
