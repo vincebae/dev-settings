@@ -1,3 +1,4 @@
+local my = require("utils.my_utils")
 local pu = require("utils.path_utils")
 local toggleterm = require("toggleterm")
 local ts_utils = require("nvim-treesitter.ts_utils")
@@ -42,30 +43,36 @@ local function get_current_method_name()
 end
 
 -- Debug Test Runner
-local function run_test(test_name, debug)
+local function run_test(test_name, opts)
     local test_cmd = "./gradlew test --rerun"
     if test_name ~= nil and test_name ~= "" then
         test_cmd = test_cmd .. " --tests " .. test_name .. " --rerun"
     end
-    if debug then
+    
+    if opts.debug then
         test_cmd = test_cmd .. " --debug-jvm"
     end
-    toggleterm.exec(test_cmd, 1, 20, "horizontal")
+
+    if opts.env == "terminal" then
+        toggleterm.exec(test_cmd, 1, 20, "horizontal")
+    elseif opts.env == "slime" then
+        vim.cmd("SlimeSend0 " .. my.make_literal(test_cmd, { newline = true }))
+    end
 end
 
-local function run_test_all(debug)
-    run_test("", debug)
+local function run_test_all(opts)
+    run_test("", opts)
 end
 
-local function run_test_class(debug)
-    run_test(get_test_class_name(), debug)
+local function run_test_class(opts)
+    run_test(get_test_class_name(), opts)
 end
 
-local function run_test_method(debug)
+local function run_test_method(opts)
     local method_name = vim.fn.input("Method:", get_current_method_name())
     if method_name ~= "" then
         local test_name = get_package_name() .. "." .. get_test_class_name() .. "." .. method_name
-        run_test(test_name, debug)
+        run_test(test_name, opts)
     end
 end
 
