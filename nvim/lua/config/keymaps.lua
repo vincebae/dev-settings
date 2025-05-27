@@ -19,8 +19,6 @@ vim.keymap.set("n", "<leader>py", [["0p]])
 vim.keymap.set("n", "<C-p>", [["+p]])
 
 -- Windows
-vim.keymap.set("n", "<C-]>", "<C-W>_<C-W>|")
-vim.keymap.set("n", "<C-[>", "<C-W>=")
 vim.keymap.set("n", "<C-v>", "<cmd>vsp<cr>")
 vim.keymap.set("n", "<C-s>", "<cmd>sp<cr>")
 
