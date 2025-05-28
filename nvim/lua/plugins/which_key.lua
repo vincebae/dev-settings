@@ -29,6 +29,7 @@ return {
             { "<leader>-", desc = "Move to CWD" }, -- defined in keymaps.lua
             { "<leader>/", desc = "Live Grep" }, -- defined in snacks.lua
             { "<leader>.", desc = "Live Grep at Curr Dir" }, -- defined in snacks.lua
+            { "<leader>:", desc = "Send Text to Terminal" }, -- defined in terminal.lua
             { "<leader> ", desc = "Open Arrow" }, -- defined in arrow.lua
 
             -- Visual mode key mappings
@@ -148,11 +149,11 @@ return {
                 { "<localleader><localleader>p", desc = "Send Paragraph" },
                 { "<localleader><localleader>r", desc = "Reset Config" },
                 { "<localleader><localleader>c", desc = "Send Current Line" },
-                { "<localleader><localleader><localleader>", desc = "Send Input Text" },
+                { "<localleader><localleader>:", desc = "Send Input Text" },
             },
             {
                 mode = { "v" },
-                { "<localleader><localleader><localleader>", desc = "Send Region" },
+                { "<localleader><localleader>", desc = "Send Region" },
             }
         })
     end,

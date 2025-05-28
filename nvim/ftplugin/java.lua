@@ -1,25 +1,42 @@
 vim.opt.colorcolumn = "120"
 
 local ju = require("utils.java_utils")
+local pu = require("utils.popup_utils")
 
--- define commands
+local test_env = "slime"
+local function choose_test_env_menu()
+    local title = "Choose Test Enviroment"
+    local menuitems = {
+        { "Slime", { value = "slime" }},
+        { "Terminal", { value = "terminal"}},
+    }
+    local callbacks = {
+        on_submit = function(item)
+            test_env = item.value
+        end
+    }
+    local opts = { width = 24 }
+    pu.popup_menu(title, menuitems, callbacks, opts)
+end
+vim.api.nvim_create_user_command("ChooseTestEnv", choose_test_env_menu, {})
+
 vim.api.nvim_create_user_command("TestAll", function()
-    ju.run_test_all(false)
+    ju.run_test_all({ env = test_env, debug = false })
 end, {})
 vim.api.nvim_create_user_command("TestClass", function()
-    ju.run_test_class(false)
+    ju.run_test_class({ env = test_env, debug = false })
 end, {})
 vim.api.nvim_create_user_command("TestMethod", function()
-    ju.run_test_method(false)
+    ju.run_test_method({ env = test_env, debug = false })
 end, {})
 vim.api.nvim_create_user_command("TestAllDebug", function()
-    ju.run_test_all(true)
+    ju.run_test_all({ env = test_env, debug = true })
 end, {})
 vim.api.nvim_create_user_command("TestClassDebug", function()
-    ju.run_test_class(true)
+    ju.run_test_class({ env = test_env, debug = true })
 end, {})
 vim.api.nvim_create_user_command("TestMethodDebug", function()
-    ju.run_test_method(true)
+    ju.run_test_method({ env = test_env, debug = true })
 end, {})
 
 -- aliases
@@ -56,5 +73,4 @@ ls.add_snippets("java", {
     s("import_logger", {
         t("import org.jboss.logging.Logger;"),
     }),
-
 }, { key = "java" })

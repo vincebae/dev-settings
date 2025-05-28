@@ -34,6 +34,13 @@ return {
                 end,
                 mode = { "v" },
             },
+            {
+                "<leader>:",
+                function()
+                    local command = vim.fn.input("Send Text to Terminal: ")
+                    require("toggleterm").exec(command, 1, 20, "horizontal")
+                end,
+            },
         },
         opts = {
             close_on_exit = true,
