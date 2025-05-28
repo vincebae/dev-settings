@@ -20,7 +20,7 @@ brew install wget xclip xsel vim nvim tmux git ripgrep fzf fzy tldr fd jq yq laz
     fortune cowsay yazi tree-sitter bat gh
 
 # Programming Languages and Tools
-brew install python openjdk jdtls nvm clojure cljfmt clj-kondo borkdude/brew/babashka
+brew install python openjdk jdtls nvm clojure cljfmt clj-kondo borkdude/brew/babashka rust
 
 # Install Tmux plugin manager
 git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm

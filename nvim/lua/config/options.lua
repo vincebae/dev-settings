@@ -14,6 +14,7 @@ vim.opt.scrolloff = 4
 vim.opt.signcolumn = "yes"
 vim.opt.colorcolumn = "100"
 vim.opt.foldcolumn = "3"
+vim.opt.equalalways = false
 
 vim.api.nvim_create_autocmd({ "InsertEnter" }, {
     callback = function()

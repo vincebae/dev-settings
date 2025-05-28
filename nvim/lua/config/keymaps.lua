@@ -27,6 +27,7 @@ vim.keymap.set("n", "<leader>X", "<cmd>!chmod +x %<cr>", { silent = true })
 vim.keymap.set("n", "<leader>-", function()
     vim.cmd("e " .. vim.fn.getcwd())
 end)
+vim.keymap.set("n", "<ESC>", "<nop>")
 
 -- Abbreviations
 vim.cmd("cnoreabbrev W! w!")

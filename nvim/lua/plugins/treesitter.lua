@@ -13,6 +13,7 @@ return {
                     "bash",
                     "c",
                     "clojure",
+                    "fennel",
                     "haskell",
                     "html",
                     "java",
@@ -41,7 +42,7 @@ return {
                     enable = true,
                 },
                 indent = {
-                    enable = true,
+                    enable = false,
                 },
                 playground = {
                     enabled = true,

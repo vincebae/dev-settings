@@ -3,6 +3,7 @@ return {
         "Olical/conjure",
         ft = {
             "clojure",
+            "fennel",
             "lua",
             "python",
         },
@@ -32,6 +33,7 @@ return {
             vim.keymap.set("n", "<localleader>cp", connect_to_port)
 
             vim.g["conjure#extract#tree_sitter#enabled"] = true
+            vim.g["conjure#log#hud#open_when"] = "log-win-not-visible"
 
             local which_key = require("which-key")
             which_key.add({
@@ -90,7 +92,6 @@ return {
                 {
                     { "<localleader>ve", desc = "Last exception" },
                     { "<localleader>vs", desc = "Source" },
-                    { "<localleader>vd", "<cmd>ConjureDocWord<cr>", desc = "Doc" },
                     { "<localleader>v1", desc = "Most recent eval" },
                     { "<localleader>v2", desc = "2nd Most recent eval" },
                     { "<localleader>v3", desc = "3rd Most recent eval" },

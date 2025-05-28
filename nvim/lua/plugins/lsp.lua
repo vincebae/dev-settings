@@ -38,7 +38,7 @@ return {
                     vim.keymap.set("n", "gh", "<cmd>Lspsaga hover_doc<cr>", opts)
                     vim.keymap.set("n", "ga", "<cmd>Lspsaga code_action<cr>", opts)
                     vim.keymap.set("n", "gb", "<cmd>Lspsaga show_buf_diagnostics<cr>", opts)
-                    vim.keymap.set("n", "gc", "<cmd>Lspsaga show_cursor_diagnostics<cr>", opts)
+                    vim.keymap.set("n", "gs", "<cmd>Lspsaga show_cursor_diagnostics<cr>", opts)
                     vim.keymap.set("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<cr>", opts)
                     vim.keymap.set("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<cr>", opts)
                     vim.keymap.set("n", "gp", "<cmd>Lspsaga peek_definition<cr>", opts)
@@ -52,6 +52,7 @@ return {
             vim.lsp.enable({
                 "bashls",
                 "clojure_lsp",
+                "fennel_language_server",
                 "lua_ls",
             })
         end,

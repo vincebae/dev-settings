@@ -1,4 +1,4 @@
-local filetypes = { "java" } -- "scala", "sbt", "clojure"
+local filetypes = { "java", "clojure" } -- "scala", "sbt"
 return {
     "mfussenegger/nvim-jdtls", -- java language server
     ft = filetypes,
