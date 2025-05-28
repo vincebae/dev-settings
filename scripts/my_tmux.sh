@@ -9,7 +9,7 @@ window_name_3="three"
 window_path_3="$HOME"
 window_name_4="four"
 window_path_4="$HOME/.config/myconfig"
-split_window_size="70%"
+split_window_size="30%"
 
 if tmux has-session -t $session_name; then
     echo "Attaching to existing session..."

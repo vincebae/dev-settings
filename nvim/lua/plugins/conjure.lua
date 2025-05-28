@@ -3,6 +3,7 @@ return {
         "Olical/conjure",
         ft = {
             "clojure",
+            "fennel",
             "lua",
             "python",
         },
@@ -22,7 +23,7 @@ return {
                 local expr = vim.fn.input("Expr > ")
                 vim.cmd("ConjureEval " .. expr)
             end
-            vim.keymap.set("n", "<localleader>et", eval_text)
+            vim.keymap.set("n", "<localleader>e\\", eval_text)
 
             -- Connect to the port from the user input
             local connect_to_port = function()
@@ -32,6 +33,7 @@ return {
             vim.keymap.set("n", "<localleader>cp", connect_to_port)
 
             vim.g["conjure#extract#tree_sitter#enabled"] = true
+            vim.g["conjure#log#hud#open_when"] = "log-win-not-visible"
 
             local which_key = require("which-key")
             which_key.add({
@@ -51,7 +53,7 @@ return {
                     { "<localleader>ef", desc = "File" },
                     { "<localleader>eb", desc = "Buffer" },
                     { "<localleader>ei", desc = "Interrupt" },
-                    { "<localleader>et", desc = "Input text" },
+                    { "<localleader>e\\", desc = "Input text" },
                     { "<localleader>ed", desc = "Doc" },
                     { "<localleader>e!", desc = "Eval and replace" },
                 },
@@ -90,7 +92,6 @@ return {
                 {
                     { "<localleader>ve", desc = "Last exception" },
                     { "<localleader>vs", desc = "Source" },
-                    { "<localleader>vd", "<cmd>ConjureDocWord<cr>", desc = "Doc" },
                     { "<localleader>v1", desc = "Most recent eval" },
                     { "<localleader>v2", desc = "2nd Most recent eval" },
                     { "<localleader>v3", desc = "3rd Most recent eval" },

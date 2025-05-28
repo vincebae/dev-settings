@@ -46,9 +46,8 @@ return {
                 -- opened terminal is still preserved when session is enabled.
                 -- This `on_create` function will add an auto command to close the term
                 -- before session is saved.
-                local group = vim.api.nvim_create_augroup("user-persistence", { clear = true })
                 vim.api.nvim_create_autocmd("User", {
-                    group = group,
+                    group = vim.api.nvim_create_augroup("user-persistence", { clear = true }),
                     pattern = "PersistenceSavePre",
                     callback = function(_)
                         term:close()

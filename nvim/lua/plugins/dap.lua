@@ -95,19 +95,6 @@ return {
             "mfussenegger/nvim-dap",
             "nvim-neotest/nvim-nio",
         },
-        config = function()
-            local dapui = require("dapui")
-            dapui.setup({})
-
-            -- close DAP UI before session is saved.
-            local group = vim.api.nvim_create_augroup("user-persistence", { clear = true })
-            vim.api.nvim_create_autocmd("User", {
-                group = group,
-                pattern = "PersistenceSavePre",
-                callback = function(_)
-                    dapui.close()
-                end,
-            })
-        end,
+        opts = {}
     },
 }
