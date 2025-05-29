@@ -25,7 +25,6 @@ return {
             { "<leader>f", desc = "Smart Open Files" }, -- defined in snacks.lua
             { "<leader>G", desc = "Grep Word" }, -- defined in snacks.lua
             { "<leader>t", desc = "Toggle Test" }, --defined in keymaps.lua
-            { "<leader>M", desc = "Open Memo" }, --defined in maple.lua
             { "<leader>-", desc = "Move to CWD" }, -- defined in keymaps.lua
             { "<leader>/", desc = "Live Grep" }, -- defined in snacks.lua
             { "<leader>.", desc = "Live Grep at Curr Dir" }, -- defined in snacks.lua
@@ -125,6 +124,10 @@ return {
             { "<C-t>", group = "Terminal" },
             {
                 { "<C-t>t", desc = "Toggle Term" },
+                { "<C-t>1", desc = "Toggle Term 1" },
+                { "<C-t>2", desc = "Toggle Term 2" },
+                { "<C-t>3", desc = "Toggle Term 3" },
+                { "<C-t>4", desc = "Toggle Term 4" },
                 { "<C-t>f", desc = "ToggleTerm Float" },
                 { "<C-t>v", desc = "ToggleTerm Vertical" },
                 { "<C-t>V", desc = "Terminal Vertical" },
