@@ -52,7 +52,8 @@ return {
             vim.lsp.enable({
                 "bashls",
                 "clojure_lsp",
-                "fennel_language_server",
+                "fennel_ls",
+                -- "fennel_language_server",
                 "lua_ls",
             })
         end,

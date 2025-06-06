@@ -23,7 +23,6 @@ return {
                     "clj-kondo",
                     "clojure-lsp",
                     "eslint_d",
-                    "fennel-language-server",
                     "flake8",
                     "google-java-format",
                     "isort",

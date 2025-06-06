@@ -119,7 +119,7 @@ fi
 
 export EDITOR=nvim
 export GIT_EDITOR=nvim
-export PATH=$PATH:$HOME/.local/bin:$HOME/bin:$HOME/.config/myconfig/scripts
+export PATH=$PATH:$HOME/.local/bin:$HOME/bin:$HOME/.config/myconfig/bin
 
 # Homebrew
 export BREW_HOME="/home/linuxbrew/.linuxbrew"

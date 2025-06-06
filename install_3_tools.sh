@@ -21,7 +21,9 @@ brew install wget xclip xsel vim nvim tmux git ripgrep fzf fzy tldr fd jq yq laz
 
 # Programming Languages and Tools
 brew install python openjdk jdtls gradle nvm clojure cljfmt clj-kondo \
-    borkdude/brew/babashka rust
+    borkdude/brew/babashka rust lua luajit luarocks fennel
+
+# TODO: fennel-ls, fnlfmt, docsets.
 
 # Install Tmux plugin manager
 git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm

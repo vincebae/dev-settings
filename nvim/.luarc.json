@@ -4,14 +4,16 @@
     "lua/?.lua",
     "lua/?/init.lua"
   ],
-  "diagnostics.globals": ["vim",
-        "toogle_test_opts",
-        "Snacks"],
+  "diagnostics.globals": [
+    "vim",
+    "toogle_test_opts",
+    "Snacks"
+  ],
   "workspace.checkThirdParty": false,
   "workspace.library": [
     "$VIMRUNTIME"
   ],
-    "diagnostics.disable": [
-        "missing-parameter"
-    ]
+  "diagnostics.disable": [
+    "missing-parameter"
+  ]
 }

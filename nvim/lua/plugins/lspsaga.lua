@@ -18,7 +18,7 @@ return {
             rename = {
                 in_select = false,
                 keys = {
-                    quit = { "q", "<C-c>" },
+                    quit = { "<C-c>" },
                 },
             },
 			lightbulb = {

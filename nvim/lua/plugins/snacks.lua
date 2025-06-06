@@ -92,7 +92,7 @@ return {
                 enabled = true,
             },
             words = {
-                enabled = true,
+                enabled = false,
             },
         },
         keys = {
