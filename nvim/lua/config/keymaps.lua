@@ -53,13 +53,20 @@ vim.api.nvim_create_autocmd("BufWritePost", {
     end,
 })
 
--- Open memo / todo files
+-- Open memo / scratch files
+local scratch_path = vim.fn.stdpath("data") .. "/scratch/"
 vim.api.nvim_create_user_command("Memo", function()
-    vim.cmd("e ~/Documents/org/memo.org")
+    vim.cmd("e " .. scratch_path .. "memo.md")
 end, {})
-vim.api.nvim_create_user_command("Todo", function()
-    vim.cmd("e ~/Documents/org/todo.org")
-end, {})
+vim.api.nvim_create_user_command("Scratch", function(opts)
+    local extension = opts.fargs[1]
+    vim.cmd("e " .. scratch_path .. "scratch." .. extension)
+end, {
+    nargs = 1,
+    complete = function(_, _, _)
+        return { "clj", "lua", "md", "java", "fnl" }
+    end,
+})
 
 -- Quit nvim with writing current directory to temp file.
 local pu = require("utils.path_utils")
