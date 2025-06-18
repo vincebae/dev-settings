@@ -65,26 +65,26 @@ return {
             })
         end,
     },
-	{
-		"stevearc/aerial.nvim",
-		dependencies = {
-			"nvim-treesitter/nvim-treesitter",
-			"nvim-tree/nvim-web-devicons",
-		},
-		opts = {
-			close_on_select = true,
+    {
+        "stevearc/aerial.nvim",
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter",
+            "nvim-tree/nvim-web-devicons",
+        },
+        opts = {
+            close_on_select = true,
             layout = {
                 min_width = 20,
             },
-			-- optionally use on_attach to set keymaps when aerial has attached to a buffer
-			on_attach = function(bufnr)
-				-- Jump forwards/backwards with '{' and '}'
-				vim.keymap.set("n", "[a", "<cmd>AerialPrev<CR>", { buffer = bufnr })
-				vim.keymap.set("n", "]a", "<cmd>AerialNext<CR>", { buffer = bufnr })
-			end,
-		},
-		keys = {
-			{ "<leader>a", "<cmd>AerialToggle<CR>" },
-		},
-	},
+            -- optionally use on_attach to set keymaps when aerial has attached to a buffer
+            on_attach = function(bufnr)
+                -- Jump forwards/backwards with '{' and '}'
+                vim.keymap.set("n", "[a", "<cmd>AerialPrev<CR>", { buffer = bufnr })
+                vim.keymap.set("n", "]a", "<cmd>AerialNext<CR>", { buffer = bufnr })
+            end,
+        },
+        keys = {
+            { "<leader>a", "<cmd>AerialToggle<CR>" },
+        },
+    },
 }
