@@ -9,13 +9,13 @@ vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 -- Yank & Paste
-vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
-vim.keymap.set({ "n", "v" }, "<C-y>", [["+y]])
+vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "Yank to Clipboard" })
+vim.keymap.set({ "n", "v" }, "<C-y>", [["+y]], { desc = "Yank to Clipboard" })
 vim.keymap.set("x", "<leader>d", [["_d]])
 vim.keymap.set("x", "<leader>p", [["_dP]])
-vim.keymap.set("n", "<leader>pc", [["+p]])
-vim.keymap.set("n", "<leader>pd", [["1p]])
-vim.keymap.set("n", "<leader>py", [["0p]])
+vim.keymap.set("n", "<leader>pc", [["+p]], { desc = "Paste from Clipboard" })
+vim.keymap.set("n", "<leader>pd", [["1p]], { desc = "Paste from Last Deleted" })
+vim.keymap.set("n", "<leader>py", [["0p]], { desc = "Paste from Last Yanked" })
 vim.keymap.set("n", "<C-p>", [["+p]])
 
 -- Windows
@@ -23,10 +23,10 @@ vim.keymap.set("n", "<C-v>", "<cmd>vsp<cr>")
 vim.keymap.set("n", "<C-s>", "<cmd>sp<cr>")
 
 -- Misc
-vim.keymap.set("n", "<leader>X", "<cmd>!chmod +x %<cr>", { silent = true })
+vim.keymap.set("n", "<leader>X", "<cmd>!chmod +x %<cr>", { silent = true, desc = "Make executable" })
 vim.keymap.set("n", "<leader>-", function()
     vim.cmd("e " .. vim.fn.getcwd())
-end)
+end, { desc = "Move to CWD" })
 vim.keymap.set("n", "<ESC>", "<nop>")
 
 -- Abbreviations
@@ -64,7 +64,7 @@ vim.api.nvim_create_user_command("Scratch", function(opts)
 end, {
     nargs = 1,
     complete = function(_, _, _)
-        return { "clj", "lua", "md", "java", "fnl" }
+        return { "clj", "lua", "md", "java", "fnl", "lisp" }
     end,
 })
 
@@ -99,12 +99,13 @@ vim.api.nvim_create_autocmd("BufDelete", {
 
 vim.keymap.set("n", "[b", bu.back)
 vim.keymap.set("n", "]b", bu.forward)
-vim.keymap.set("n", "<leader>bh", bu.popup_select_menu)
-vim.keymap.set("n", "<leader>br", bu.reset_curr_history)
-vim.keymap.set("n", "<leader>bR", bu.reset_all_histories)
-vim.keymap.set("n", "<leader>bd", bu.delete_all_invisible_buffers)
-vim.keymap.set("n", "<leader>bl", "<cmd>b#<cr>")
+vim.keymap.set("n", "<leader>bh", bu.popup_select_menu, { desc = "Show Buffer Histories" })
+vim.keymap.set("n", "<leader>br", bu.reset_curr_history, { desc = "Reset Current Buffer History" })
+vim.keymap.set("n", "<leader>bR", bu.reset_all_histories, { desc = "Reset All Buffer Histories" })
+vim.keymap.set("n", "<leader>bd", bu.delete_all_invisible_buffers, { desc = "Delete Other Buffers" })
+vim.keymap.set("n", "<leader>bl", "<cmd>b#<cr>", { desc = "Go to Last Buffer" })
 
 -- Test Related
 local tu = require("utils.test_utils")
-vim.keymap.set("n", "<leader>t", tu.toggle_test)
+vim.keymap.set("n", "<leader>t", tu.toggle_test, { desc = "Toggle Test File" })
+
