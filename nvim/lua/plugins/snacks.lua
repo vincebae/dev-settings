@@ -115,6 +115,13 @@ return {
                 desc = "Toggle Explorer",
             },
             {
+                "<leader>c",
+                function()
+                    Snacks.notifier.hide()
+                end,
+                desc = "Clear All Notification",
+            },
+            {
                 "<leader>gg",
                 function()
                     Snacks.lazygit()
@@ -164,7 +171,7 @@ return {
                 function()
                     Snacks.picker.buffers()
                 end,
-                desc = "Buffers",
+                desc = "Show Buffers",
             },
             {
                 "<leader>sb",

@@ -13,13 +13,12 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local lazy = require("lazy")
-
-vim.keymap.set("n", "<leader>Pi", lazy.install)
-vim.keymap.set("n", "<leader>Pc", lazy.clean)
-vim.keymap.set("n", "<leader>Pu", lazy.update)
-vim.keymap.set("n", "<leader>Ps", lazy.sync)
-vim.keymap.set("n", "<leader>PS", lazy.health)
-vim.keymap.set("n", "<leader>Pp", lazy.home)
+vim.keymap.set("n", "<leader>Pi", lazy.install, { desc = "Install Plugins" })
+vim.keymap.set("n", "<leader>Pc", lazy.clean, { desc = "Clean Plugins" })
+vim.keymap.set("n", "<leader>Pu", lazy.update, { desc = "Update Plugins" })
+vim.keymap.set("n", "<leader>Ps", lazy.sync, { desc = "Sync Plugins" })
+vim.keymap.set("n", "<leader>PS", lazy.health, { desc = "Plugin Status" })
+vim.keymap.set("n", "<leader>Pp", lazy.home, { desc = "Lazy Home" })
 
 require("lazy").setup({
     spec = {

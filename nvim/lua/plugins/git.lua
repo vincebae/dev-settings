@@ -2,9 +2,9 @@ return {
     {
         "tpope/vim-fugitive",
         keys = {
-            { "<leader>gb", "<cmd>Git blame<cr>" },
-            { "<leader>gl", "<cmd>Git log<cr>" },
-            { "<leader>gm", "<cmd>Git mergetool<cr>" },
+            { "<leader>gb", "<cmd>Git blame<cr>", desc = "Git Blame" },
+            { "<leader>gl", "<cmd>Git log<cr>", desc = "Git Log" },
+            { "<leader>gm", "<cmd>Git mergetool<cr>", desc = "Git Mergetool" },
         },
         config = function() end,
         lazy = false,
@@ -12,8 +12,8 @@ return {
     {
         "sindrets/diffview.nvim",
         keys = {
-            { "<leader>gd", "<cmd>DiffviewOpen<cr>" },
-            { "<leader>gc", "<cmd>DiffviewClose<cr>" },
+            { "<leader>gd", "<cmd>DiffviewOpen<cr>", desc = "Open Diff" },
+            { "<leader>gc", "<cmd>DiffviewClose<cr>", desc = "Close Diff" },
         },
         opts = {},
     },
@@ -30,40 +30,40 @@ return {
                     end
 
                     -- Navigation
-                    map("n", "]c", function()
+                    map("n", "]g", function()
                         if vim.wo.diff then
                             vim.cmd.normal({ "]c", bang = true })
                         else
                             gitsigns.nav_hunk("next")
                         end
-                    end)
+                    end, { desc = "Next Git Hunk" })
 
-                    map("n", "[c", function()
+                    map("n", "[g", function()
                         if vim.wo.diff then
                             vim.cmd.normal({ "[c", bang = true })
                         else
                             gitsigns.nav_hunk("prev")
                         end
-                    end)
+                    end, { desc = "Prev Git Hunk" })
 
                     -- Actions
-                    map("n", "<leader>gr", gitsigns.reset_hunk)
+                    map("n", "<leader>gr", gitsigns.reset_hunk, { desc = "Reset Git Hunk" })
                     map("v", "<leader>gr", function()
                         gitsigns.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
-                    end)
+                    end, { desc = "Reset Git Hunk" })
 
-                    map("n", "<leader>gh", gitsigns.preview_hunk_inline)
+                    map("n", "<leader>gh", gitsigns.preview_hunk_inline, { desc = "Preview Git Hunk" })
                     map("n", "<leader>gQ", function()
                         gitsigns.setqflist("all")
-                    end)
-                    map("n", "<leader>gq", gitsigns.setqflist)
+                    end, { desc = "Quicklist All Git Hunks" })
+                    map("n", "<leader>gq", gitsigns.setqflist, { desc = "Quicklist Git Hunks" })
 
                     -- Toggles
                     map("n", "<leader>gt", function()
                         gitsigns.toggle_current_line_blame()
                         gitsigns.toggle_deleted()
                         gitsigns.toggle_word_diff()
-                    end)
+                    end, { desc = "Toggle Gitsigns" })
                 end,
             })
         end,
