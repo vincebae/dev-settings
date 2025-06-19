@@ -1,15 +1,5 @@
 return {
     {
-        "gpanders/nvim-parinfer",
-        ft = {
-            "clojure",
-            "fennel",
-        },
-        config = function()
-            vim.g["parinfer_mode"] = "paren"
-        end,
-    },
-    {
         "HiPhish/rainbow-delimiters.nvim",
         config = function()
             require("rainbow-delimiters.setup").setup({
