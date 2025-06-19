@@ -5,21 +5,29 @@ return {
         vim.g.slime_target = "tmux"
         vim.g.slime_no_mappings = 1
         vim.g.slime_dont_ask_default = 1
-        vim.g.slime_default_config = {socket_name = "default", target_pane = "+1"}
-
-        vim.cmd([[xmap <localleader><localleader><localleader> <Plug>SlimeRegionSend]])
-        vim.cmd([[nmap <localleader><localleader>p <Plug>SlimeParagraphSend]])
+        vim.g.slime_default_config = { socket_name = "default", target_pane = "+1" }
     end,
     keys = {
-        { "<localleader><localleader>r", "<cmd>SlimeConfig<cr>" },
-        { "<localleader><localleader>c", "<cmd>SlimeSendCurrentLine<cr>" },
+        { "<localleader><localleader>r", "<cmd>SlimeConfig<cr>", desc = "Reset Slime Config" },
+        { "<localleader><localleader>c", "<cmd>SlimeSendCurrentLine<cr>", desc = "Send Current Line" },
         {
-            "<localleader><localleader>:",
+            "<localleader><localleader>",
+            "<Plug>SlimeRegionSend",
+            mode = "v",
+            desc = "Slime Send Region",
+            { noremap = false },
+        },
+        { "<localleader><localleader>p", "<Plug>SlimeParagraphSend", desc = "Send Paragraph", { noremap = false } },
+        {
+            "<localleader>:",
             function()
                 local my = require("utils.my_utils")
                 local text = vim.fn.input("Send Text: ")
-                vim.cmd("SlimeSend0 " .. my.make_literal(text, { newline = true }))
+                if text and text ~= "" then
+                    vim.cmd("SlimeSend0 " .. my.make_literal(text .. "\n"))
+                end
             end,
+            desc = "Slime Send Input Text",
         },
     },
 }
