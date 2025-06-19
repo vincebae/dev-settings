@@ -34,18 +34,63 @@ return {
                 desc = "LSP actions",
                 callback = function(event)
                     local opts = { buffer = event.buf }
-                    vim.keymap.set("n", "gn", "<cmd>Lspsaga rename<cr>", opts)
-                    vim.keymap.set("n", "gh", "<cmd>Lspsaga hover_doc<cr>", opts)
-                    vim.keymap.set("n", "ga", "<cmd>Lspsaga code_action<cr>", opts)
-                    vim.keymap.set("n", "gb", "<cmd>Lspsaga show_buf_diagnostics<cr>", opts)
-                    vim.keymap.set("n", "gs", "<cmd>Lspsaga show_cursor_diagnostics<cr>", opts)
-                    vim.keymap.set("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<cr>", opts)
-                    vim.keymap.set("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<cr>", opts)
-                    vim.keymap.set("n", "gp", "<cmd>Lspsaga peek_definition<cr>", opts)
+                    vim.keymap.set("n", "gn", "<cmd>Lspsaga rename<cr>", { buffer = event.buf, desc = "Rename Symbol" })
+                    vim.keymap.set("n", "gh", "<cmd>Lspsaga hover_doc<cr>", { buffer = event.buf, desc = "Hover Doc" })
+                    vim.keymap.set(
+                        "n",
+                        "ga",
+                        "<cmd>Lspsaga code_action<cr>",
+                        { buffer = event.buf, desc = "Code Action" }
+                    )
+                    vim.keymap.set(
+                        "n",
+                        "gb",
+                        "<cmd>Lspsaga show_buf_diagnostics<cr>",
+                        { buffer = event.buf, desc = "Buffer Diagnostics" }
+                    )
+                    vim.keymap.set(
+                        "n",
+                        "gs",
+                        "<cmd>Lspsaga show_cursor_diagnostics<cr>",
+                        { buffer = event.buf, desc = "Cursor Diagnostics" }
+                    )
+                    vim.keymap.set(
+                        "n",
+                        "]d",
+                        "<cmd>Lspsaga diagnostic_jump_next<cr>",
+                        { buffer = event.buf, desc = "Next Diagnostic" }
+                    )
+                    vim.keymap.set(
+                        "n",
+                        "[d",
+                        "<cmd>Lspsaga diagnostic_jump_prev<cr>",
+                        { buffer = event.buf, desc = "Prev Diagnostic" }
+                    )
+                    vim.keymap.set(
+                        "n",
+                        "gp",
+                        "<cmd>Lspsaga peek_definition<cr>",
+                        { buffer = event.buf, desc = "Peek Definition" }
+                    )
 
-                    vim.keymap.set("n", "gd", Snacks.picker.lsp_definitions, opts)
-                    vim.keymap.set("n", "gr", Snacks.picker.lsp_references, opts)
-                    vim.keymap.set("n", "gi", Snacks.picker.lsp_implementations, opts)
+                    vim.keymap.set(
+                        "n",
+                        "gd",
+                        Snacks.picker.lsp_definitions,
+                        { buffer = event.buf, desc = "Go to Definition" }
+                    )
+                    vim.keymap.set(
+                        "n",
+                        "gr",
+                        Snacks.picker.lsp_references,
+                        { buffer = event.buf, desc = "Show References" }
+                    )
+                    vim.keymap.set(
+                        "n",
+                        "gi",
+                        Snacks.picker.lsp_implementations,
+                        { buffer = event.buf, desc = "Show Implementations" }
+                    )
                 end,
             })
 
