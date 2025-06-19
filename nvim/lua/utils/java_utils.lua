@@ -70,7 +70,7 @@ end
 
 local function run_test_method(opts)
     local method_name = vim.fn.input("Method:", get_current_method_name())
-    if method_name ~= "" then
+    if method_name and method_name ~= "" then
         local test_name = get_package_name() .. "." .. get_test_class_name() .. "." .. method_name
         run_test(test_name, opts)
     end

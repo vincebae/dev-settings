@@ -14,7 +14,9 @@ vim.api.nvim_create_autocmd("FileType", {
 -- Connect to the port from the user input
 local function connect_to_input_port()
     local port = vim.fn.input("Port > ", "")
-    vim.cmd("ConjureConnect " .. port)
+    if port and port ~= "" then
+        vim.cmd("ConjureConnect " .. port)
+    end
 end
 
 local function configure_clojure_keymap()

@@ -27,7 +27,9 @@ return {
             -- Evaluate text from the user input
             local eval_input_text = function()
                 local expr = vim.fn.input("Evaluate Expr: ")
-                vim.cmd("ConjureEval " .. expr)
+                if expr and expr ~= "" then
+                    vim.cmd("ConjureEval " .. expr)
+                end
             end
 
             local function configure_keymap()

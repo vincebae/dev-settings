@@ -5,8 +5,12 @@ local filetypes = {
     "timl",
     "fennel",
 }
+
 local filetypes_string = table.concat(filetypes, ",")
 vim.cmd("let g:sexp_filetypes = '" .. filetypes_string .. "'")
+
+vim.cmd("let g:sexp_enable_insert_mode_mappings = 0")
+
 return {
     -- Usage: The three "core" operations of add/delete/change can be done with the keymaps
     -- 1. ys{motion}{char}

@@ -9,38 +9,6 @@ return {
     config = function()
         local my = require("utils.my_utils")
         local function configure_keymap()
-            vim.keymap.set(
-                "n",
-                "<localleader>ee",
-                "<cmd>call vlime#plugin#SendToREPL(vlime#ui#CurExpr())<cr>",
-                { buffer = true }
-            )
-            vim.keymap.set(
-                "n",
-                "<localleader>er",
-                "<cmd>call vlime#plugin#SendToREPL(vlime#ui#CurTopExpr())<cr>",
-                { buffer = true }
-            )
-            vim.keymap.set(
-                "n",
-                "<localleader>ew",
-                "<cmd>call vlime#plugin#SendToREPL(vlime#ui#CurAtom())<cr>",
-                { buffer = true }
-            )
-            vim.keymap.set(
-                "n",
-                "<localleader>ef",
-                '<cmd>call vlime#plugin#CompileFile(expand("%:p"))<cr>',
-                { buffer = true }
-            )
-            vim.keymap.set("n", "<localleader>e:", "<cmd>call vlime#plugin#SendToREPL()<cr>", { buffer = true })
-            vim.keymap.set(
-                "v",
-                "<localleader>E",
-                "<cmd>call vlime#plugin#SendToREPL(vlime#ui#CurSelection())<cr>",
-                { buffer = true }
-            )
-
             local which_key = require("which-key")
             which_key.add({
                 buffer = true,
@@ -64,14 +32,51 @@ return {
                 },
                 {
                     { "<localleader>e", group = "Vlime Send to Evaluate" },
-                    { "<localleader>ee", desc = "Expression" },
-                    { "<localleader>er", desc = "Top Level Expression" },
-                    { "<localleader>ew", desc = "Atom" },
-                    { "<localleader>ef", desc = "Compile File" },
-                    { "<localleader>e:", desc = "Snippet" },
+                    {
+                        "<localleader>ee",
+                        "<cmd>call vlime#plugin#SendToREPL(vlime#ui#CurExpr())<cr>",
+                        desc = "Expression",
+                    },
+                    {
+                        "<localleader>er",
+                        "<cmd>call vlime#plugin#SendToREPL(vlime#ui#CurTopExpr())<cr>",
+                        desc = "Top Level Expression",
+                    },
+                    {
+                        "<localleader>ew",
+                        "<cmd>call vlime#plugin#SendToREPL(vlime#ui#CurAtom())<cr>",
+                        desc = "Atom",
+                    },
+                    {
+                        "<localleader>ef",
+                        '<cmd>call vlime#plugin#CompileFile(expand("%:p"))<cr>',
+                        desc = "Compile File",
+                    },
+                    {
+                        "<localleader>ei",
+                        "<cmd>call vlime#plugin#SendToREPL()<cr>",
+                        desc = "Snippet",
+                    },
+                    {
+                        "<localleader>e:",
+                        function()
+                            -- Evaluate text from the user input
+                            local expr = vim.fn.input("Evaluate Expr: ")
+                            if expr and expr ~= "" then
+                                local my = require("utils.my_utils")
+                                local escaped = my.make_literal(expr)
+                                vim.cmd("call vlime#plugin#SendToREPL(" .. escaped .. ")")
+                            end
+                        end,
+                        desc = "Input",
+                    },
                     {
                         mode = "v",
-                        { "<localleader>E", desc = "Vlime Evaluate Current Selection" },
+                        {
+                            "<localleader>E",
+                            "<cmd>call vlime#plugin#SendToREPL(vlime#ui#CurSelection())<cr>",
+                            desc = "Vlime Evaluate Current Selection",
+                        },
                     },
 
                     -- Disable default keymaps

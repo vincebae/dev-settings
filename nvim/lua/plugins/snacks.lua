@@ -188,6 +188,20 @@ return {
                 end,
                 desc = "Colorschemes",
             },
+             {
+                "<leader>sd",
+                function()
+                    Snacks.picker.lsp_symbols()
+                end,
+                desc = "LSP Symbols",
+            },
+          {
+                "<leader>sD",
+                function()
+                    Snacks.picker.lsp_symbols()
+                end,
+                desc = "LSP Workspace Symbols",
+            },
             {
                 "<leader>sg",
                 function()
@@ -212,7 +226,7 @@ return {
             {
                 "<leader>sm",
                 function()
-                    Snacks.picker.marks({["local"] = false})
+                    Snacks.picker.marks({ ["local"] = false })
                 end,
                 desc = "Global Marks",
             },

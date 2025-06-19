@@ -67,25 +67,43 @@ return {
         end,
     },
     {
-        "stevearc/aerial.nvim",
+        "nvim-treesitter/nvim-treesitter-textobjects",
         dependencies = {
             "nvim-treesitter/nvim-treesitter",
-            "nvim-tree/nvim-web-devicons",
         },
-        opts = {
-            close_on_select = true,
-            layout = {
-                min_width = 20,
-            },
-            -- optionally use on_attach to set keymaps when aerial has attached to a buffer
-            on_attach = function(bufnr)
-                -- Jump forwards/backwards
-                vim.keymap.set("n", "{", "<cmd>AerialPrev<CR>", { buffer = bufnr, desc = "Aerial Prev" })
-                vim.keymap.set("n", "}", "<cmd>AerialNext<CR>", { buffer = bufnr, desc = "Aerial Next" })
-            end,
-        },
-        keys = {
-            { "<leader>a", "<cmd>AerialToggle<CR>", desc = "Toggle Aerial" },
-        },
+        -- lazy = false,
+        config = function()
+            require("nvim-treesitter.configs").setup({
+                textobjects = {
+                    move = {
+                        enable = true,
+                        set_jumps = true, -- whether to set jumps in the jumplist
+                        goto_next_start = {
+                            ["]f"] = { query = "@function.outer", desc = "Next function start"},
+                            ["]s"] = { query = "@local.scope", query_group = "locals", desc = "Next scope start" },
+                        },
+                        goto_next_end = {
+                            ["]F"] = { query = "@function.outer", desc= "Next function end"},
+                            ["]S"] = { query = "@local.scope", query_group = "locals", desc = "Next scope start" },
+                        },
+                        goto_previous_start = {
+                            ["[f"] = { query = "@function.outer", desc = "Prev function start" },
+                            ["[s"] = { query = "@local.scope", query_group = "locals", desc = "Prev scope start" },
+                        },
+                        goto_previous_end = {
+                            ["[F"] = { query = "@function.outer", desc = "Prev function end" },
+                            ["[S"] = { query = "@local.scope", query_group = "locals", desc = "Prev scope start" },
+                        },
+                        -- Below will go to either the start or the end, whichever is closer.
+                        -- Use if you want more granular movements
+                        -- Make it even more gradual by adding multiple queries and regex.
+                        goto_next = {
+                        },
+                        goto_previous = {
+                        },
+                    },
+                },
+            })
+        end,
     },
 }
