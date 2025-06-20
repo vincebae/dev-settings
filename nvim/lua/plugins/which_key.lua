@@ -25,6 +25,8 @@ return {
         which_key.setup(setup)
 
         which_key.add({
+            { "<leader>", group = "<leader>" },
+            { "<localleader>", group = "<localleader>" },
             { "<C-t>", group = "Terminal" },
             { "<leader>b", group = "Buffer" },
             { "<leader>d", group = "DAP" },

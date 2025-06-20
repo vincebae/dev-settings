@@ -64,7 +64,7 @@ vim.api.nvim_create_user_command("Scratch", function(opts)
 end, {
     nargs = 1,
     complete = function(_, _, _)
-        return { "clj", "lua", "md", "java", "fnl", "lisp" }
+        return { "txt", "clj", "lua", "md", "java", "fnl", "lisp" }
     end,
 })
 

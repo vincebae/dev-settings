@@ -1,13 +1,35 @@
-local filetypes = { "lisp" }
+local supported_filetypes = { "lisp" }
+local vlime_filetypes = {
+    "vlime_arglist",
+    "vlime_input",
+    "vlime_inspector",
+    "vlime_mrepl",
+    "vlime_notes",
+    "vlime_preview",
+    "vlime_repl",
+    "vlime_server",
+    "vlime_sldb",
+    "vlime_threads",
+    "vlime_trace",
+    "vlime_xref",
+}
 return {
     "vlime/vlime",
-    ft = filetypes,
+    ft = supported_filetypes,
     lazy = false,
     dependencies = {
         "folke/which-key.nvim",
     },
     config = function()
-        local my = require("utils.my_utils")
+        local function evaluate_input_text()
+            local expr = vim.fn.input("Evaluate Expr: ")
+            if expr and expr ~= "" then
+                local my = require("utils.my_utils")
+                local escaped = my.make_literal(expr)
+                vim.cmd("call vlime#plugin#SendToREPL(" .. escaped .. ")")
+            end
+        end
+
         local function configure_keymap()
             local which_key = require("which-key")
             which_key.add({
@@ -59,15 +81,7 @@ return {
                     },
                     {
                         "<localleader>e:",
-                        function()
-                            -- Evaluate text from the user input
-                            local expr = vim.fn.input("Evaluate Expr: ")
-                            if expr and expr ~= "" then
-                                local my = require("utils.my_utils")
-                                local escaped = my.make_literal(expr)
-                                vim.cmd("call vlime#plugin#SendToREPL(" .. escaped .. ")")
-                            end
-                        end,
+                        evaluate_input_text,
                         desc = "Input",
                     },
                     {
@@ -182,9 +196,59 @@ return {
         end
 
         vim.api.nvim_create_autocmd("FileType", {
-            pattern = filetypes,
+            pattern = supported_filetypes,
             callback = function()
                 vim.schedule(configure_keymap)
+            end,
+        })
+
+        -- Many keymappings are not working in vlime wndows,
+        -- and somehow keymapping with "buffer = true" doesn't work for vlime_repl,
+        -- so the configuration above doesn't work.
+        -- For better experience, configure evaluation keymap for vlime window types.
+        -- Note that evaluate / compile file is not included.
+        local function configure_vlime_window_keymap()
+            require("which-key").add({
+                { "<localleader>e", group = "Vlime Send to Evaluate" },
+                {
+                    "<localleader>ee",
+                    "<cmd>call vlime#plugin#SendToREPL(vlime#ui#CurExpr())<cr>",
+                    desc = "Expression",
+                },
+                {
+                    "<localleader>er",
+                    "<cmd>call vlime#plugin#SendToREPL(vlime#ui#CurTopExpr())<cr>",
+                    desc = "Top Level Expression",
+                },
+                {
+                    "<localleader>ew",
+                    "<cmd>call vlime#plugin#SendToREPL(vlime#ui#CurAtom())<cr>",
+                    desc = "Atom",
+                },
+                {
+                    "<localleader>ei",
+                    "<cmd>call vlime#plugin#SendToREPL()<cr>",
+                    desc = "Snippet",
+                },
+                {
+                    "<localleader>e:",
+                    evaluate_input_text,
+                    desc = "Input",
+                },
+                {
+                    mode = "v",
+                    {
+                        "<localleader>E",
+                        "<cmd>call vlime#plugin#SendToREPL(vlime#ui#CurSelection())<cr>",
+                        desc = "Vlime Evaluate Current Selection",
+                    },
+                },
+            })
+        end
+        vim.api.nvim_create_autocmd("FileType", {
+            pattern = vlime_filetypes,
+            callback = function()
+                vim.schedule(configure_vlime_window_keymap)
             end,
         })
     end,
