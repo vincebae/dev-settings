@@ -17,7 +17,7 @@ fi
 
 # Basic tools
 brew install wget xclip xsel vim nvim tmux git ripgrep fzf fzy tldr fd jq yq lazygit \
-    fortune cowsay yazi tree-sitter bat gh
+    fortune cowsay yazi tree-sitter bat gh emacs
 
 # Programming Languages and Tools
 brew install python openjdk jdtls gradle nvm clojure cljfmt clj-kondo \
@@ -33,3 +33,7 @@ git clone https://github.com/tmux-plugins/tpm ~/.config/tmux/plugins/tpm
 git config --global user.email "vincebae@gmail.com"
 git config --global user.name  "Seung-Bin Bae"
 git config --global init.defaultBranch main
+
+# Set up Doom Emacs
+git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
+~/.config/emacs/bin/doom install

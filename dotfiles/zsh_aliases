@@ -9,6 +9,10 @@ alias vi=nvim
 alias memo="nvim ~/Documents/memo/memo.org"
 alias todo="nvim ~/Documents/memo/todo.org"
 
+# Emacs / Doom
+alias e="emacs"
+alias doom="~/.config/emacs/bin/doom"
+
 cd_and_rm() {
 	if cwd="$(command cat -- "$1")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
 		builtin cd -- "$cwd"
