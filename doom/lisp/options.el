@@ -1,9 +1,5 @@
 ;;; lisp/options.el -*- lexical-binding: t; -*-
 
-;; Change localleader
-(setq doom-localleader-key "")
-(setq doom-localleader-alt-key "M-;")
-
 ;; Disable the "Really exit Emacs?" confirmation prompt
 (setq confirm-kill-emacs nil)
 
@@ -18,3 +14,6 @@
   :config
   (nlinum-relative-setup-evil)
   (add-hook 'prog-mode-hook 'nlinum-relative-mode))
+
+;; Disable auto pair
+(remove-hook 'doom-first-buffer-hook #'smartparens-global-mode)

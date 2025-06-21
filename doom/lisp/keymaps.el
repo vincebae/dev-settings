@@ -1,9 +1,17 @@
 ;;; lisp/keymaps.el -*- lexical-binding: t; -*-
 
+;; Change localleader
+(setq doom-localleader-key ";")
+(setq doom-localleader-alt-key "M-;")
+
 ;; emacs-lisp override "d" binding, so revive it.
-(after! elisp-mode
-  (map! :map emacs-lisp-mode-map
-        :nv "d" #'evil-delete))
+(map! :after elisp-mode
+      :map emacs-lisp-mode-map
+      :nv "d" #'evil-delete)
+
+;; Disable some org-mode bindings, too
+(after! evil-org
+  (evil-org-set-key-theme '(textobjects insert navigation)))
 
 ;; Faster window management
 (use-package! tmux-pane
@@ -15,23 +23,44 @@
         :nv "C-l" #'tmux-pane-omni-window-right))
 
 (global-unset-key (kbd "C-s"))
-(map! :nv "C-s" #'evil-window-split
+(map! :after evil
+      :nv "C-s" #'evil-window-split
       :nv "C-v" #'evil-window-vsplit)
 
 ;; Nvim oil-like key binding
-(after! dired
-  (map! :n "-" #'dired-jump))
+(map! :after evil
+      :n "-" #'dired-jump)
+
+;; Remap find files key bindings
+(map! :after evil
+      :leader
+      :desc "Search in current dir"
+      :n "." (lambda ()
+               (interactive)
+               (consult-ripgrep default-directory)))
+
+(map! :after evil
+      :leader
+      :desc "Find file from here"
+      :n "f f" (lambda ()
+                 (interactive)
+                 (consult-find default-directory)))
+
+(map! :after evil
+      :leader
+      :desc "Find file"
+      :n "f F" #'find-file)
 
 ;; convenient key mappings
-(after! evil
-  ;; recenter after jump
-  (map!
-   :n "n" (lambda () (interactive) (evil-ex-search-next) (recenter))
-   :n "N" (lambda () (interactive) (evil-ex-search-previous) (recenter))
-   :n "C-u" (lambda () (interactive) (evil-scroll-up nil) (recenter))
-   :n "C-d" (lambda () (interactive) (evil-scroll-down nil) (recenter)))
+;; recenter after jump
+(map! :after evil
+ :n "n" (lambda () (interactive) (evil-ex-search-next) (recenter))
+ :n "N" (lambda () (interactive) (evil-ex-search-previous) (recenter))
+ :n "C-u" (lambda () (interactive) (evil-scroll-up nil) (recenter))
+ :n "C-d" (lambda () (interactive) (evil-scroll-down nil) (recenter)))
 
-  ;; Abbreviate ex commands like in Vim
+;; Abbreviate ex commands like in Vim
+(after! evil
   (evil-ex-define-cmd "W" "w")
   (evil-ex-define-cmd "W!" "w!")
   (evil-ex-define-cmd "Wq" "wq")

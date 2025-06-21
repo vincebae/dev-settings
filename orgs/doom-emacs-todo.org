@@ -1,0 +1,14 @@
+Doom Emacs Configuration TODO
+
+* Basic Key-Bindings
+* LSP / Dev
+ * Java
+ * ELisp
+ * Common Lisp
+ * Clojure
+ * Scheme
+* File Navigation
+ * [DONE] SPC SPC / SPC f f / SPC f F
+* Trouble Shootings
+ * [DONE] "-" Keybinding in dashboard
+* Learn Org-mode

@@ -6,7 +6,6 @@
     wombat
     doom-one
     doom-1337
-    doom-nord
     doom-nova
     doom-henna
     doom-opera
@@ -16,9 +15,6 @@
     doom-lantern
     doom-vibrant
     doom-peacock
-    doom-ayu-dark
-    doom-ayu-light
-    doom-ir-black
     doom-material
     doom-molokai
     doom-old-hope

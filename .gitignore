@@ -4,4 +4,5 @@ packer_compiled.lua
 .metals/
 .clj-kondo/
 .lsp/
+org/
 .nrepl-port

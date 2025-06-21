@@ -80,3 +80,4 @@
 (load! "lisp/keymaps.el")
 (load! "lisp/themes.el")
 (load! "lisp/format.el")
+(load! "lisp/quickfix.el")
