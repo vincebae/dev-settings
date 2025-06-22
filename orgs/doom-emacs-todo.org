@@ -14,8 +14,8 @@ Doom Emacs Configuration TODO
  * [DONE] arrow / marks / harpoon like navigation
  * [DONE] SPC SPC / SPC f f / SPC f F
 * Other features
- * terminal
  * sratch pad
+ * [DONE] terminal
  * [DONE] flash / leap like search
 * Trouble Shootings
  * Quickfix list toggle

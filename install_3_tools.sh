@@ -4,7 +4,7 @@ if [[ "$OSTYPE" == "linux-gnu"* ]]; then  # Linux
     echo "Installing for Linux..."
     sudo apt update
     sudo apt upgrade
-    sudo apt install build-essential procps curl file zsh colorized-logs
+    sudo apt install build-essential procps curl file zsh colorized-logs cmake libtool libvterm-dev
 
     # Install homebrew
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"

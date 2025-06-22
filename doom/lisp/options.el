@@ -21,3 +21,6 @@
 ;; Set parinfer to paren mode
 (after! parinfer-rust-mode
         (setq parinfer-rust-preferred-mode "paren"))
+
+;; Never ask for confirmation before killing active processes on exit.
+(setq confirm-kill-processes nil)

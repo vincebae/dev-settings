@@ -81,3 +81,4 @@
 (load! "lisp/themes.el")
 (load! "lisp/format.el")
 (load! "lisp/quickfix.el")
+(load! "lisp/term.el")
