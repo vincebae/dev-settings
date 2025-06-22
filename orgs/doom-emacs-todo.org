@@ -1,14 +1,23 @@
 Doom Emacs Configuration TODO
 
 * Basic Key-Bindings
-* LSP / Dev
- * Java
+ * tweak yank and paste bindings
+ * [DONE] jump backward /forward
+* LSP / Dev / Formatter / Linter
  * ELisp
  * Common Lisp
  * Clojure
  * Scheme
+ * Java????
 * File Navigation
+ * Test file nagivation
+ * [DONE] arrow / marks / harpoon like navigation
  * [DONE] SPC SPC / SPC f f / SPC f F
+* Other features
+ * terminal
+ * sratch pad
+ * [DONE] flash / leap like search
 * Trouble Shootings
+ * Quickfix list toggle
  * [DONE] "-" Keybinding in dashboard
 * Learn Org-mode

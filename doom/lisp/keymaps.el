@@ -41,6 +41,7 @@
 
 (map! :after evil
       :leader
+
       :desc "Find file from here"
       :n "f f" (lambda ()
                  (interactive)
@@ -51,13 +52,30 @@
       :desc "Find file"
       :n "f F" #'find-file)
 
+;; Rebind avy - leap like search and move
+(map! :after evil
+      :n "g /" #'evil-avy-goto-char-2)
+
+;; bookmark
+(map! :after evil
+      :leader
+      :desc "List Bookmarks"
+      :n "RET" #'list-bookmarks)
+
+(map! :after evil
+      :n "m" #'bookmark-set)
+
+;; Jump forward, since C-i doesn't work in emacs...
+(map! :after evil
+      :n "C-p" #'evil-jump-forward)
+
 ;; convenient key mappings
 ;; recenter after jump
 (map! :after evil
- :n "n" (lambda () (interactive) (evil-ex-search-next) (recenter))
- :n "N" (lambda () (interactive) (evil-ex-search-previous) (recenter))
- :n "C-u" (lambda () (interactive) (evil-scroll-up nil) (recenter))
- :n "C-d" (lambda () (interactive) (evil-scroll-down nil) (recenter)))
+      :n "n" (lambda () (interactive) (evil-ex-search-next) (recenter))
+      :n "N" (lambda () (interactive) (evil-ex-search-previous) (recenter))
+      :n "C-u" (lambda () (interactive) (evil-scroll-up nil) (recenter))
+      :n "C-d" (lambda () (interactive) (evil-scroll-down nil) (recenter)))
 
 ;; Abbreviate ex commands like in Vim
 (after! evil

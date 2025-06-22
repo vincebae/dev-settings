@@ -5,7 +5,6 @@
     jbeans
     wombat
     doom-one
-    doom-1337
     doom-nova
     doom-henna
     doom-opera

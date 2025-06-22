@@ -17,3 +17,7 @@
 
 ;; Disable auto pair
 (remove-hook 'doom-first-buffer-hook #'smartparens-global-mode)
+
+;; Set parinfer to paren mode
+(after! parinfer-rust-mode
+        (setq parinfer-rust-preferred-mode "paren"))

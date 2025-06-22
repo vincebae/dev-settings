@@ -6,6 +6,7 @@
   (interactive)
   (indent-region (point-min) (point-max)))
 
+
 ;; map! with :leader will bind the key globally, so use evil-define-key with local map
 ;; TODO: which-key show it even in visual mode. fix it later.
 (dolist (hook '(emacs-lisp-mode-hook lisp-mode-hook scheme-mode-hook))

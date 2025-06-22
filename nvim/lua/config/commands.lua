@@ -61,6 +61,7 @@ vim.api.nvim_create_autocmd("FileType", {
     callback = function()
         vim.schedule(function()
             vim.cmd([[call vlime#server#New(v:true, get(g:, "vlime_cl_use_terminal", v:false))]])
+            vim.cmd([[call vlime#plugin#CloseWindow("server")]])
         end)
     end,
 })

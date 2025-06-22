@@ -16,7 +16,6 @@ vim.keymap.set("x", "<leader>p", [["_dP]])
 vim.keymap.set("n", "<leader>pc", [["+p]], { desc = "Paste from Clipboard" })
 vim.keymap.set("n", "<leader>pd", [["1p]], { desc = "Paste from Last Deleted" })
 vim.keymap.set("n", "<leader>py", [["0p]], { desc = "Paste from Last Yanked" })
-vim.keymap.set("n", "<C-p>", [["+p]])
 
 -- Windows
 vim.keymap.set("n", "<C-v>", "<cmd>vsp<cr>")
@@ -28,6 +27,9 @@ vim.keymap.set("n", "<leader>-", function()
     vim.cmd("e " .. vim.fn.getcwd())
 end, { desc = "Move to CWD" })
 vim.keymap.set("n", "<ESC>", "<nop>")
+
+-- map C-] to jump forward as configured in doom emacs
+vim.keymap.set("n", "<C-p>", "<C-i>")
 
 -- Abbreviations
 vim.cmd("cnoreabbrev W! w!")

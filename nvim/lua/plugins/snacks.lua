@@ -97,7 +97,7 @@ return {
         },
         keys = {
             {
-                "<c-e>",
+                "<leader>f",
                 function()
                     Snacks.explorer({
                         layout = {
@@ -129,7 +129,7 @@ return {
                 desc = "Lazygit",
             },
             {
-                "<leader>f",
+                "<leader><leader>",
                 function()
                     Snacks.picker.smart()
                 end,

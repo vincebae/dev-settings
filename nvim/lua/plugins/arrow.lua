@@ -6,7 +6,7 @@ return {
 		},
 		opts = {
 			show_icons = true,
-			leader_key = "<leader><space>",
+			leader_key = "<leader><cr>",
 			buffer_leader_key = "<leader>m",
 			mappings = {
 				toggle = "a",
