@@ -82,3 +82,4 @@
 (load! "lisp/format.el")
 (load! "lisp/quickfix.el")
 (load! "lisp/term.el")
+(load! "lisp/sly.el")

@@ -32,7 +32,7 @@
       (select-window (display-buffer buf display-action)))))
 
 (defun my/vertical-vterm ()
-  "Show the persistent vterm in an 80-column vertical split."
+  "Show the persistent vterm in a vertical split."
   (interactive)
   (my/show-persistent-vterm
    `((display-buffer-in-side-window)
@@ -40,7 +40,7 @@
      (window-width . ,my/vterm-vertical-size))))
 
 (defun my/horizontal-vterm ()
-  "Show the persistent vterm in a 15-line horizontal split."
+  "Show the persistent vterm in a horizontal split."
   (interactive)
   (my/show-persistent-vterm
    `((display-buffer-in-side-window)
@@ -59,9 +59,19 @@
 
 (add-hook 'vterm-mode-hook #'my/vterm-bind-keys)
 
+;; Unbind Doom's new workspace key binding (C-t)
 (after! evil
-  ;; Unbind Doom's new workspace key binding (C-t)
-  (define-key evil-normal-state-map (kbd "C-t") nil)
+  (define-key evil-normal-state-map (kbd "C-t") nil))
+
+;; Unbind sly mode key binding (C-t)
+(add-hook 'sly-mode-hook
+          (lambda () (evil-define-key 'normal sly-mode-map (kbd "C-t") nil)))
+
+(add-hook 'sly-popup-buffer-mode-hook
+          (lambda () (evil-define-key 'normal sly-popup-buffer-mode-map (kbd "C-t") nil)))
+
+;; Map terminal keys
+(after! evil
   (map! :prefix "C-t"
         :desc "Vertical vterm"
         :g "v" #'my/vertical-vterm

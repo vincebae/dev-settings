@@ -4,8 +4,9 @@ Doom Emacs Configuration TODO
  * tweak yank and paste bindings
  * [DONE] jump backward /forward
 * LSP / Dev / Formatter / Linter
- * ELisp
  * Common Lisp
+   * [DONE] Set up basic sly repl
+ * ELisp
  * Clojure
  * Scheme
  * Java????
@@ -19,5 +20,6 @@ Doom Emacs Configuration TODO
  * [DONE] flash / leap like search
 * Trouble Shootings
  * Quickfix list toggle
+ * Sly Repl open in vertical mode
  * [DONE] "-" Keybinding in dashboard
 * Learn Org-mode

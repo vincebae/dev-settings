@@ -24,8 +24,8 @@
 
 (global-unset-key (kbd "C-s"))
 (map! :after evil
-      :nv "C-s" #'evil-window-split
-      :nv "C-v" #'evil-window-vsplit)
+      :n "C-s" (cmd! (evil-window-split) (evil-window-down 1))
+      :n "C-v" (cmd! (evil-window-vsplit) (evil-window-right 1)))
 
 ;; Nvim oil-like key binding
 (map! :after evil
@@ -41,7 +41,6 @@
 
 (map! :after evil
       :leader
-
       :desc "Find file from here"
       :n "f f" (lambda ()
                  (interactive)
