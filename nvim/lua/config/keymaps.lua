@@ -65,7 +65,16 @@ vim.api.nvim_create_user_command("Scratch", function(opts)
 end, {
     nargs = 1,
     complete = function(_, _, _)
-        return { "txt", "clj", "lua", "md", "java", "fnl", "lisp" }
+        return {
+            "txt",
+            "clj",
+            "lua",
+            "md",
+            "java",
+            "fnl",
+            "lisp",
+            "scm",
+        }
     end,
 })
 
@@ -109,4 +118,3 @@ vim.keymap.set("n", "<leader>bl", "<cmd>b#<cr>", { desc = "Go to Last Buffer" })
 -- Test Related
 local tu = require("utils.test_utils")
 vim.keymap.set("n", "<leader>t", tu.toggle_test, { desc = "Toggle Test File" })
-
