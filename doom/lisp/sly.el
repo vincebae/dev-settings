@@ -1,47 +1,32 @@
 ;;; ../myconfig/doom/lisp/sly.el -*- lexical-binding: t; -*-
 
-(defvar my/sly-mrepl-horizontal-size 20
+(load! "window-utils.el")
+
+(defvar my/sly-split-horizontal-size 20
   "Height of the horizontal sly-mrepl window")
 
-(defvar my/sly-mrepl-vertical-size 80
+(defvar my/sly-split-vertical-size 80
   "Width of the vertical sly-mrepl window")
-
-(defun my/open-buffer-window (buf display-action)
-  (if-let ((win (get-buffer-window buf)))
-      (select-window win)
-    (select-window (display-buffer buf display-action))))
-
-(defun my/horizontal-split-display-action (&optional size)
-  (let ((height(or size my/sly-mrepl-vertical-size)))
-    `((display-buffer-in-side-window)
-      (side . bottom)
-      (window-width . ,height))))
-
-(defun my/vertical-split-display-action (&optional size)
-  (let ((width (or size my/sly-mrepl-vertical-size)))
-    `((display-buffer-in-side-window)
-      (side . right)
-      (window-width . ,width))))
 
 (defun my/open-sly-mrepl-horizontal ()
   (interactive)
-  (my/open-buffer-window (sly-mrepl--find-create (sly-current-connection))
-                         (my/horizontal-split-display-action)))
+  (let ((buf (sly-mrepl--find-create (sly-current-connection))))
+   (my/open-buffer-window buf 'bottom my/sly-split-horizontal-size)))
 
 (defun my/open-sly-mrepl-vertical ()
   (interactive)
-  (my/open-buffer-window (sly-mrepl--find-create (sly-current-connection))
-                         (my/vertical-split-display-action)))
+  (let ((buf (sly-mrepl--find-create (sly-current-connection))))
+   (my/open-buffer-window buf 'right my/sly-split-vertical-size)))
 
 (defun my/open-sly-scratch-horizontal ()
   (interactive)
-  (my/open-buffer-window (sly-scratch-buffer)
-                         (my/horizontal-split-display-action)))
+  (let ((buf (sly-scratch-buffer)))
+   (my/open-buffer-window buf 'bottom my/sly-split-horizontal-size)))
 
 (defun my/open-sly-scratch-vertical ()
   (interactive)
-  (my/open-buffer-window (sly-scratch-buffer)
-                         (my/vertical-split-display-action)))
+  (let ((buf (sly-scratch-buffer)))
+   (my/open-buffer-window buf 'right my/sly-split-vertical-size)))
 
 (defun my/sly-eval-string-from-minibuffer ()
   (interactive)

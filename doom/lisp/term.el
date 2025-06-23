@@ -1,5 +1,7 @@
 ;;; ../myconfig/doom/lisp/term.el -*- lexical-binding: t; -*-
 
+(load! "window-utils.el")
+
 (defvar my/vterm-buffer-name "*my-vterm-buffer*"
   "The name of the single, persistent vterm buffer for splits.")
 
@@ -24,35 +26,21 @@
         (vterm-mode)
         (current-buffer))))
 
-(defun my/show-persistent-vterm (display-action)
-  "A generic function to show the persistent vterm using a precise display-buffer action."
+(defun my/open-vterm-horizontal ()
+  (interactive)
   (let ((buf (my/get-or-create-persistent-vterm)))
-    (if-let ((win (get-buffer-window buf)))
-        (select-window win)
-      (select-window (display-buffer buf display-action)))))
+    (my/open-buffer-window buf 'bottom my/vterm-horizontal-size)))
 
-(defun my/vertical-vterm ()
-  "Show the persistent vterm in a vertical split."
+(defun my/open-vterm-vertical ()
   (interactive)
-  (my/show-persistent-vterm
-   `((display-buffer-in-side-window)
-     (side . right)
-     (window-width . ,my/vterm-vertical-size))))
-
-(defun my/horizontal-vterm ()
-  "Show the persistent vterm in a horizontal split."
-  (interactive)
-  (my/show-persistent-vterm
-   `((display-buffer-in-side-window)
-     (side . bottom)
-     (window-height . ,my/vterm-horizontal-size))))
+  (let ((buf (my/get-or-create-persistent-vterm)))
+    (my/open-buffer-window buf 'right my/vterm-vertical-size)))
 
 (defun my/hide-vterm-window ()
   "Hide the window containing the persistent vterm buffer without killing it."
   (interactive)
-  (let ((win (get-buffer-window my/vterm-buffer-name)))
-    (when win
-      (delete-window win))))
+  (when-let ((win (get-buffer-window my/vterm-buffer-name)))
+      (delete-window win)))
 
 (defun my/vterm-bind-keys ()
   (define-key vterm-mode-map (kbd "C-t") #'my/hide-vterm-window))
@@ -73,9 +61,9 @@
 ;; Map terminal keys
 (after! evil
   (map! :prefix "C-t"
-        :desc "Vertical vterm"
-        :g "v" #'my/vertical-vterm
         :desc "Horizontal vterm"
-        :g "s" #'my/horizontal-vterm
+        :g "s" #'my/open-vterm-horizontal
+        :desc "Vertical vterm"
+        :g "v" #'my/open-vterm-vertical
         :desc "Close vterm"
         :g "c" #'my/hide-vterm-window))
