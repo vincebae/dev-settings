@@ -4,7 +4,21 @@ local filetypes = {
     "fennel",
     "lua",
     "python",
+    "scheme",
 }
+
+vim.g["conjure#extract#tree_sitter#enabled"] = true
+
+-- Clojure specific configuration.
+local clj = require("utils.clj_utils")
+vim.g["conjure#client#clojure#nrepl#connection#auto_repl#enabled"] = true
+vim.g["conjure#client#clojure#nrepl#connection#auto_repl#cmd"] = clj.nrepl_server_command()
+
+-- Scheme specific configuration. Use chicken scheme
+vim.g["conjure#client#scheme#stdio#command"] = "csi -:c"
+vim.g["conjure#client#scheme#stdio#prompt_pattern"] = "\n-#;%d-> "
+vim.g["conjure#client#scheme#stdio#value_prefix_pattern"] = false
+
 return {
     {
         "Olical/conjure",
@@ -22,8 +36,6 @@ return {
             },
         },
         config = function()
-            vim.g["conjure#extract#tree_sitter#enabled"] = true
-
             -- Evaluate text from the user input
             local eval_input_text = function()
                 local expr = vim.fn.input("Evaluate Expr: ")
@@ -33,7 +45,10 @@ return {
             end
 
             local function configure_keymap()
-                vim.keymap.set("n", "<localleader>e:", eval_input_text, { buffer = true, desc = "Evaluate Input Text" })
+                vim.keymap.set("n", "<localleader>e:", eval_input_text, {
+                    buffer = true,
+                    desc = "Evaluate Input Text",
+                })
 
                 local which_key = require("which-key")
                 which_key.add({

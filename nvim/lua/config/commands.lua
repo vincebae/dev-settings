@@ -1,15 +1,15 @@
 -- Clojure specific auto commands
 local clj = require("utils.clj_utils")
 
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = "clojure",
-    once = true,
-    callback = function()
-        vim.schedule(function()
-            clj.start_nrepl_server()
-        end)
-    end,
-})
+-- vim.api.nvim_create_autocmd("FileType", {
+--     pattern = "clojure",
+--     once = true,
+--     callback = function()
+--         vim.schedule(function()
+--             clj.start_nrepl_server()
+--         end)
+--     end,
+-- })
 
 -- Connect to the port from the user input
 local function connect_to_input_port()
