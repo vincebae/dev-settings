@@ -1,0 +1,7 @@
+;; ~/.fennelrc
+
+(local fennel (require :fennel))
+
+(let [my-fennel-path (.. (os.getenv :HOME) :/.config/myconfig/fnl/?.fnl)]
+  (set fennel.path (.. fennel.path ";" my-fennel-path))
+  (set fennel.macro-path (.. fennel.macro-path ";" my-fennel-path)))
