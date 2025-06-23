@@ -13,6 +13,14 @@ local vlime_filetypes = {
     "vlime_trace",
     "vlime_xref",
 }
+vim.g.vlime_window_settings = {
+    -- Open repl window vertical to the left by default.
+    repl = {
+        pos = "topleft",
+        size = nil,
+        vertical = true,
+    },
+}
 return {
     "vlime/vlime",
     ft = supported_filetypes,
