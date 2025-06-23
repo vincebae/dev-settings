@@ -44,16 +44,6 @@ vim.cmd("cnoreabbrev Q q")
 vim.cmd("cnoreabbrev Qa qa")
 vim.cmd("cnoreabbrev Qall qall")
 
--- Clear lua package cache on save
-vim.api.nvim_create_autocmd("BufWritePost", {
-    callback = function()
-        local ft = vim.bo.filetype
-        if ft == "lua" then
-            require("utils.lua_utils").unload_package()
-        end
-    end,
-})
-
 -- Open memo / scratch files
 local scratch_path = vim.fn.stdpath("data") .. "/scratch/"
 vim.api.nvim_create_user_command("Memo", function()

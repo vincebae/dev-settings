@@ -1,15 +1,14 @@
--- Clojure specific auto commands
-local clj = require("utils.clj_utils")
-
--- vim.api.nvim_create_autocmd("FileType", {
---     pattern = "clojure",
---     once = true,
---     callback = function()
---         vim.schedule(function()
---             clj.start_nrepl_server()
---         end)
---     end,
--- })
+-- Lua / Fennel specific auto commands
+-- Clear lua package cache on save
+local lua_utils = require("utils.lua_utils")
+vim.api.nvim_create_autocmd("BufWritePost", {
+    callback = function()
+        local ft = vim.bo.filetype
+        if ft == "lua"  or ft == "fnl" then
+            lua_utils.unload_package()
+        end
+    end,
+})
 
 -- Connect to the port from the user input
 local function connect_to_input_port()
@@ -19,6 +18,8 @@ local function connect_to_input_port()
     end
 end
 
+-- Clojure specific auto commands
+local clj = require("utils.clj_utils")
 local function configure_clojure_keymap()
     vim.keymap.set(
         "n",
