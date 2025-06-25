@@ -38,6 +38,7 @@ install $myconfig_dir/dotfiles/zsh_aliases $HOME/.zsh_aliases
 # install tmux / vim / nvim / emacs / yazi configs
 install $myconfig_dir/dotfiles/tmux.conf $config_dir/tmux/tmux.conf
 install $myconfig_dir/dotfiles/vimrc $HOME/.vimrc
+install $myconfig_dir/dotfiles/fennelrc $HOME/.fennelrc
 install $myconfig_dir/nvim $config_dir/nvim
 install $myconfig_dir/doom $config_dir/doom
 install $myconfig_dir/yazi $config_dir/yazi

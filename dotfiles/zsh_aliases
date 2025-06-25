@@ -105,7 +105,10 @@ alias bbs="rlwrap bb socket-repl 1666"
 alias bbn="rlwrap bb nrepl-server 1667"
 alias cljn="clj -M:cider-clj"
 
-# Lisp aliases
+# various REPLs
+alias chi="rlwrap csi -:c"
+alias fnl="rlwrap fennel"
+alias lua="rlwrap lua"
 alias sbcl="rlwrap sbcl"
 
 # AWS / Kubernetes 
