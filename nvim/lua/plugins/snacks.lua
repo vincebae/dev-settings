@@ -97,7 +97,7 @@ return {
         },
         keys = {
             {
-                "<leader>f",
+                "<c-e>",
                 function()
                     Snacks.explorer({
                         layout = {
@@ -115,7 +115,7 @@ return {
                 desc = "Toggle Explorer",
             },
             {
-                "<leader>c",
+                "<leader><space>",
                 function()
                     Snacks.notifier.hide()
                 end,
@@ -129,7 +129,7 @@ return {
                 desc = "Lazygit",
             },
             {
-                "<leader><leader>",
+                "<leader>f",
                 function()
                     Snacks.picker.smart()
                 end,
@@ -180,7 +180,6 @@ return {
                 end,
                 desc = "Buffers",
             },
-
             {
                 "<leader>sc",
                 function()
@@ -188,17 +187,17 @@ return {
                 end,
                 desc = "Colorschemes",
             },
-             {
+            {
                 "<leader>sd",
                 function()
                     Snacks.picker.lsp_symbols()
                 end,
                 desc = "LSP Symbols",
             },
-          {
+            {
                 "<leader>sD",
                 function()
-                    Snacks.picker.lsp_symbols()
+                    Snacks.picker.lsp_workspace_symbols()
                 end,
                 desc = "LSP Workspace Symbols",
             },
@@ -257,6 +256,13 @@ return {
                     Snacks.picker.resume()
                 end,
                 desc = "Resumes",
+            },
+            {
+                "<leader>sR",
+                function()
+                    Snacks.rename.rename_file()
+                end,
+                desc = "Rename File",
             },
             {
                 "<leader>su",
