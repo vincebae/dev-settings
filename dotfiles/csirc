@@ -1,0 +1,5 @@
+(import utf8 ; UTF-8 string support
+        srfi-1 ; List procedures
+        srfi-13 ; String procedures
+        srfi-69 ; Hashtables
+        srfi-113) ; Sets and bags

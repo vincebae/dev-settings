@@ -45,6 +45,45 @@ return {
             end
 
             local function configure_keymap()
+                -- Duplicate key mappings to use leader for easier access of evaluation.
+                local keys = {
+                    ee = "Evaluate current form",
+                    er = "Evaluate root form",
+                    ew = "Evaluate word",
+                    eb = "Evaluate buffer",
+                    ef = "Evaluate file",
+                    E = "Evaluate motion",
+                    le = "Open log in new buffer",
+                    lg = "Toggle log buffer",
+                    ll = "Jump to latest part of log",
+                    lq = "Close all visible log windows",
+                    lr = "Soft reset log",
+                    lR = "Hard reset log",
+                    ls = "Open log in new horizontal split window",
+                    lt = "Open log in new tab",
+                    lv = "Open log in new vertical split window",
+                }
+
+                for k, v in pairs(keys) do
+                    local new_key = "<leader>" .. k
+                    local target_key = "<localleader>" .. k
+                    vim.keymap.set("n", new_key, target_key, {
+                        buffer = true,
+                        remap = true,
+                        desc = v,
+                    })
+                end
+
+                -- Some more key bindings
+                vim.keymap.set("v", "<leader>E", "<localleader>E", {
+                    buffer = true,
+                    remap = true,
+                    desc = "Evaluate visual select",
+                })
+                vim.keymap.set("n", "<leader>e:", eval_input_text, {
+                    buffer = true,
+                    desc = "Evaluate Input Text",
+                })
                 vim.keymap.set("n", "<localleader>e:", eval_input_text, {
                     buffer = true,
                     desc = "Evaluate Input Text",
@@ -53,6 +92,9 @@ return {
                 local which_key = require("which-key")
                 which_key.add({
                     buffer = true,
+                    { "<leader>e", group = "Conjure Evaluate" },
+                    { "<leader>l", group = "Conjure Log buffer" },
+
                     { "<localleader>c", group = "Conjure Connection" },
                     { "<localleader>e", group = "Conjure Evaluate" },
                     { "<localleader>ec", group = "Conjure Eval and Comment" },
@@ -65,10 +107,15 @@ return {
                 })
             end
 
-            vim.api.nvim_create_autocmd("FileType", {
-                pattern = filetypes,
+            -- FileType event doesn't work for log buffer, so use BufEnter instead.
+            vim.api.nvim_create_autocmd("BufEnter", {
                 callback = function()
-                    vim.schedule(configure_keymap)
+                    for _, ft in ipairs(filetypes) do
+                        if vim.bo.filetype == ft then
+                            vim.schedule(configure_keymap)
+                            break
+                        end
+                    end
                 end,
             })
         end,

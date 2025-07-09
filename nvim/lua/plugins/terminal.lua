@@ -37,7 +37,7 @@ return {
                 desc = "Send Selected Lines to Terminal",
             },
             {
-                "<leader>:",
+                "<C-t>:",
                 function()
                     local command = vim.fn.input("Send Text to Terminal: ")
                     if command and command ~= "" then

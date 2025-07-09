@@ -13,6 +13,7 @@ local vlime_filetypes = {
     "vlime_trace",
     "vlime_xref",
 }
+
 vim.g.vlime_window_settings = {
     -- Open repl window vertical to the left by default.
     repl = {
@@ -21,6 +22,7 @@ vim.g.vlime_window_settings = {
         vertical = true,
     },
 }
+
 return {
     "vlime/vlime",
     ft = supported_filetypes,
@@ -32,8 +34,8 @@ return {
         local function evaluate_input_text()
             local expr = vim.fn.input("Evaluate Expr: ")
             if expr and expr ~= "" then
-                local my = require("utils.my_utils")
-                local escaped = my.make_literal(expr)
+                local su = require("utils.string_utils")
+                local escaped = su.make_literal(expr)
                 vim.cmd("call vlime#plugin#SendToREPL(" .. escaped .. ")")
             end
         end
@@ -213,7 +215,7 @@ return {
         -- Many keymappings are not working in vlime wndows,
         -- and somehow keymapping with "buffer = true" doesn't work for vlime_repl,
         -- so the configuration above doesn't work.
-        -- For better experience, configure evaluation keymap for vlime window types.
+        -- For better experience, configure evaluation keymap for vlime types.
         -- Note that evaluate / compile file is not included.
         local function configure_vlime_window_keymap()
             require("which-key").add({

@@ -34,7 +34,7 @@ return {
                 desc = "LSP actions",
                 callback = function(event)
                     local opts = { buffer = event.buf }
-                    vim.keymap.set("n", "gn", "<cmd>Lspsaga rename<cr>", { buffer = event.buf, desc = "Rename Symbol" })
+                    vim.keymap.set("n", "gR", "<cmd>Lspsaga rename<cr>", { buffer = event.buf, desc = "Rename Symbol" })
                     vim.keymap.set("n", "gh", "<cmd>Lspsaga hover_doc<cr>", { buffer = event.buf, desc = "Hover Doc" })
                     vim.keymap.set(
                         "n",

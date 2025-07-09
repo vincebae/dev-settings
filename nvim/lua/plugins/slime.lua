@@ -8,23 +8,21 @@ return {
         vim.g.slime_default_config = { socket_name = "default", target_pane = "+1" }
     end,
     keys = {
-        { "<localleader><localleader>r", "<cmd>SlimeConfig<cr>", desc = "Reset Slime Config" },
-        { "<localleader><localleader>c", "<cmd>SlimeSendCurrentLine<cr>", desc = "Send Current Line" },
+        { "<leader>S", "<cmd>SlimeSendCurrentLine<cr>", desc = "Slime Send Current Line" },
         {
-            "<localleader><localleader>",
+            "<leader>S",
             "<Plug>SlimeRegionSend",
             mode = "v",
             desc = "Slime Send Region",
             { noremap = false },
         },
-        { "<localleader><localleader>p", "<Plug>SlimeParagraphSend", desc = "Send Paragraph", { noremap = false } },
         {
-            "<localleader>:",
+            "!",
             function()
-                local my = require("utils.my_utils")
+                local su = require("utils.string_utils")
                 local text = vim.fn.input("Send Text: ")
                 if text and text ~= "" then
-                    vim.cmd("SlimeSend0 " .. my.make_literal(text .. "\n"))
+                    vim.cmd("SlimeSend0 " .. su.make_literal(text .. "\n"))
                 end
             end,
             desc = "Slime Send Input Text",
