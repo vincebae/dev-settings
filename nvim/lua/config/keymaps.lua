@@ -97,11 +97,11 @@ vim.api.nvim_create_autocmd("BufDelete", {
     callback = bu.on_delete,
 })
 
-vim.keymap.set("n", "[b", bu.back)
-vim.keymap.set("n", "]b", bu.forward)
+vim.keymap.set("n", "[b", bu.back, { desc = "Prev Buffer" })
+vim.keymap.set("n", "]b", bu.forward, { desc = "Prev Buffer" })
 vim.keymap.set("n", "<leader>bh", bu.popup_select_menu, { desc = "Show Buffer Histories" })
-vim.keymap.set("n", "<leader>br", bu.reset_curr_history, { desc = "Reset Current Buffer History" })
-vim.keymap.set("n", "<leader>bR", bu.reset_all_histories, { desc = "Reset All Buffer Histories" })
+vim.keymap.set("n", "<leader>bc", bu.clear_curr_history, { desc = "Clear Current Buffer History" })
+vim.keymap.set("n", "<leader>bC", bu.clear_all_histories, { desc = "Clear All Buffer Histories" })
 vim.keymap.set("n", "<leader>bd", bu.delete_all_invisible_buffers, { desc = "Delete Other Buffers" })
 vim.keymap.set("n", "<leader>bl", "<cmd>b#<cr>", { desc = "Go to Last Buffer" })
 
