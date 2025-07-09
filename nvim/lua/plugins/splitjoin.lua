@@ -1,17 +1,19 @@
 return {
     {
         "Wansmer/treesj",
-        keys = { "gS" },
-        dependencies = { "nvim-treesitter/nvim-treesitter" },
-        config = function()
-            local treesj = require("treesj")
-            treesj.setup({
-                use_default_keymaps = true,
-                max_join_length = 1000,
-            })
-            vim.keymap.set("n", "gS", treesj.toggle, {
+        keys = {
+            {
+                "gS",
+                function()
+                    require("treesj").toggle()
+                end,
                 desc = "Toggle splitjoin",
-            })
-        end,
+            },
+        },
+        dependencies = { "nvim-treesitter/nvim-treesitter" },
+        opts = {
+            use_default_keymaps = false,
+            max_join_length = 1000,
+        },
     },
 }
