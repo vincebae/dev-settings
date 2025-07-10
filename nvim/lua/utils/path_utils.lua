@@ -1,85 +1,64 @@
-local my = require("utils.my_utils")
-local Path = require("plenary.path")
-
-local remove_oil_prefix = function(path)
-    if my.starts_with(path, "oil://") then
-        return string.sub(path, 7)
-    else
-        return path
-    end
+-- [nfnl] nvim/fnl/utils/path_utils.fnl
+local pp = require("plenary.path")
+local function remove_oil_prefix(path)
+  local x_23_auto = path
+  local _1_
+  do
+    local p_20_auto = "oil://"
+    _1_ = (string.sub(path, 1, #p_20_auto) == p_20_auto)
+  end
+  if _1_ then
+    return string.sub(x_23_auto, 7)
+  else
+    return x_23_auto
+  end
 end
-
-local get_buffer_path = function()
-    return remove_oil_prefix(vim.fn.expand("%:p"))
+local function get_buffer_path()
+  return remove_oil_prefix(vim.fn.expand("%:p"))
 end
-
-local get_buffer_dir_path = function()
-    return remove_oil_prefix(vim.fn.expand("%:p:h"))
+local function get_buffer_dir_path()
+  return remove_oil_prefix(vim.fn.expand("%:p:h"))
 end
-
-local get_buffer_filename = function()
-    return vim.fn.expand("%:t")
+local function get_buffer_filename()
+  return vim.fn.expand("%:t")
 end
-
-local filename = function(path)
-    local split_path = vim.fn.split(path, "/")
-    return split_path[#split_path]
+local function filename(path)
+  local len_3_auto = #vim.fn.split(path, "/")
+  return vim.fn.split(path, "/")[len_3_auto]
 end
-
-local oil_filename = function()
-    local line = vim.api.nvim_get_current_line()
-    local name = string.match(line, [[.*  (.*)]])
-    if name == nil then
-        return ""
-    end
-    return get_buffer_dir_path() .. "/" .. name
+local function oil_filename()
+  local line = vim.api.nvim_get_current_line()
+  local name = string.match(line, ".*  (.*)")
+  if name then
+    return (get_buffer_dir_path() .. "/" .. name)
+  else
+    return ""
+  end
 end
-
-local exists = function(path)
-    return Path:new(path):exists()
+local function exists_3f(path)
+  return pp:new(path):exists()
 end
-
-local is_dir = function(path)
-    return Path:new(path):is_dir()
+local function dir_3f(path)
+  return pp:new(path):is_dir()
 end
-
-local parent = function(path)
-    return Path:new(path):parent():absolute()
+local function parent(path)
+  return pp:new(path):parent():absolute()
 end
-
--- Create directories recursively for the given path.
-local create_directories = function(path)
-    Path:new(path):mkdir({ parents = true, exists_ok = true })
+local function relative_path(_3fpath, _3fcwd)
+  local path = (_3fpath or get_buffer_path())
+  local cwd = (_3fcwd or vim.fn.getcwd())
+  return pp:new(path):make_relative(cwd)
 end
-
--- Touch the file for the given path only when the file doesn't exist.
--- Also create parent directories if necessary
-local touch = function(path)
-    local plenaryPath = Path:new(path)
-    if plenaryPath:exists() then
-        return
-    end
-
-    plenaryPath:parent():mkdir({ parents = true, exists_ok = true })
-    plenaryPath:touch()
+local function create_directories(path)
+  return pp:new(path):mkdir({parents = true, exists_ok = true})
 end
-
-local relative_path = function(path, cwd)
-    path = path or get_buffer_path()
-    cwd = cwd or vim.fn.getcwd()
-    return Path:new(path):make_relative(cwd)
+local function touch(path)
+  local plenary_path = pp:new(path)
+  if not plenary_path:exists() then
+    plenary_path:parent():mkdir({parents = true, exists_ok = true})
+    return plenary_path:touch()
+  else
+    return nil
+  end
 end
-
-return {
-    get_buffer_path = get_buffer_path,
-    get_buffer_dir_path = get_buffer_dir_path,
-    get_buffer_filename = get_buffer_filename,
-    filename = filename,
-    oil_filename = oil_filename,
-    exists = exists,
-    is_dir = is_dir,
-    parent = parent,
-    create_directories = create_directories,
-    touch = touch,
-    relative_path = relative_path,
-}
+return {["remove-oil-prefix"] = remove_oil_prefix, remove_oil_prefix = remove_oil_prefix, ["get-buffer-path"] = get_buffer_path, get_buffer_path = get_buffer_path, ["get-buffer-dir-path"] = get_buffer_dir_path, get_buffer_dir_path = get_buffer_dir_path, ["get-buffer-filename"] = get_buffer_filename, get_buffer_filename = get_buffer_filename, filename = filename, ["oil-filename"] = oil_filename, oil_filename = oil_filename, ["exists?"] = exists_3f, exists = exists_3f, ["dir?"] = dir_3f, is_dir = dir_3f, parent = parent, ["relative-path"] = relative_path, relative_path = relative_path, ["create-directories"] = create_directories, create_directories = create_directories, touch = touch}
