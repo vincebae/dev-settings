@@ -110,8 +110,9 @@ return {
             -- FileType event doesn't work for log buffer, so use BufEnter instead.
             vim.api.nvim_create_autocmd("BufEnter", {
                 callback = function()
+                    local filetype = vim.bo.filetype
                     for _, ft in ipairs(filetypes) do
-                        if vim.bo.filetype == ft then
+                        if ft == filetype then
                             vim.schedule(configure_keymap)
                             break
                         end
