@@ -32,21 +32,11 @@ vim.keymap.set("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease window 
 vim.keymap.set("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Descrease window width" })
 vim.keymap.set("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
 
--- Misc
-vim.keymap.set("n", "<leader>X", "<cmd>!chmod +x %<cr>", { desc = "Make executable" })
-vim.keymap.set("n", "<leader>-", function()
-    vim.cmd("e " .. vim.fn.getcwd())
-end, { desc = "Move to CWD" })
-vim.keymap.set("n", "<leader>C", function()
-    local path = vim.fn.expand("%:p")
-    vim.fn.setreg("0", path)
-    vim.fn.setreg("+", path)
-    print("Yanked current file path: " .. path)
-end, { desc = "Yank current file path" })
-vim.keymap.set("n", "<ESC>", "<nop>")
-
 -- map C-] to jump forward as configured in doom emacs
 vim.keymap.set("n", "<C-p>", "<C-i>")
+
+-- Disable <ESC> key in normal mode
+vim.keymap.set("n", "<ESC>", "<nop>")
 
 -- Abbreviations
 vim.cmd("cnoreabbrev W! w!")
@@ -86,8 +76,21 @@ end, {
     end,
 })
 
--- Quit nvim with writing current directory to temp file.
+-- File / Path related
+vim.keymap.set("n", "<leader>X", "<cmd>!chmod +x %<cr>", { desc = "Make executable" })
+vim.keymap.set("n", "<leader>-", function()
+    vim.cmd("e " .. vim.fn.getcwd())
+end, { desc = "Move to CWD" })
+
 local pu = require("utils.path_utils")
+vim.keymap.set("n", "<leader>C", function()
+    local path = pu.get_buffer_path()
+    vim.fn.setreg("0", path)
+    vim.fn.setreg("+", path)
+    print("Yanked current file path: " .. path)
+end, { desc = "Yank current file path" })
+
+-- Quit nvim with writing current directory to temp file.
 local function update_nvim_cd()
     local current_dir = pu.get_buffer_dir_path()
     vim.cmd('silent exec "!echo ' .. current_dir .. ' > /tmp/nvim.cd"')
