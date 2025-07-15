@@ -1,7 +1,18 @@
+local augroup = vim.api.nvim_create_augroup("UserConfig", {})
+
+-- Highlight yanked text
+vim.api.nvim_create_autocmd("TextYankPost", {
+    group = augroup,
+    callback = function()
+        vim.highlight.on_yank()
+    end,
+})
+
 -- Lua / Fennel specific auto commands
 -- Clear lua package cache on save
 local lua_utils = require("utils.lua_utils")
 vim.api.nvim_create_autocmd("BufWritePost", {
+    group = augroup,
     callback = function()
         local ft = vim.bo.filetype
         if ft == "lua"  or ft == "fnl" then
@@ -49,6 +60,7 @@ local function configure_clojure_keymap()
 end
 
 vim.api.nvim_create_autocmd("FileType", {
+    group = augroup,
     pattern = "clojure",
     callback = function()
         vim.schedule(configure_clojure_keymap)
@@ -57,6 +69,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
 -- List specific auto commands
 vim.api.nvim_create_autocmd("FileType", {
+    group = augroup,
     pattern = "lisp",
     once = true,
     callback = function()
