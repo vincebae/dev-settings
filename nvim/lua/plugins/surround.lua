@@ -18,6 +18,41 @@ return {
         "kylechui/nvim-surround",
         version = "^3.0.0",
         event = "VeryLazy",
-        opts = {},
+        config = function()
+            require("nvim-surround").setup({})
+            
+            -- simplied keymaps for structural edit.
+            local wraps = {
+                ["("] = "()",
+                ["["] = "[]",
+                ["{"] = "{}",
+            }
+            local targets = {
+                ["("] = "()",
+                ["["] = "[]",
+                ["{"] = "{}",
+                e = "sexp element",
+                f = "sexp form",
+                F = "sexp top level form",
+                w = "word",
+                W = "WORD",
+            }
+            -- define keymaps based on the combination of wraps and targets, for example,
+            -- `<leader>([` -> `ysa[(`
+            -- `<leader>{w` -> `ysaw{`
+            local which_key = require("which-key")
+            for wk, wv in pairs(wraps) do
+                for tk, tv in pairs(targets) do
+                    local input = "<leader>" .. wk .. tk
+                    local output = "ysa" .. tk .. wk
+                    local description = "Wrap " .. tv .. " with " .. wv
+                    vim.keymap.set("n", input, output, {
+                        remap = true,
+                        desc = description,
+                    })
+                end
+                which_key.add({ "<leader>" .. wk, group = "Wrap with " .. wv })
+            end
+        end,
     },
 }

@@ -52,7 +52,7 @@
 
 (fn get-toggle-dir-path [path opts]
   (if (string.find path opts.main-dir-pattern)
-      (string.gsub path opts.main-dir-pattern opts.test-dir-patterh)
+      (string.gsub path opts.main-dir-pattern opts.test-dir-pattern)
       (string.find path opts.test-dir-pattern)
       (string.gsub path opts.test-dir-pattern opts.main-dir-pattern)))
 

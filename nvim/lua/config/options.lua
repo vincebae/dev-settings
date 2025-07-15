@@ -10,23 +10,14 @@ vim.opt.ruler = true
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.termguicolors = true
-vim.opt.scrolloff = 4
+vim.opt.scrolloff = 8
+vim.opt.sidescrolloff = 4
 vim.opt.signcolumn = "yes"
 vim.opt.colorcolumn = "100"
 vim.opt.foldcolumn = "3"
 vim.opt.equalalways = false
-
-vim.api.nvim_create_autocmd({ "InsertEnter" }, {
-    callback = function()
-        vim.opt.cursorline = true
-    end,
-})
-
-vim.api.nvim_create_autocmd({ "InsertLeave" }, {
-    callback = function()
-        vim.opt.cursorline = false
-    end,
-})
+vim.opt.cursorline = true
+vim.opt.concealcursor = ""
 
 -- Lines
 vim.opt.tabstop = 4
@@ -71,7 +62,12 @@ vim.opt.wildmenu = true
 vim.opt.wildignore = "*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx"
 
 -- Misc
-vim.opt.updatetime = 50
+vim.opt.updatetime = 100
 vim.opt.timeout = true
 vim.opt.timeoutlen = 750
--- vim.opt.ttimeoutlen = 0
+vim.opt.ttimeoutlen = 0
+
+-- Performance improvements
+vim.opt.redrawtime = 10000
+vim.opt.maxmempattern = 20000
+
