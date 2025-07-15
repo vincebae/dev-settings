@@ -104,6 +104,7 @@ return {
                     { "<localleader>s", group = "Conjure REPL Session" },
                     { "<localleader>t", group = "Conjure Testing" },
                     { "<localleader>v", group = "Conjure View" },
+                    { "<localleader>x", group = "Conjure Macro" },
                 })
             end
 
