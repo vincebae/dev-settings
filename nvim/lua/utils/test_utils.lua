@@ -65,7 +65,7 @@ local function open_path(path, _3fopts)
 end
 local function get_toggle_dir_path(path, opts)
   if string.find(path, opts["main-dir-pattern"]) then
-    return string.gsub(path, opts["main-dir-pattern"], opts["test-dir-patterh"])
+    return string.gsub(path, opts["main-dir-pattern"], opts["test-dir-pattern"])
   elseif string.find(path, opts["test-dir-pattern"]) then
     return string.gsub(path, opts["test-dir-pattern"], opts["main-dir-pattern"])
   else
