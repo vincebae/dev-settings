@@ -17,15 +17,32 @@ vim.keymap.set("n", "<leader>pc", [["+p]], { desc = "Paste from Clipboard" })
 vim.keymap.set("n", "<leader>pd", [["1p]], { desc = "Paste from Last Deleted" })
 vim.keymap.set("n", "<leader>py", [["0p]], { desc = "Paste from Last Yanked" })
 
--- Windows
-vim.keymap.set("n", "<C-v>", "<cmd>vsp<cr>")
-vim.keymap.set("n", "<C-s>", "<cmd>sp<cr>")
+-- Better indenting in visual mode
+vim.keymap.set("v", "<", "<gv", { desc = "Indent left and reselect" })
+vim.keymap.set("v", ">", ">gv", { desc = "Indent right and reselect" })
+
+-- Better Join
+vim.keymap.set("n", "J", "mzJ`z", { desc = "Join lines and keep cursor position" })
+
+-- Window manipulations
+vim.keymap.set("n", "<C-v>", "<cmd>vsp<cr>", { desc = "Split window vertically" })
+vim.keymap.set("n", "<C-s>", "<cmd>sp<cr>", { desc = "Split window horizontally" })
+vim.keymap.set("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase window height" })
+vim.keymap.set("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease window height" })
+vim.keymap.set("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Descrease window width" })
+vim.keymap.set("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
 
 -- Misc
-vim.keymap.set("n", "<leader>X", "<cmd>!chmod +x %<cr>", { silent = true, desc = "Make executable" })
+vim.keymap.set("n", "<leader>X", "<cmd>!chmod +x %<cr>", { desc = "Make executable" })
 vim.keymap.set("n", "<leader>-", function()
     vim.cmd("e " .. vim.fn.getcwd())
 end, { desc = "Move to CWD" })
+vim.keymap.set("n", "<leader>C", function()
+    local path = vim.fn.expand("%:p")
+    vim.fn.setreg("0", path)
+    vim.fn.setreg("+", path)
+    print("Yanked current file path: " .. path)
+end, { desc = "Yank current file path" })
 vim.keymap.set("n", "<ESC>", "<nop>")
 
 -- map C-] to jump forward as configured in doom emacs
@@ -43,6 +60,7 @@ vim.cmd("cnoreabbrev Qall! qall!")
 vim.cmd("cnoreabbrev Q q")
 vim.cmd("cnoreabbrev Qa qa")
 vim.cmd("cnoreabbrev Qall qall")
+vim.cmd("cnoreabbrev E e")
 
 -- Open memo / scratch files
 local scratch_path = vim.fn.stdpath("data") .. "/scratch/"
@@ -83,7 +101,7 @@ vim.api.nvim_create_autocmd("QuitPre", {
     end,
 })
 
--- Buffer Related
+-- Buffer History Related
 local bu = require("utils.buffer_utils")
 local buffer_history_augroup = vim.api.nvim_create_augroup("BUFFER_HISTORY_GROUP", {
     clear = true,
