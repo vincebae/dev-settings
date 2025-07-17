@@ -52,6 +52,18 @@ vim.cmd("cnoreabbrev Qa qa")
 vim.cmd("cnoreabbrev Qall qall")
 vim.cmd("cnoreabbrev E e")
 
+-- Toggle line number type
+vim.keymap.set("n", "<leader>N", function()
+    local relative = vim.opt.relativenumber:get()
+    if relative then
+        vim.notify("Toggle to absolute line number")
+        vim.opt.relativenumber = false
+    else
+        vim.notify("Toggle to relative line number")
+        vim.opt.relativenumber = true
+    end
+end, { desc = "Toggle Line Number Type" })
+
 -- Open memo / scratch files
 local scratch_path = vim.fn.stdpath("data") .. "/scratch/"
 vim.api.nvim_create_user_command("Memo", function()
@@ -82,6 +94,7 @@ vim.keymap.set("n", "<leader>-", function()
     vim.cmd("e " .. vim.fn.getcwd())
 end, { desc = "Move to CWD" })
 
+-- Copy current file path to clipboard
 local pu = require("utils.path_utils")
 vim.keymap.set("n", "<leader>C", function()
     local path = pu.get_buffer_path()
@@ -125,6 +138,11 @@ vim.keymap.set("n", "<leader>bc", bu.clear_curr_history, { desc = "Clear Current
 vim.keymap.set("n", "<leader>bC", bu.clear_all_histories, { desc = "Clear All Buffer Histories" })
 vim.keymap.set("n", "<leader>bd", bu.delete_all_invisible_buffers, { desc = "Delete Other Buffers" })
 vim.keymap.set("n", "<leader>bl", "<cmd>b#<cr>", { desc = "Go to Last Buffer" })
+
+-- Mark Related
+local mu = require("utils.mark_utils")
+vim.keymap.set("n", "m.", mu.open_buffer_marks_qf, { desc = "List buffer marks in Quickfix" })
+vim.keymap.set("n", "m/", mu.open_global_marks_qf, { desc = "List global marks in Quickfix" })
 
 -- Test Related
 local tu = require("utils.test_utils")
