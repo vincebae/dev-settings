@@ -17,9 +17,6 @@ return {
                     },
                 },
             },
-            bufdelete = {
-                enabled = true,
-            },
             dashboard = {
                 preset = {
                     header = fortune(),
@@ -31,13 +28,6 @@ return {
                     { icon = " ", title = "Keymaps", section = "keys", indent = 2, padding = 1 },
                     { section = "startup" },
                 },
-            },
-            explorer = {
-                enabled = true,
-                replace_netrw = false,
-            },
-            lazygit = {
-                enabled = true,
             },
             notifier = {
                 enabled = true,
@@ -91,9 +81,6 @@ return {
             rename = {
                 enabled = true,
             },
-            words = {
-                enabled = false,
-            },
         },
         keys = {
             {
@@ -120,13 +107,6 @@ return {
                     Snacks.notifier.hide()
                 end,
                 desc = "Clear All Notification",
-            },
-            {
-                "<leader>gg",
-                function()
-                    Snacks.lazygit()
-                end,
-                desc = "Lazygit",
             },
             {
                 "<leader>f",

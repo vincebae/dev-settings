@@ -8,11 +8,15 @@ return {
         vim.g.slime_default_config = { socket_name = "default", target_pane = "+1" }
     end,
     keys = {
-        { "<leader>S", "<cmd>SlimeSendCurrentLine<cr>", desc = "Slime Send Current Line" },
+        {
+            "<leader>S",
+            "<cmd>SlimeSendCurrentLine<cr>",
+            desc = "Slime Send Current Line",
+        },
         {
             "<leader>S",
             "<Plug>SlimeRegionSend",
-            mode = "v",
+            mode = { "v" },
             desc = "Slime Send Region",
             { noremap = false },
         },
