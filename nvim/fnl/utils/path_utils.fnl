@@ -1,7 +1,5 @@
 (import-macros m :my-macros)
 
-(local pp (require :plenary.path))
-
 (fn remove-oil-prefix [path]
   (m.cond-> path (m.starts-with? path "oil://") (string.sub 7)))
 
@@ -23,33 +21,60 @@
     (if name
         (.. (get-buffer-dir-path) "/" name) "")))
 
-(fn exists? [path]
-  (-> path pp:new (: :exists)))
+(fn regular-file? [path]
+  (= (vim.fn.filereadable path) 1))
 
 (fn dir? [path]
-  (-> path pp:new (: :is_dir)))
+  (= (vim.fn.isdirectory path) 1))
+
+(fn exists? [path]
+  (or (regular-file? path) (dir? path)))
 
 (fn parent [path]
-  (-> path pp:new (: :parent) (: :absolute)))
+  (path:match "(.*)/"))
 
 (fn relative-path [?path ?cwd]
+  "Returns relative path of ?path against ?cwd
+  If ?path is not specified, path of the current buffer is used.
+  If ?cwd is not specified, path of the current working directory is used."
+  (fn with-separator [p]
+    (let [len (length p)
+          last-char (p:sub len)]
+      (m.cond-> p (not= last-char "/") (.. "/"))))
+
   (let [path (or ?path (get-buffer-path))
-        cwd (or ?cwd (vim.fn.getcwd))]
-    (-> path pp:new (: :make_relative cwd))))
+        path-with-sep (with-separator path)
+        cwd (or ?cwd (vim.fn.getcwd))
+        cwd-with-sep (with-separator cwd)]
+    (if ;; path is self.
+        (= path-with-sep cwd-with-sep) ;
+        "." ;
+        ;; path is a decendant of cwd
+        (m.starts-with? path cwd-with-sep) ;
+        (path:sub (m.inc (length cwd-with-sep)) -1) ;
+        ;; else
+        path)))
 
 (fn create-directories [path]
   "Create directories recursively for the given path."
-  (-> path
-      pp:new
-      (: :mkdir {:parents true :exists_ok true})))
+  (vim.fn.mkdir path :p))
 
 (fn touch [path]
   "Touch the file for the given path only when the file doesn't already exist.
   Also, create parent directories if necessary."
-  (let [plenary-path (pp:new path)]
-    (when (not (plenary-path:exists))
-      (-> plenary-path (: :parent) (: :mkdir {:parents true :exists_ok true}))
-      (plenary-path:touch))))
+  (fn touch-internal []
+    (create-directories (parent path))
+    (let [file (io.open path :a)]
+      (if file
+          (do
+            (file:close)
+            (vim.notify (.. "File '" path "' touched.")))
+          (vim.notify (.. "Error: Could not touch file '" path "'.")
+                      vim.log.levels.ERROR))))
+
+  (if (not (exists? path))
+      (touch-internal path)
+      (vim.notify (.. "File '" path "' already exists.") vim.log.levels.WARN)))
 
 {;;
  : remove-oil-prefix
@@ -63,10 +88,12 @@
  : filename
  : oil-filename
  :oil_filename oil-filename
- : exists?
- :exists exists?
+ : regular-file?
+ :is_regular_file regular-file?
  : dir?
  :is_dir dir?
+ : exists?
+ :exists exists?
  : parent
  : relative-path
  :relative_path relative-path
