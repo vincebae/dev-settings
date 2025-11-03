@@ -1,3 +1,4 @@
+-- keymaps.lua
 -- Search and scroll being kept in center.
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
@@ -16,13 +17,14 @@ vim.keymap.set("x", "<leader>p", [["_dP]])
 vim.keymap.set("n", "<leader>pc", [["+p]], { desc = "Paste from Clipboard" })
 vim.keymap.set("n", "<leader>pd", [["1p]], { desc = "Paste from Last Deleted" })
 vim.keymap.set("n", "<leader>py", [["0p]], { desc = "Paste from Last Yanked" })
+vim.keymap.set("n", "<C-p>", [["+p]])
 
 -- Better indenting in visual mode
 vim.keymap.set("v", "<", "<gv", { desc = "Indent left and reselect" })
 vim.keymap.set("v", ">", ">gv", { desc = "Indent right and reselect" })
 
--- Better Join
-vim.keymap.set("n", "J", "mzJ`z", { desc = "Join lines and keep cursor position" })
+-- Better Join (?)
+-- vim.keymap.set("n", "J", "mzJ`z", { desc = "Join lines and keep cursor position" })
 
 -- Window manipulations
 vim.keymap.set("n", "<C-v>", "<cmd>vsp<cr>", { desc = "Split window vertically" })
@@ -32,13 +34,16 @@ vim.keymap.set("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease window 
 vim.keymap.set("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Descrease window width" })
 vim.keymap.set("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase window width" })
 
--- map C-] to jump forward as configured in doom emacs
-vim.keymap.set("n", "<C-p>", "<C-i>")
+-- Closing window(s), preferred to :q to prevent accidental opening of command-line window.
+-- Same as default behaviors. Updated for the description.
+vim.keymap.set("n", "ZQ", "<cmd>q!<cr>", { desc = "Force Close (:q!)" })
+vim.keymap.set("n", "ZZ", "<cmd>wq<cr>", { desc = "Write and Close (:wq)" })
+-- Added behaviors.
+vim.keymap.set("n", "ZX", "<cmd>q<cr>", { desc = "Normal Close (:q)" })
+vim.keymap.set("n", "ZA", "<cmd>qa!<cr>", { desc = "Force Close All (:qa!)" })
+vim.keymap.set("n", "ZC", "<cmd>wqa<cr>", { desc = "Write and Close All (:wqa)" })
 
--- Disable <ESC> key in normal mode
-vim.keymap.set("n", "<ESC>", "<nop>")
-
--- Abbreviations
+-- Abbreviations for frequent typos
 vim.cmd("cnoreabbrev W! w!")
 vim.cmd("cnoreabbrev Wq wq")
 vim.cmd("cnoreabbrev Wa wa")
@@ -64,31 +69,7 @@ vim.keymap.set("n", "<leader>N", function()
     end
 end, { desc = "Toggle Line Number Type" })
 
--- Open memo / scratch files
-local scratch_path = vim.fn.stdpath("data") .. "/scratch/"
-vim.api.nvim_create_user_command("Memo", function()
-    vim.cmd("e " .. scratch_path .. "memo.md")
-end, {})
-vim.api.nvim_create_user_command("Scratch", function(opts)
-    local extension = opts.fargs[1]
-    vim.cmd("e " .. scratch_path .. "scratch." .. extension)
-end, {
-    nargs = 1,
-    complete = function(_, _, _)
-        return {
-            "txt",
-            "clj",
-            "lua",
-            "md",
-            "java",
-            "fnl",
-            "lisp",
-            "scm",
-        }
-    end,
-})
-
--- File / Path related
+-- Files and directory related
 vim.keymap.set("n", "<leader>X", "<cmd>!chmod +x %<cr>", { desc = "Make executable" })
 vim.keymap.set("n", "<leader>-", function()
     vim.cmd("e " .. vim.fn.getcwd())
@@ -102,6 +83,32 @@ vim.keymap.set("n", "<leader>C", function()
     vim.fn.setreg("+", path)
     print("Yanked current file path: " .. path)
 end, { desc = "Yank current file path" })
+vim.keymap.set("n", "<ESC>", "<nop>")
+
+-- Open memo / scratch files
+local scratch_path = vim.fn.stdpath("data") .. "/scratch/"
+vim.api.nvim_create_user_command("Memo", function()
+    vim.cmd("e " .. scratch_path .. "memo.md")
+end, {})
+vim.api.nvim_create_user_command("Scratch", function(opts)
+    local extension = opts.fargs[1]
+    vim.cmd("e " .. scratch_path .. "scratch." .. extension)
+end, {
+    nargs = 1,
+    complete = function(_, _, _)
+        return {
+            "txt",
+            "http",
+            "clj",
+            "lua",
+            "md",
+            "java",
+            "fnl",
+            "lisp",
+            "scm",
+        }
+    end,
+})
 
 -- Quit nvim with writing current directory to temp file.
 local function update_nvim_cd()
@@ -132,7 +139,7 @@ vim.api.nvim_create_autocmd("BufDelete", {
 })
 
 vim.keymap.set("n", "[b", bu.back, { desc = "Prev Buffer" })
-vim.keymap.set("n", "]b", bu.forward, { desc = "Prev Buffer" })
+vim.keymap.set("n", "]b", bu.forward, { desc = "Next Buffer" })
 vim.keymap.set("n", "<leader>bh", bu.popup_select_menu, { desc = "Show Buffer Histories" })
 vim.keymap.set("n", "<leader>bc", bu.clear_curr_history, { desc = "Clear Current Buffer History" })
 vim.keymap.set("n", "<leader>bC", bu.clear_all_histories, { desc = "Clear All Buffer Histories" })
