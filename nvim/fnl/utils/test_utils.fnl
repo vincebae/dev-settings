@@ -47,7 +47,7 @@
 (fn open-path [path ?opts]
   (when path
     (let [opts (or ?opts {})]
-      (if (path-utils.exists path) (vim.cmd (.. "e " path))
+      (if (path-utils.exists? path) (vim.cmd (.. "e " path))
           opts.prompt-if-not-exist (popup-create-menu path opts.dir?)))))
 
 (fn get-toggle-dir-path [path opts]
