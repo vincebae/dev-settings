@@ -2,6 +2,7 @@ local filetypes = { "java", "clojure" } -- "scala", "sbt"
 return {
     "mfussenegger/nvim-jdtls", -- java language server
     ft = filetypes,
+    lazy = false,
     dependencies = {
         "mfussenegger/nvim-dap",
         "mason-org/mason.nvim",
@@ -12,7 +13,7 @@ return {
 
         local jdtls_root_path = vim.fn.expand("$MASON/packages/jdtls")
         local jdtls_cmd_path = jdtls_root_path .. "/jdtls"
-        local config_dir = jdtls_root_path .. "/config_mac_arm"
+        local config_dir = jdtls_root_path .. "/config"
         local project_root = setup.find_root({ ".git", "mvnw", "gradlew", "build.sbt" })
         local project_name = vim.fn.fnamemodify(project_root, ":p:h:t")
         local data_dir = vim.fn.expand("$HOME/.cache/jdtls/workspace/") .. project_name
