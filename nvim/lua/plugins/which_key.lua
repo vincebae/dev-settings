@@ -18,6 +18,7 @@ return {
                 { "s", mode = { "n", "v" } },
                 { "y", mode = { "n" } },
                 { "z", mode = { "n", "v" } },
+                { "Z", mode = { "n" } },
                 { "<C-t>", mode = { "n", "v" } },
                 { "<C-w>", mode = { "n" } },
             },
@@ -25,9 +26,11 @@ return {
         which_key.setup(setup)
 
         which_key.add({
+            { "gr", group = "LSP actions" },
             { "<leader>", group = "<leader>" },
             { "<localleader>", group = "<localleader>" },
             { "<C-t>", group = "Terminal" },
+            { "Z", group = "Close Window" },
             { "<leader>b", group = "Buffer" },
             { "<leader>d", group = "DAP" },
             {
@@ -36,6 +39,7 @@ return {
             },
             { "<leader>p", group = "Paste" },
             { "<leader>P", group = "Plugins" },
+            { "<leader>R", group = "Kulala REST" },
             { "<leader>s", group = "Snacks" },
             { "<localleader><localleader>", group = "Slime" },
         })
