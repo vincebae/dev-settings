@@ -17,6 +17,9 @@ return {
                     },
                 },
             },
+            bigfile = {
+                enabled = true,
+            },
             dashboard = {
                 preset = {
                     header = fortune(),
@@ -250,20 +253,6 @@ return {
                     Snacks.picker.undo()
                 end,
                 desc = "Undo List",
-            },
-            {
-                "gk",
-                function()
-                    Snacks.words.jump(1, true)
-                end,
-                desc = "Jump Forward",
-            },
-            {
-                "gj",
-                function()
-                    Snacks.words.jump(-1, true)
-                end,
-                desc = "Jump Backward",
             },
         },
     },

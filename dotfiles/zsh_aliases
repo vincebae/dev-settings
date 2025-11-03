@@ -13,6 +13,11 @@ alias todo="nvim ~/Documents/memo/todo.org"
 alias e="emacs"
 alias doom="~/.config/emacs/bin/doom"
 
+# Replace texts in place recursively using `find` and `sed`
+rr() {
+    find . -type f -name "$1" -print0 | xargs -0 sed -i "" "$2"
+}
+
 cd_and_rm() {
 	if cwd="$(command cat -- "$1")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
 		builtin cd -- "$cwd"

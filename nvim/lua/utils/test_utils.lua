@@ -52,7 +52,7 @@ end
 local function open_path(path, _3fopts)
   if path then
     local opts = (_3fopts or {})
-    if path_utils.exists(path) then
+    if path_utils["exists?"](path) then
       return vim.cmd(("e " .. path))
     elseif opts["prompt-if-not-exist"] then
       return popup_create_menu(path, opts["dir?"])
