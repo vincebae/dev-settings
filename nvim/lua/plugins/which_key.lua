@@ -41,6 +41,7 @@ return {
             { "<leader>P", group = "Plugins" },
             { "<leader>R", group = "Kulala REST" },
             { "<leader>s", group = "Snacks" },
+            { "<leader>z", group = "Zk" },
             { "<localleader><localleader>", group = "Slime" },
         })
     end,
