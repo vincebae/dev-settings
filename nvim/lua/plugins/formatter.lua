@@ -21,6 +21,9 @@ return {
                 json = {
                     "jq",
                 },
+                go = {
+                    "gofmt",
+                },
                 lua = {
                     "stylua",
                 },

@@ -18,6 +18,7 @@ return {
             require("mason-tool-installer").setup({
                 ensure_installed = {
                     "autopep8",
+                    "basedpyright",
                     "bash-language-server",
                     "black",
                     "clj-kondo",
@@ -25,6 +26,7 @@ return {
                     "eslint_d",
                     "flake8",
                     "google-java-format",
+                    "gopls",
                     "isort",
                     "jdtls",
                     "jedi-language-server",

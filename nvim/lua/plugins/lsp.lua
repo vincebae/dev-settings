@@ -90,9 +90,11 @@ return {
             })
 
             vim.lsp.enable({
+                "basedpyright",
                 "bashls",
                 "clojure_lsp",
                 "fennel_ls",
+                "gopls",
                 "lua_ls",
             })
         end,

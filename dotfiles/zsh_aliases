@@ -6,8 +6,8 @@ alias time="/usr/bin/time -f '\t%E real,\t%U user,\t%S sys,\t%K amem,\t%M mmem'"
 
 # Vim / Neovim
 alias vi=nvim
-alias memo="nvim ~/Documents/memo/memo.org"
-alias todo="nvim ~/Documents/memo/todo.org"
+alias memo="nvim ~/notes/memo.md"
+alias todo="nvim ~/notes/todo.md"
 
 # Emacs / Doom
 alias e="emacs"
