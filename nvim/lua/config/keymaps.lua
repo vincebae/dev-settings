@@ -87,12 +87,19 @@ vim.keymap.set("n", "<ESC>", "<nop>")
 
 -- Open memo / scratch files
 local notes_path = vim.fn.expand("~/notes")
+vim.api.nvim_create_user_command("Note", function()
+    vim.cmd("cd " .. notes_path)
+    vim.cmd("e .")
+end, {})
+
 vim.api.nvim_create_user_command("Memo", function()
-    vim.cmd("e " .. notes_path .. "memo.md")
+    vim.cmd("e " .. notes_path .. "/memo.md")
 end, {})
+
 vim.api.nvim_create_user_command("Todo", function()
-    vim.cmd("e " .. notes_path .. "todo.md")
+    vim.cmd("e " .. notes_path .. "/todo.md")
 end, {})
+
 local scratch_path = vim.fn.stdpath("data") .. "/scratch/"
 vim.api.nvim_create_user_command("Scratch", function(opts)
     local extension = opts.fargs[1]
