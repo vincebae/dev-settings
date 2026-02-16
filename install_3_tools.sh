@@ -17,7 +17,7 @@ fi
 
 # Basic tools
 brew install wget xclip xsel vim nvim tmux git ripgrep fzf fzy tldr fd jq yq lazygit \
-    fortune cowsay yazi tree-sitter bat gh emacs
+    fortune cowsay yazi tree-sitter bat gh rlwrap zk
 
 # Programming Languages and Tools
 brew install python openjdk jdtls gradle nvm clojure cljfmt clj-kondo \
