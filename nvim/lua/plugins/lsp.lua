@@ -97,6 +97,17 @@ return {
                 "gopls",
                 "lua_ls",
             })
+
+            -- Lsp specific config override
+            vim.lsp.config("basedpyright", {
+                settings = {
+                    basedpyright = {
+                        analysis = {
+                            diagnosticMode = "workspace",
+                        },
+                    },
+                },
+            })
         end,
     },
 }
