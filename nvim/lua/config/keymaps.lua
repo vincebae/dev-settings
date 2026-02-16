@@ -39,7 +39,7 @@ vim.keymap.set("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increa
 vim.keymap.set("n", "ZQ", "<cmd>q!<cr>", { desc = "Force Close (:q!)" })
 vim.keymap.set("n", "ZZ", "<cmd>wq<cr>", { desc = "Write and Close (:wq)" })
 -- Added behaviors.
-vim.keymap.set("n", "ZX", "<cmd>q<cr>", { desc = "Normal Close (:q)" })
+vim.keymap.set("n", "ZX", "<cmd>q<cr><C-W>=", { desc = "Normal Close (:q) and Resize Windows" })
 vim.keymap.set("n", "ZA", "<cmd>qa!<cr>", { desc = "Force Close All (:qa!)" })
 vim.keymap.set("n", "ZC", "<cmd>wqa<cr>", { desc = "Write and Close All (:wqa)" })
 

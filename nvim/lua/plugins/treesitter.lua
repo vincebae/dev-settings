@@ -75,31 +75,57 @@ return {
         config = function()
             require("nvim-treesitter.configs").setup({
                 textobjects = {
+                    select = {
+                        enable = true,
+                        lookahead = true,
+                        keymaps = {
+                            ["af"] = "@function.outer",
+                            ["if"] = "@function.inner",
+                            ["ap"] = "@parameter.outer",
+                            ["ip"] = "@parameter.inner",
+                            ["ac"] = "@class.outer",
+                            ["ic"] = "@class.inner",
+                        },
+                        -- select mode (default is charwise 'v')
+                        selection_modes = {},
+                        include_surrounding_whitespace = true,
+                    },
                     move = {
                         enable = true,
                         set_jumps = true, -- whether to set jumps in the jumplist
                         goto_next_start = {
-                            ["]f"] = { query = "@function.outer", desc = "Next function start"},
-                            ["]s"] = { query = "@local.scope", query_group = "locals", desc = "Next scope start" },
+                            ["]]"] = { query = "@function.outer", desc = "Next function start" },
+                            ["]p"] = { query = "@parameter.inner", desc = "Next parameter start" },
                         },
                         goto_next_end = {
-                            ["]F"] = { query = "@function.outer", desc= "Next function end"},
-                            ["]S"] = { query = "@local.scope", query_group = "locals", desc = "Next scope start" },
+                            ["]e"] = { query = "@function.outer", desc = "Next function end" },
+                            ["]P"] = { query = "@parameter.inner", desc = "Next parameter end" },
                         },
                         goto_previous_start = {
-                            ["[f"] = { query = "@function.outer", desc = "Prev function start" },
-                            ["[s"] = { query = "@local.scope", query_group = "locals", desc = "Prev scope start" },
+                            ["[["] = { query = "@function.outer", desc = "Prev function start" },
+                            ["[p"] = { query = "@parameter.inner", desc = "Prev parameter start" },
                         },
                         goto_previous_end = {
-                            ["[F"] = { query = "@function.outer", desc = "Prev function end" },
-                            ["[S"] = { query = "@local.scope", query_group = "locals", desc = "Prev scope start" },
+                            ["[e"] = { query = "@function.outer", desc = "Prev function end" },
+                            ["[P"] = { query = "@parameter.inner", desc = "Prev parameter end" },
                         },
                         -- Below will go to either the start or the end, whichever is closer.
                         -- Use if you want more granular movements
                         -- Make it even more gradual by adding multiple queries and regex.
                         goto_next = {
+                            ["]c"] = { query = "@class.outer", desc = "Next class" },
                         },
                         goto_previous = {
+                            ["[c"] = { query = "@class.outer", desc = "Prev class" },
+                        },
+                    },
+                    swap = {
+                        enable = true,
+                        swap_next = {
+                            ["<leader>a"] = { query = "@parameter.inner", desc = "Swap parameter with next" }
+                        },
+                        swap_previous = {
+                            ["<leader>A"] = { query = "@parameter.inner", desc = "Swap parameter with prev" }
                         },
                     },
                 },

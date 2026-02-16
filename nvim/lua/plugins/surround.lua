@@ -23,14 +23,20 @@ return {
             
             -- simplied keymaps for structural edit.
             local wraps = {
-                ["("] = "()",
-                ["["] = "[]",
-                ["{"] = "{}",
+                ["("] = "() - space",
+                ["["] = "[] - space",
+                ["{"] = "{} - space",
+                [")"] = "() - no space",
+                ["]"] = "[] - no space",
+                ["}"] = "{} - no space",
             }
             local targets = {
                 ["("] = "()",
+                [")"] = "()",
                 ["["] = "[]",
+                ["]"] = "[]",
                 ["{"] = "{}",
+                ["}"] = "{}",
                 e = "sexp element",
                 f = "sexp form",
                 F = "sexp top level form",

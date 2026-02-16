@@ -36,6 +36,7 @@ return {
                     "prettier",
                     "stylua",
                     "typescript-language-server",
+                    "vtsls",
                     "xmlformatter",
                     "yq",
                 },

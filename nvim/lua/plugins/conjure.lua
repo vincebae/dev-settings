@@ -3,7 +3,7 @@ local filetypes = {
     "clojure",
     "fennel",
     "lua",
-    "python",
+    -- "python",
     "scheme",
 }
 
