@@ -9,7 +9,9 @@ local colorschemes = {
     "noctis_viola",
     "nord",
     "rose-pine-main",
-    "sequoia-insomnia",
+    "sequoia-ember",
+    "sequoia-main",
+    "sequoia-moss",
     "sequoia-night",
     "tokyonight",
 }

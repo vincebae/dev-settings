@@ -18,7 +18,7 @@ return {
             require("mason-tool-installer").setup({
                 ensure_installed = {
                     "autopep8",
-                    "basedpyright",
+                    -- "basedpyright",
                     "bash-language-server",
                     "black",
                     "clj-kondo",
@@ -35,6 +35,7 @@ return {
                     "lua-language-server",
                     "prettier",
                     "stylua",
+                    "ty",
                     "typescript-language-server",
                     "vtsls",
                     "xmlformatter",

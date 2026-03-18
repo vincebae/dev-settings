@@ -111,13 +111,14 @@ return {
                 end,
                 desc = "Clear All Notification",
             },
-            {
-                "<leader>f",
-                function()
-                    Snacks.picker.smart()
-                end,
-                desc = "Smart Find Files",
-            },
+            -- See neuralopen.lua
+            -- {
+            --     "<leader>f",
+            --     function()
+            --         Snacks.picker.smart()
+            --     end,
+            --     desc = "Smart Find Files",
+            -- },
             {
                 "<leader>/",
                 function()

@@ -3,10 +3,23 @@ return {
         "zk-org/zk-nvim",
         lazy = false,
         keys = {
-            { "<leader>zb", "<cmd>ZkBuffers<cr>", desc = "Zk Buffers" },
             { "<leader>zz", "<cmd>ZkNotes<cr>", desc = "Zk Notes" },
             { "<leader>zt", "<cmd>ZkTags<cr>", desc = "Zk Keywords / Tags" },
             { "<leader>zk", "<cmd>ZkTags<cr>", desc = "Zk Keywords / Tags" },
+            { "<leader>zl", "<cmd>ZkLinks<cr>", desc = "Zk Links" },
+            { "<leader>zb", "<cmd>ZkBacklinks<cr>", desc = "Zk Backlinks" },
+            {
+                "<leader>zi",
+                "<cmd>ZkInsertLink<cr>",
+                mode = { "n" },
+                desc = "Zk Insert Link",
+            },
+            {
+                "<leader>zi",
+                ":<C-u>'<,'>ZkInsertLinkAtSelection<cr>",
+                mode = { "v" },
+                desc = "Zk Insert Link (Selection)",
+            },
             {
                 "<leader>zn",
                 function()

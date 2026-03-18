@@ -32,6 +32,7 @@ return {
             { "<C-t>", group = "Terminal" },
             { "Z", group = "Close Window" },
             { "<leader>b", group = "Buffer" },
+            { "<leader>c", group = "Claude Code" },
             { "<leader>d", group = "DAP" },
             {
                 mode = { "n", "v" },
