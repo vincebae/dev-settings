@@ -31,10 +31,11 @@ return {
                 local title = "Choose Zk Group"
                 local menuitems = {
                     { "Fleet", { value = "fleet" } },
-                    { "Literature", { value = "literature" } },
                     { "Project", { value = "project" } },
-                    { "Career", { value = "career" } },
-                    { "Recipe", { value = "recipe" } },
+                    { "Literature", { value = "literature" } },
+                    { "Permanent", { value = "main" } },
+                    { "Permanent: Career", { value = "career" } },
+                    { "Permanent: Recipe", { value = "recipe" } },
                 }
                 local callbacks = {
                     on_submit = function(item)

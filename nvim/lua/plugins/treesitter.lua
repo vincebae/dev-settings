@@ -2,12 +2,12 @@ return {
     {
         "nvim-treesitter/nvim-treesitter",
         build = ":TSUpdate",
-        -- lazy = false,
+        lazy = false,
         dependencies = {
             "nvim-treesitter/playground",
         },
         config = function()
-            require("nvim-treesitter.config").setup({
+            require("nvim-treesitter.configs").setup({
                 -- A list of parser names, or "all" (the four listed parsers should always be installed)
                 ensure_installed = {
                     "bash",
@@ -73,7 +73,7 @@ return {
         },
         -- lazy = false,
         config = function()
-            require("nvim-treesitter.config").setup({
+            require("nvim-treesitter.configs").setup({
                 textobjects = {
                     select = {
                         enable = true,
