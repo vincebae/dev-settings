@@ -35,5 +35,5 @@ git config --global user.name  "Seung-Bin Bae"
 git config --global init.defaultBranch main
 
 # Set up Doom Emacs
-git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
-~/.config/emacs/bin/doom install
+# git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
+# ~/.config/emacs/bin/doom install

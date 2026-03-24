@@ -2,110 +2,94 @@ return {
     {
         "zk-org/zk-nvim",
         lazy = false,
-        keys = {
-            { "<leader>zz", "<cmd>ZkNotes<cr>", desc = "Zk Notes" },
-            { "<leader>zl", "<cmd>ZkLinks<cr>", desc = "Zk Links" },
-            { "<leader>zb", "<cmd>ZkBacklinks<cr>", desc = "Zk Backlinks" },
-            {
-                "<leader>zi",
-                "<cmd>ZkInsertLink<cr>",
-                mode = { "n" },
-                desc = "Zk Insert Link",
-            },
-            {
-                "<leader>zi",
-                ":<C-u>'<,'>ZkInsertLinkAtSelection<cr>",
-                mode = { "v" },
-                desc = "Zk Insert Link (Selection)",
-            },
-            { "<leader>zk", "<cmd>ZkTags<cr>", desc = "Zk Keywords / Tags (Simple)" },
-            {
-                "<leader>zK",
-                function()
-                    local su = require("utils.string_utils")
-
-                    local function trim(s)
-                        return (s:gsub("^%s*(.-)%s*$", "%1"))
-                    end
-
-                    local function process_string(input_str)
-                        local items = {}
-                        -- 1. Split the string into a table using string.gmatch, accounting for optional spaces around the comma
-                        -- The pattern "[^,]+" matches one or more characters that are not a comma
-                        for item in string.gmatch(input_str, "([^,]+)") do
-                            -- 2. Trim whitespaces from each item and add it to the table
-                            local trimmed_item = trim(item)
-                            table.insert(items, trimmed_item)
-                        end
-
-                        -- 3. Wrap each item with double quotes
-                        for i, v in ipairs(items) do
-                            -- Use string concatenation ".." to add quotes
-                            items[i] = su.make_literal(v)
-                        end
-
-                        -- 4. Join the items using a comma as a delimiter
-                        local result = table.concat(items, ", ")
-                        return result
-                    end
-
-                    local text = vim.fn.input("Zk Keywords / Tags: ")
-                    if text and text ~= "" then
-                        local opts = "{ tags = { " .. process_string(text) .. " } }"
-                        vim.cmd("ZkNotes " .. opts)
-                    end
-                end,
-                desc = "Zk Keywords / Tags (Full)",
-            },
-            {
-                "<leader>zN",
-                function()
-                    local su = require("utils.string_utils")
-                    local text = vim.fn.input("Zk New (Root) Note Title: ")
-                    if text and text ~= "" then
-                        local opts = "{ title = " .. su.make_literal(text) .. "}"
-                        vim.cmd("ZkNew " .. opts)
-                    end
-                end,
-                desc = "Zk New (Root Dir)",
-            },
-            {
-                "<leader>zn",
-                function()
-                    local su = require("utils.string_utils")
-                    local text = vim.fn.input("Zk New (Curr) Note Title: ")
-                    if text and text ~= "" then
-                        local pu = require("utils.path_utils")
-                        local opts = "{ title = "
-                            .. su.make_literal(text)
-                            .. ", dir = "
-                            .. su.make_literal(pu.get_buffer_dir_path())
-                            .. "}"
-                        vim.cmd("ZkNew " .. opts)
-                    end
-                end,
-                desc = "Zk New (Curr Dir)",
-            },
-        },
+        keys = {},
         config = function()
             require("zk").setup({
                 picker = "snacks_picker",
                 lsp = {
-                    -- `config` is passed to `vim.lsp.start(config)`
                     config = {
                         name = "zk",
                         cmd = { "zk", "lsp" },
                         filetypes = { "markdown" },
-                        -- on_attach = ...
-                        -- etc, see `:h vim.lsp.start()`
+                        on_attach = function(client, bufnr)
+                            vim.keymap.set("n", "gd", "<cmd>lua vim.lsp.buf.definition()<cr>", {
+                                buffer = bufnr,
+                                desc = "Follow Link",
+                            })
+                        end,
                     },
-
-                    -- automatically attach buffers in a zk notebook that match the given filetypes
                     auto_attach = {
                         enabled = true,
                     },
                 },
             })
+
+            local su = require("utils.string_utils")
+            local pu = require("utils.popup_utils")
+
+            local function choose_group_menu(callback)
+                local title = "Choose Zk Group"
+                local menuitems = {
+                    { "Fleet", { value = "fleet" } },
+                    { "Literature", { value = "literature" } },
+                    { "Project", { value = "project" } },
+                    { "Career", { value = "career" } },
+                    { "Recipe", { value = "recipe" } },
+                }
+                local callbacks = {
+                    on_submit = function(item)
+                        callback(item.value)
+                    end,
+                }
+                local opts = { width = 24 }
+                pu.popup_menu(title, menuitems, callbacks, opts)
+            end
+
+            -- Keymap config
+            vim.keymap.set("n", "<leader>zz", "<cmd>ZkNotes<cr>", { noremap = true, desc = "Zk Notes" })
+            vim.keymap.set("n", "<leader>zl", "<cmd>ZkLinks<cr>", { noremap = true, desc = "Zk Links" })
+            vim.keymap.set("n", "<leader>zb", "<cmd>ZkBacklinks<cr>", { noremap = true, desc = "Zk Backlinks" })
+            vim.keymap.set("n", "<leader>zi", "<cmd>ZkInsertLink<cr>", { noremap = true, desc = "Zk Insert Link" })
+            vim.keymap.set(
+                "v",
+                "<leader>zi",
+                ":<C-u>'<,'>ZkInsertLinkAtSelection<cr>",
+                { noremap = true, desc = "Zk Insert Link (Selection)" }
+            )
+            vim.keymap.set(
+                "n",
+                "<leader>zk",
+                "<cmd>ZkTags<cr>",
+                { noremap = true, desc = "Zk Keywords / Tags (Simple)" }
+            )
+            vim.keymap.set("n", "<leader>zK", function()
+                local text = vim.fn.input("Zk Keywords / Tags: ")
+                if text and text ~= "" then
+                    local opts = "{ tags = { " .. su.make_literals(text, ",") .. " } }"
+                    vim.cmd("ZkNotes " .. opts)
+                end
+            end, { noremap = true, desc = "Zk Keywords / Tags (Full)" })
+            vim.keymap.set("n", "<leader>zg", function()
+                choose_group_menu(function(group)
+                    vim.notify("Zk group set to: " .. group)
+                end)
+            end, { noremap = true, desc = "Zk Choose Group" })
+            vim.keymap.set("n", "<leader>zn", function()
+                local text = vim.fn.input("Zk New Note Title: ")
+                if text and text ~= "" then
+                    choose_group_menu(function(group)
+                        local title = su.make_literal(text)
+                        local opts = "{ title = " .. title .. ', group = "' .. group .. '" }'
+                        vim.cmd("ZkNew " .. opts)
+                    end)
+                end
+            end, { noremap = true, desc = "Zk New Note" })
+            vim.keymap.set("v", "<leader>zn", function()
+                choose_grou_menu(function(group)
+                    local opts = '{ group = "' .. group .. '" }'
+                    vim.cmd("'<,'>ZkNewFromTitleSelection " .. opts)
+                end)
+            end, { noremap = true, desc = "Zk New from Title" })
         end,
     },
 }
