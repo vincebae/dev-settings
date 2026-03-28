@@ -30,10 +30,12 @@ return {
             local function choose_group_menu(callback)
                 local title = "Choose Zk Group"
                 local menuitems = {
+                    { "MOC", { value = "moc" } },
                     { "Fleet", { value = "fleet" } },
                     { "Project", { value = "project" } },
                     { "Literature", { value = "literature" } },
                     { "Permanent", { value = "main" } },
+                    { "Permanent: Knowledge", { value = "knowledge" } },
                     { "Permanent: Career", { value = "career" } },
                     { "Permanent: Recipe", { value = "recipe" } },
                 }
@@ -86,7 +88,7 @@ return {
                 end
             end, { noremap = true, desc = "Zk New Note" })
             vim.keymap.set("v", "<leader>zn", function()
-                choose_grou_menu(function(group)
+                choose_group_menu(function(group)
                     local opts = '{ group = "' .. group .. '" }'
                     vim.cmd("'<,'>ZkNewFromTitleSelection " .. opts)
                 end)
