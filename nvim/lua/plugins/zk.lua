@@ -33,10 +33,14 @@ return {
                     { "MOC", { value = "moc" } },
                     { "Fleet", { value = "fleet" } },
                     { "Project", { value = "project" } },
+                    { "Project: GTD", { value = "gtd" } },
                     { "Literature", { value = "literature" } },
                     { "Permanent", { value = "main" } },
-                    { "Permanent: Knowledge", { value = "knowledge" } },
                     { "Permanent: Career", { value = "career" } },
+                    { "Permanent: Concept", { value = "concept" } },
+                    { "Permanent: Knowledge", { value = "knowledge" } },
+                    { "Permanent: Mental Model", { value = "mentalmodel" } },
+                    { "Permanent: Process", { value = "process" } },
                     { "Permanent: Recipe", { value = "recipe" } },
                 }
                 local callbacks = {
